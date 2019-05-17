@@ -1,39 +1,4 @@
-### NetDevOps Live - pyATS / GENIE Guide
-
-### s02t08
-
-
-
-
-
-### Lab Setup
-
-Clone this repository and move to directory 
-
-```bash
-git clone https://github.com/RunSi/pyATS_GENIE_NetDevOpsLive.git
-cd ~/pyATS_GENIE_NetDevOpsLive
-```
-
-Create a Python virtual environment and install necessary libraries
-
-```bash
-# create python virtual environment
-python3 -m venv venv
-
-# activate virtual environment
-source venv/bin/activate
-
-# update pip/setuptools
-pip install --upgrade pip setuptools
-
-# install pyATS and GENIE libraries
-pip install -r requirements.txt
-```
-
-
-
-Proceed to [GENIE CLI](guide/genie_cli)
+### GENIE CLI
 
 
 
@@ -47,7 +12,7 @@ As part of this lab we shall be leveraging GENIE _mock devices_.  Mock devices a
 
 
 
------------------
+------
 
 ### GENIE CLI
 
@@ -86,7 +51,7 @@ To begin with we are going to make a snapshot of the current state of **ospf, in
 # These two environment variables are needed as we are using our Mocked Devices.
 # When Genie cli is used with real devices these can environmental variables can be omitted.
 
-export unicon_replay=~/Genie_NetDevOpsLive/record_initial
+export unicon_replay=~/pyATS_GENIE_NetDevOpsLive/record_initial
 export unicon_speed=10
 
 # run Genie CLI
@@ -115,5 +80,70 @@ The `_console` file contains all the cli and device output which were sent to th
 
 Each feature's relevant information is parsed into structured data. 
 
+-------------
+
+### Disaster happens
+
+The state of the network is going to change which disrupts normal operation.  Sometimes it can take hours to determine the root cause.  We shall illustrate how Genie can simplify this process by validating network state.
+
+```bash
+# These two environment variables are needed as we are using our Mocked Devices.
+# When Genie cli is used with real devices these can environmental variables can be omitted.
+
+export unicon_replay=~/pyATS_GENIE_NetDevOpsLive/record_disaster
+export unicon_speed=10
+
+# run Genie CLI
+genie learn ospf interface bgp --testbed-file testbed.yaml --output disaster
+```
 
 
+
+You now have a new snapshot of how your devices are behaving in its disastrous state, under the `disaster` folder.
+
+Now, perform a diff of the states before and after disaster occurance.
+
+```bash
+genie diff learnt disaster --output diff_dir
+```
+
+You now have a new snapshot of how your devices are behaving in its disastrous state, under the `disaster` folder.
+
+Now, perform a diff of the states before and after disaster occurance.
+
+```
+genie diff learnt disaster
+```
+
+You can clearly see that the OSPF and interface operational state has changed.
+
+With an editor, open the two files:
+
+- `diff_dir/diff_interface_iosxe_xe_ops.txt `
+- `diff_ospf_nxos_nx-osv-1_ops.txt`
+
+You should see content like this:
+
+```bash
+--- learnt/interface_iosxe_xe_ops.txt
++++ disaster/interface_iosxe_xe_ops.txt
+info:
+ GigabitEthernet2:
++  enabled: False
+-  enabled: True
++  oper_status: down
+-  oper_status: up
+```
+
+Similar to typical Linux diff output:
+
+- `-` means this key is now missing or has been modified and this was the old value.
+- `+` means this key has been added or been modified and this is the current value.
+
+
+
+We have now identified where the problem lies and can investigate why the device in question is in such a state and look to remediate.
+
+Next we are going to look at a common framework that will automate this process further.
+
+Goto [ROBOT](guide/robot)
