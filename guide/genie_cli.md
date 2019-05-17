@@ -146,4 +146,4 @@ We have now identified where the problem lies and can investigate why the device
 
 Next we are going to look at a common framework that will automate this process further.
 
-Goto [ROBOT](guide/robot)
+Goto [ROBOT](robot)
