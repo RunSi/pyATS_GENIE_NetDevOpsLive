@@ -78,4 +78,4 @@ robot --outputdir run compare_snapshot.robot
 
 And again, open the `run/log.html` with a web browser to view the log.
 
-Now we shall move onto using GENIE in a Python interactive shell - [Python demonstration](pythondemo.md)
+Now we shall move onto using GENIE in a Python interactive shell - [Python demonstration](python.md)
