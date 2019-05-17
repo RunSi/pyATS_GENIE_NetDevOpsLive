@@ -33,7 +33,7 @@ pip install -r requirements.txt
 
 
 
-Proceed to [GENIE CLI](/guide/genie_cli)
+Proceed to [GENIE CLI](/guide/genie_cli.md)
 
 
 
