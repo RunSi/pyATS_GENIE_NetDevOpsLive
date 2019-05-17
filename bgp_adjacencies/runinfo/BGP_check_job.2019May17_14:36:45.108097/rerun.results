@@ -1,0 +1,11 @@
+# rerun.results file that contains the information of each task and their
+# testcases.
+# Please Check the following link for more information:
+# http://wwwin-pypyats.cisco.com/documentation/html/easypy/rerun.html
+Task-1:
+  commonCleanup: {name: common_cleanup, result: PASSED}
+  commonSetup: {name: common_setup, result: PASSED}
+  testcases:
+  - {name: BGP_Neighbors_Established, result: PASSED}
+  testscript: /Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/BGP_Neighbors_Established.py
+order: [Task-1]

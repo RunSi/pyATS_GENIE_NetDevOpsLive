@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<jobSummary archiveFilename="" atsTreePath="/Users/sihart/.pyenv/versions/3.6.7">
+  <jobName>BGP_check_job</jobName>
+  <image/>
+  <aborted>0</aborted>
+  <passed>3</passed>
+  <passx>0</passx>
+  <failed>0</failed>
+  <blocked>0</blocked>
+  <skipped>0</skipped>
+  <errored>0</errored>
+  <unknown>0</unknown>
+  <never_ran>0</never_ran>
+  <total>3</total>
+  <success_rate>100.0</success_rate>
+  <starttime>2019-05-17T14:36:46</starttime>
+  <stoptime>2019-05-17T14:36:53</stoptime>
+  <runtime>00:00:07</runtime>
+  <testbed>NetDevOpsLive</testbed>
+  <release/>
+  <submitter>sihart</submitter>
+  <debugProfile>0</debugProfile>
+  <host>SIHART-M-D02M</host>
+</jobSummary>

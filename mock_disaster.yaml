@@ -1,0 +1,23 @@
+testbed:
+
+  name: NetDevOpsLive
+
+  tacacs:
+      username: cisco
+  passwords:
+      tacacs: cisco
+      enable: cisco
+      line: cisco
+
+devices:
+  xe:
+    alias: xe
+    os: iosxe
+    type: CSR1000v
+    connections:
+      ssh:
+          command: mock_device_cli --os iosxe --mock_data_dir mock_disaster/xe --state connect
+          protocol: unknown
+    custom:
+      abstraction:
+        order: [os, type]

@@ -1,0 +1,99 @@
+testbed:
+
+  name: NetDevOpsLive
+
+  tacacs:
+      username: cisco
+  passwords:
+      tacacs: cisco
+      enable: cisco
+      line: cisco
+
+devices:
+  xe:
+    alias: xe
+    os: iosxe
+    type: CSR1000v
+    connections:
+
+      defaults:
+        class: unicon.Unicon
+      console:
+        ip: 10.10.20.160
+        protocol: telnet
+        port: 17025
+    custom:
+      abstraction:
+        order: [os, type]
+  nx-osv-1:
+    alias: nx
+    os: nxos
+    type: NX-OSv 9000
+    connections:
+      defaults:
+        class: unicon.Unicon
+      console:
+        ip: 10.10.20.160
+        protocol: telnet
+        port: 17023
+    custom:
+      abstraction:
+        order: [os, type]
+
+  xr:
+    alias: xr
+    os: "iosxr"
+    type: IOS-XRv 9000
+    connections:
+      defaults:
+        class: unicon.Unicon
+      console:
+        ip: 10.10.20.160
+        protocol: telnet
+        port: 17027
+    custom:
+      abstraction:
+        order: [os, type]
+
+
+topology:
+  nx:
+    interfaces:
+      Ethernet1/2:
+        link: nx-unconnected#1
+        type: ethernet
+      Ethernet1/1:
+        ipv4: 10.0.0.9/30
+        link: nx-to-xe
+        type: ethernet
+      mgmt0:
+        ipv4: 172.16.30.60/24
+        link: flat
+        type: ethernet
+  xr:
+    interfaces:
+      GigabitEthernet0/0/0/1:
+        ipv4: 10.0.0.6/30
+        link: xe-to-xr
+        type: ethernet
+      GigabitEthernet0/0/0/0:
+        link: xr-unconnected#0
+        type: ethernet
+      MgmtEth0/0/CPU0/0:
+        ipv4: 172.16.30.62/24
+        link: flat
+        type: ethernet
+  xe:
+    interfaces:
+      GigabitEthernet3:
+        ipv4: 10.0.0.5/30
+        link: xe-to-xr
+        type: ethernet
+      GigabitEthernet2:
+        ipv4: 10.0.0.10/30
+        link: nx-to-xe
+        type: ethernet
+      GigabitEthernet1:
+        ipv4: 172.16.30.61/24
+        link: flat
+        type: ethernet

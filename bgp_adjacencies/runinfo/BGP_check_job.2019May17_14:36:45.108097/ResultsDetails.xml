@@ -1,0 +1,218 @@
+<?xml version="1.0" ?>
+<aereport xmlns="http://wwwin-ats.cisco.com/xml/schema/aereport" xmlns:schemaLocation="http://wwwin-ats.cisco.com/xml/schema/aereport.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <testsuite>
+    <starttime>2019-05-17T14:36:46</starttime>
+    <initinfo>
+      <name>BGP_check_job</name>
+      <params>
+        <cli>/Users/sihart/.pyenv/versions/3.6.7/bin/easypy BGP_check_job.py -html_logs myhtml -no_archive -testbed_file ../mock_test.yaml</cli>
+        <mailto/>
+        <report>
+          <type/>
+          <sort>0</sort>
+          <outofrange>0</outofrange>
+          <uniquesuites>0</uniquesuites>
+          <count_common_result_summary>1</count_common_result_summary>
+          <sem/>
+        </report>
+        <rerun>0</rerun>
+        <cleantype>easyclean</cleantype>
+        <uniquetid>0</uniquetid>
+        <max>
+          <errors>10</errors>
+          <jobs>-1</jobs>
+        </max>
+        <reason/>
+        <tidRange/>
+      </params>
+      <jobid>BGP_check_job.2019May17_14:36:45.108097</jobid>
+      <ats>
+        <path>/Users/sihart/.pyenv/versions/3.6.7</path>
+        <version>19.4.0</version>
+      </ats>
+      <CONFIG/>
+      <host>SIHART-M-D02M</host>
+      <owner/>
+      <submitter>sihart</submitter>
+      <topology/>
+      <logfile begin="0" size="-1"/>
+      <tbautoselect/>
+      <testbed>NetDevOpsLive</testbed>
+    </initinfo>
+    <jobexecution>
+      <starttime>2019-05-17T14:36:46</starttime>
+      <runinfo/>
+      <testscript>
+        <starttime>2019-05-17T14:36:47</starttime>
+        <initinfo>
+          <script>
+            <name>BGP_Neighbors_Established.py</name>
+            <path>/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies</path>
+            <version/>
+          </script>
+          <pargs>{'testbed': &lt;pyats.topology.testbed.Testbed object at 0x11118d320&gt;}</pargs>
+          <taskid>Task-1</taskid>
+          <description/>
+          <logfile begin="0" size="-1">TaskLog.Task-1</logfile>
+        </initinfo>
+        <runinfo/>
+        <commonSetup>
+          <starttime>2019-05-17T14:36:47</starttime>
+          <name>commonSetup</name>
+          <description> Common Setup section </description>
+          <xref>
+            <file>/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/BGP_Neighbors_Established.py</file>
+            <line>28</line>
+          </xref>
+          <logfile begin="0" size="4923">TaskLog.Task-1</logfile>
+          <runinfo/>
+          <result mode="auto">passed</result>
+          <stoptime>2019-05-17T14:36:50</stoptime>
+          <runtime>00:00:03</runtime>
+          <subSection>
+            <starttime>2019-05-17T14:36:47</starttime>
+            <xref>
+              <file>/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/BGP_Neighbors_Established.py</file>
+              <line>35</line>
+            </xref>
+            <id md5="" name="connect">
+              <tc>connect</tc>
+            </id>
+            <name>connect</name>
+            <description/>
+            <logfile begin="105" size="4694">TaskLog.Task-1</logfile>
+            <runinfo/>
+            <result mode="auto">passed</result>
+            <stoptime>2019-05-17T14:36:50</stoptime>
+            <runtime>00:00:03</runtime>
+            <extra>{'module': 'pyats.aetest.sections'}</extra>
+          </subSection>
+        </commonSetup>
+        <testcase>
+          <starttime>2019-05-17T14:36:50</starttime>
+          <initinfo>
+            <id md5="" name="BGP_Neighbors_Established">
+              <tc>BGP_Neighbors_Established</tc>
+            </id>
+            <name>BGP_Neighbors_Established</name>
+            <xref>
+              <file>/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/BGP_Neighbors_Established.py</file>
+              <line>60</line>
+            </xref>
+            <description> This is user Testcases section </description>
+            <swversion>None</swversion>
+            <hwversion>None</hwversion>
+            <fwversion>None</fwversion>
+            <tstversion>None</tstversion>
+            <logfile begin="4923" size="38398">TaskLog.Task-1</logfile>
+          </initinfo>
+          <runinfo/>
+          <section>
+            <starttime>2019-05-17T14:36:50</starttime>
+            <name>learn_bgp</name>
+            <description> Sample test section. Only print </description>
+            <xref>
+              <file>/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/BGP_Neighbors_Established.py</file>
+              <line>64</line>
+            </xref>
+            <logfile begin="5051" size="37131">TaskLog.Task-1</logfile>
+            <runinfo/>
+            <result mode="auto">passed</result>
+            <stoptime>2019-05-17T14:36:53</stoptime>
+            <runtime>00:00:03</runtime>
+          </section>
+          <section>
+            <starttime>2019-05-17T14:36:53</starttime>
+            <name>check_bgp</name>
+            <description> Sample test section. Only print </description>
+            <xref>
+              <file>/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/BGP_Neighbors_Established.py</file>
+              <line>77</line>
+            </xref>
+            <logfile begin="42182" size="992">TaskLog.Task-1</logfile>
+            <runinfo/>
+            <result mode="auto">passed</result>
+            <stoptime>2019-05-17T14:36:53</stoptime>
+            <runtime>00:00:00</runtime>
+          </section>
+          <result mode="auto">passed</result>
+          <stoptime>2019-05-17T14:36:53</stoptime>
+          <runtime>00:00:03</runtime>
+        </testcase>
+        <commonCleanup>
+          <starttime>2019-05-17T14:36:53</starttime>
+          <name>commonCleanup</name>
+          <description> Common Cleanup for Sample Test </description>
+          <xref>
+            <file>/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/BGP_Neighbors_Established.py</file>
+            <line>123</line>
+          </xref>
+          <logfile begin="43321" size="606">TaskLog.Task-1</logfile>
+          <runinfo/>
+          <result mode="auto">passed</result>
+          <stoptime>2019-05-17T14:36:53</stoptime>
+          <runtime>00:00:00</runtime>
+          <subSection>
+            <starttime>2019-05-17T14:36:53</starttime>
+            <xref>
+              <file>/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/BGP_Neighbors_Established.py</file>
+              <line>131</line>
+            </xref>
+            <id md5="" name="clean_everything">
+              <tc>clean_everything</tc>
+            </id>
+            <name>clean_everything</name>
+            <description> Common Cleanup Subsection </description>
+            <logfile begin="43430" size="370">TaskLog.Task-1</logfile>
+            <runinfo/>
+            <result mode="auto">passed</result>
+            <stoptime>2019-05-17T14:36:53</stoptime>
+            <runtime>00:00:00</runtime>
+            <extra>{'module': 'pyats.aetest.sections'}</extra>
+          </subSection>
+        </commonCleanup>
+        <stoptime>2019-05-17T14:36:53</stoptime>
+        <runtime>00:00:06</runtime>
+        <summary>
+          <abort>0</abort>
+          <pass>3</pass>
+          <passx>0</passx>
+          <fail>0</fail>
+          <block>0</block>
+          <skip>0</skip>
+          <error>0</error>
+          <never_ran>0</never_ran>
+          <unknown>0</unknown>
+          <total>3</total>
+          <success_rate>100.0</success_rate>
+        </summary>
+      </testscript>
+      <result mode="auto"/>
+      <stoptime>2019-05-17T14:36:53</stoptime>
+      <runtime>00:00:07</runtime>
+    </jobexecution>
+    <tims bgPost="False">
+      <dnsname/>
+      <post>
+        <status/>
+        <cmd/>
+      </post>
+    </tims>
+    <runinfo/>
+    <stoptime>2019-05-17T14:36:53</stoptime>
+    <runtime>00:00:07</runtime>
+    <summary>
+      <abort>0</abort>
+      <pass>3</pass>
+      <passx>0</passx>
+      <fail>0</fail>
+      <block>0</block>
+      <skip>0</skip>
+      <error>0</error>
+      <never_ran>0</never_ran>
+      <unknown>0</unknown>
+      <total>3</total>
+      <success_rate>100.0</success_rate>
+    </summary>
+  </testsuite>
+</aereport>

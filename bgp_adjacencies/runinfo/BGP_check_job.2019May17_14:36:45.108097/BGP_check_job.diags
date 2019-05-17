@@ -1,0 +1,62 @@
+name    : BGP_check_job
+args    : /Users/sihart/.pyenv/versions/3.6.7/bin/easypy BGP_check_job.py -html_logs myhtml -no_archive -testbed_file ../mock_test.yaml
+testbed : NetDevOpsLive
+release : None
+image   : None
+
++--------------------------------------------------------------------------------------------------+
+|                             Testscript: BGP_Neighbors_Established.py                             |
++--------------------------------------------------------------------------------------------------+
+name    : BGP_Neighbors_Established.py
+path    : /Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies
+version : 
+args    : {'testbed': <pyats.topology.testbed.Testbed object at 0x11118d320>}
+logfile : /Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/runinfo/BGP_check_job.2019May17_14:36:45.108097/TaskLog.Task-1
+
++------------------------------------------------------------------------------+
+|                                 Common Setup                                 |
++------------------------------------------------------------------------------+
+description : Common Setup section
+result      : PASSED
+starttime   : 2019-05-17 14:36:47.476922
+stoptime    : 2019-05-17 14:36:50.109917
+
+connect
+-------
+    result   : PASSED
+
+
++------------------------------------------------------------------------------+
+|                     Testcase: BGP_Neighbors_Established                      |
++------------------------------------------------------------------------------+
+name        : BGP_Neighbors_Established
+description : This is user Testcases section
+result      : PASSED
+starttime   : 2019-05-17 14:36:50.118272
+stoptime    : 2019-05-17 14:36:53.331319
+swversion   : None
+hwversion   : None
+fwversion   : None
+tstversion  : None
+
+learn_bgp
+---------
+    result   : PASSED
+
+check_bgp
+---------
+    result   : PASSED
+
+
++------------------------------------------------------------------------------+
+|                                Common Cleanup                                |
++------------------------------------------------------------------------------+
+description : Common Cleanup for Sample Test
+result      : PASSED
+starttime   : 2019-05-17 14:36:53.337829
+stoptime    : 2019-05-17 14:36:53.370816
+
+clean_everything
+----------------
+    result   : PASSED
+

@@ -1,0 +1,50 @@
++------------------------------------------------------------------------------+
+|                                Easypy Report                                 |
++------------------------------------------------------------------------------+
+pyATS Instance   : /Users/sihart/.pyenv/versions/3.6.7
+Python Version   : cpython-3.6.7 (64bit)
+CLI Arguments    : /Users/sihart/.pyenv/versions/3.6.7/bin/easypy BGP_check_job.py -html_logs myhtml -no_archive -testbed_file ../mock_test.yaml
+User             : sihart
+Host Server      : SIHART-M-D02M
+Host OS Version  : Mac OSX 10.14.4 (x86_64)
+
+Job Information
+    Name         : BGP_check_job
+    Start time   : 2019-05-17 14:36:46.179205
+    Stop time    : 2019-05-17 14:36:53.567472
+    Elapsed time : 0:00:07.388267
+    Archive      : None
+
+Total Tasks    : 1
+
+Overall Stats
+    Passed     : 3
+    Passx      : 0
+    Failed     : 0
+    Aborted    : 0
+    Blocked    : 0
+    Skipped    : 0
+    Errored    : 0
+
+    TOTAL      : 3
+
+Success Rate   : 100.00 %
+
++------------------------------------------------------------------------------+
+|                             Task Result Summary                              |
++------------------------------------------------------------------------------+
+Task-1: BGP_Neighbors_Established.commonSetup                             PASSED
+Task-1: BGP_Neighbors_Established.BGP_Neighbors_Established               PASSED
+Task-1: BGP_Neighbors_Established.commonCleanup                           PASSED
+
++------------------------------------------------------------------------------+
+|                             Task Result Details                              |
++------------------------------------------------------------------------------+
+Task-1: BGP_Neighbors_Established
+|-- commonSetup                                                           PASSED
+|   `-- connect                                                           PASSED
+|-- BGP_Neighbors_Established                                             PASSED
+|   |-- learn_bgp                                                         PASSED
+|   `-- check_bgp                                                         PASSED
+`-- commonCleanup                                                         PASSED
+    `-- clean_everything                                                  PASSED

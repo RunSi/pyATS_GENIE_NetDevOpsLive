@@ -1,0 +1,4 @@
+9: SIHART-M-D02M: 2019-05-17T14:36:46: %EASYPY-6-INFO: %[pid=35217][pname=MainProcess]: Testbed file ../mock_test.yaml exists and is readable.
+2: SIHART-M-D02M: 2019-05-17T14:36:47: %EASYPY-6-INFO: %[pid=35317][pname=Task-1]: Starting task execution: Task-1
+3: SIHART-M-D02M: 2019-05-17T14:36:47: %EASYPY-6-INFO: %[pid=35317][pname=Task-1]:     test harness = pyats.aetest
+4: SIHART-M-D02M: 2019-05-17T14:36:47: %EASYPY-6-INFO: %[pid=35317][pname=Task-1]:     testscript   = /Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/BGP_Neighbors_Established.py

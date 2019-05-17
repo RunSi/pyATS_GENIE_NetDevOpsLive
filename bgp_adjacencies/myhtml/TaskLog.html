@@ -1,0 +1,2099 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>LogViewer</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>BGP_check_job</title>
+</head>
+<style type="text/css">
+    /*************************************************/
+/* Main element styling */
+
+body,
+.side-nav.fixed,
+.side-nav.fixed .collapsible li,
+.collapsible-header {
+    background-color: #fcfcfc;
+}
+
+nav, nav .nav-wrapper i, .side-nav-head {
+    height: 50px;
+    line-height: 50px !important;
+}
+
+header, main {
+    /*padding-left: 300px;*/
+}
+.side-nav-head {
+    color: #fff;
+}
+
+main>.container {
+    padding-top: 5px;
+}
+
+main>div.row {
+    margin: 0 2rem;
+    padding-top: 1.6rem;
+}
+
+h6 { 
+  margin: 0; 
+  padding-top: 2px;
+}
+
+.container {
+  max-width: none !important;
+}
+
+.button-collapse, .page-title, .search {
+  display: inline-block;
+}
+
+.nav-title {
+    color: rgba(0, 0, 0, 0.87);
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 400;
+    height: 48px;
+    line-height: 48px;
+    padding: 5px 32px 0px 26px;
+}
+
+.log-view {
+    background-color: #f5f2f0 !important;
+    border: 1px solid #ddd;
+    font-family: monospace;
+    padding: 1rem 2rem;
+    margin-right: .5rem;
+}
+
+.data-list.row, .log-view {
+  font-size: 13px;
+}
+
+ul.data-list>li {
+  font-size: 14px;
+  margin: 1rem;
+}
+
+.data-list span {
+    margin-left: 1rem;
+}
+
+.time {
+  color: #00788a;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 1rem;
+}
+
+.scrollToTop {
+  -webkit-transition: none !important; 
+  transition: none !important;
+}
+
+.new.badge {
+  width: 64px !important;
+  text-align: center;
+}
+
+.time.new.badge {
+  border: 1px solid #d9d9d9;
+  background-color: #f0f0f0 !important;
+  color: #737373;
+}
+
+.nav-info {
+  color: white;
+  display: flex;
+  float: right;
+}
+
+.nav-info div {
+  margin-right: 2rem;
+}
+
+.nav-info span:not(.badge) {
+  display: block;
+  height: 20px;
+  line-height: 30px;
+}
+
+.nav-info span.badge.new {
+  border: 1px solid #ffffff;
+  background-color: white !important;
+  font-weight: 700;
+  margin-top: 13.5px;
+}
+
+.toggle-data {
+  border: 1px solid #ddd;  
+  border-radius: 2px;
+  color: #737373;
+  font-size: .75rem;
+  line-height: 20px;
+  margin-left: 2rem;
+  margin-bottom: 0.3rem;
+  padding: .1rem .8rem;  
+  opacity: 0;
+  visibility: hidden;
+  transition: .1s all ease-in-out;
+}
+
+.toggle-data+.toggle-data {
+  margin-left: .5rem;
+}
+
+.toggle-data:hover {
+  background-color: #f0f0f0;
+}
+
+.editor {
+  max-height: 700px;
+  margin: 0;
+}
+
+.overview {
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+}
+
+.overview table {
+  width: auto;
+}
+
+.overview table td {
+  padding: 6px 5px !important;
+}
+
+.overview table tr td:first-child {
+  min-width: 100px;
+}
+
+
+
+/*************************************************/
+/* Sidenav overrides */
+
+.side-nav {
+  width: 450px;
+}
+
+.side-nav-head span {
+  margin-left: 1.9rem;
+}
+
+.side-nav span.name {
+    width: 275px !important;
+    overflow: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.side-nav .collapsible-header,
+.side-nav.fixed .collapsible-header {
+    overflow: hidden;
+    padding-left: 30px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.side-nav .collapsible-header i,
+.side-nav.fixed .collapsible-header i {
+    margin-right: 15px !important;
+}
+
+.side-nav .collapsible-body li a,
+.side-nav.fixed .collapsible-body li a {
+    padding: 0 15px 0 70px;
+}
+
+.side-nav .collapsible-body li a:hover,
+.side-nav.fixed .collapsible-body li a:hover {
+    background-color: #efefef;
+}
+
+.side-nav .collapsible-body .collapsible-body li a,
+.side-nav.fixed .collapsible-body .collapsible-body li a {
+    padding-left: 85px;
+}
+
+
+
+/*************************************************/
+/* Accordion Overrides */
+
+.collapsible-body {
+    padding: 1rem 0rem 1rem 2rem;
+}
+
+.lean .collapsible-body,
+.collapsible-body,
+.collapsible-body .collapsible-header {
+    background-color: #fff;
+}
+
+.collapsible.lean {
+    box-shadow: none;
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 0px;
+}
+
+.lean .collapsible-header {
+    padding-bottom: 5px;
+}
+
+.lean .collapsible-header h5 {
+    margin: 0;
+}
+
+.lean .collapsible-header h6 {
+    font-size: 1.25rem;
+}
+
+.lean>li {
+    margin-bottom: 20px;
+}
+
+.lean .lean .collapsible-header {
+    border-bottom: 1px solid transparent;
+    transition: all .05s ease-in-out;
+}
+
+.lean .lean .collapsible-header:not(.active):hover {
+    border-bottom: 1px solid #ecebeb;
+}
+
+.lean .lean .collapsible-body:not(.log-view) {
+    border-bottom: 0px;
+    border-left: 1px solid #ddd;
+}
+
+.collapsible-header.active i:not(.state):not(.all):not(.none) {
+    padding-top: 4px;
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.collapsible-header .state {
+    font-size: 1.2rem;
+    padding-top: 4px;
+}
+
+.collapsible-header .title {
+  padding-top: 2px;
+}
+
+
+
+/*************************************************/
+/* Collapsible-header expand/collapse toggle icons */
+
+.collapsible-header .expand {
+  height: 22px;
+  margin-left: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .1s ease-in-out;
+}
+
+.collapsible-header:hover .expand,
+.collapsible-header:hover .toggle-data {
+  opacity: 1;
+  visibility: visible;
+  transition: all .1s ease-in-out;
+}
+
+.expand i {
+  border-radius: 50%;
+  cursor: pointer;
+  line-height: 1 !important;
+  margin: 0;
+  padding: 0;
+  width: 24px;
+}
+
+.expand i:hover {
+  background-color: #ddd;
+  transition: all .2s ease-in-out;
+}
+
+header .expand {
+  float: right;
+  height: 35px;
+  margin-top: .8rem;
+  margin-right: 1.25rem;
+}
+
+.section { 
+  padding: 0 !important; 
+}
+
+.section>.collapsible-header { 
+  border-width: 1px 1px 1px 1px !important;
+  border-style: solid !important;
+  border-color: #ddd !important;
+  padding-bottom: .85rem;
+}
+
+.section>.collapsible-body { 
+  border-width: 0px 1px 1px 1px !important;
+  border-style: solid !important;
+  border-color: #ddd !important;
+  padding-top: 0;
+}
+
+.section>.collapsible-body .collapsible-header {
+  padding-left: 1.5rem;
+}
+
+.section>.collapsible-body .collapsible-header .title {
+  margin-left: .2rem; 
+}
+
+.section>.collapsible-body>ul.collapsible {
+  margin-top: 0;
+}
+
+.section>.collapsible-body>.data-list {
+  padding-left: 0.2rem;
+}
+
+.section>.collapsible-body>.collapsible .descr{
+  padding-top: 0.5rem;
+}
+
+.section .collapsible>li:not(.logs) {
+  margin-left: .3rem;
+}
+
+.section>.collapsible-body>.collapsible-body {
+  margin-bottom: 0;
+}
+
+.section>.collapsible-header.active,
+.section>.collapsible-header.active:hover {
+  border-bottom: 1px solid transparent !important;
+}
+
+.section .collapsible-header, .section .collapsible-body {
+  background-color: #fdfdfd;
+}
+
+.lean .section:first-of-type {
+  margin-top: 1rem;
+}
+
+.logs .collapsible-body{
+  padding: 1rem !important;
+}
+
+/*************************************************/
+/* Helpers */
+
+.ml-1 {
+  margin-left: 1rem !important;
+}
+
+.ml-2 {
+  margin-left: 2rem !important;
+}
+
+.m-0 {
+  margin: 0 !important;
+}
+
+.mtb-1 {
+  margin: 1rem 0 !important;
+}
+
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+
+.pr-1 {
+  padding-right: 1rem !important;
+}
+
+.d-inline-block {
+  display: inline-block !important;
+}
+
+.display-none {
+  display: none;
+}
+
+.d-flex {
+  display: flex;
+}
+
+
+/*************************************************/
+/* Amcharts */
+
+#chartdiv {
+    width: 100%;
+    height: 350px;
+}
+
+.amcharts-export-menu-top-right {
+    top: 10px;
+    right: 0;
+}
+
+.amcharts-chart-div>svg+a {
+    display: none !important;
+}
+
+.amcharts-pie-slice {
+  transform: scale(1);
+  transform-origin: 50% 50%;
+  transition-duration: 0.3s;
+  transition: all .3s ease-out;
+  -webkit-transition: all .3s ease-out;
+  -moz-transition: all .3s ease-out;
+  -o-transition: all .3s ease-out;
+  cursor: pointer;
+  box-shadow: 0 0 30px 0 #000;
+}
+
+.amcharts-pie-slice:hover {
+  transform: scale(1.1);
+  filter: url(#shadow);
+}
+
+
+
+/*************************************************/
+/* State colors */
+
+
+/* top-nav state badge */
+.nav-info .badge.passed {
+  color: #00AA00 !important;  
+}
+.nav-info .badge.passx {
+  color: #00AABB !important;  
+}
+.nav-info .badge.failed {
+  color: #FF0000 !important;  
+}
+.nav-info .badge.errored {
+  color: #DF01D7 !important;  
+}
+.nav-info .badge.aborted {
+  color: #000000 !important;  
+}
+.nav-info .badge.blocked {
+  color: #A10A28 !important;  
+}
+.nav-info .badge.skipped {
+  color: #6E6E6E !important;  
+}
+
+
+/* header state badge */
+.passed.new.badge,
+.passed.collapsible-header .new.badge {
+    background-color: #00AA0066;
+}
+.passx.new.badge,
+.passx.collapsible-header .new.badge {
+    background-color: #00AABB66;
+}
+.failed.new.badge,
+.failed.collapsible-header .new.badge {
+    background-color: #FF000066;
+}
+.errored.new.badge,
+.errored.collapsible-header .new.badge {
+    background-color: #DF01D766;
+}
+.aborted.new.badge,
+.aborted.collapsible-header .new.badge {
+    background-color: #00000066;
+}
+.blocked.new.badge,
+.blocked.collapsible-header .new.badge {
+    background-color: #A10A2866;
+}
+.skipped.new.badge,
+.skipped.collapsible-header .new.badge {
+    background-color: #6E6E6E66;
+}
+.unknown.new.badge,
+.unknown.collapsible-header .new.badge {
+    background-color: #AAAAAA66;
+}
+.other.new.badge,
+.other.collapsible-header .new.badge {
+    background-color: #80cbc466;
+}
+
+
+
+/*************************************************/
+/* Trade colors */
+
+/*
+.passed { background-color: #00AA00; }
+.passx { background-color: #00AABB; }
+.failed { background-color: #FF0000; }
+.errored { background-color: #DF01D7; }
+.aborted { background-color: #000000; }
+.blocked { background-color: #A10A28; }
+.skipped { background-color: #6E6E6E; }
+.unknown { background-color: #AAAAAA; }
+*/
+
+
+
+/*************************************************/
+/* Media styling */
+
+@media only screen and (max-width: 992px) {
+    header,
+    main,
+    footer {
+        padding-left: 0;
+    }
+
+    header .page-title {
+        padding-left: .3rem;
+    }
+
+    main>div.row {
+        margin: 0 2rem;
+    }
+}
+
+@media only screen and (min-width: 993px) {
+    .container {
+        width: 85%;
+    }
+}
+
+@media only screen and (max-width: 601px) {
+    main>div.row {
+        margin: 0 .5rem;
+    }
+}
+</style>
+
+<body>
+    <header>
+        <div class="navbar-fixed">
+            <nav class="top-nav brown lighten-1">
+                <div class="nav-wrapper">
+                    <a href="#" data-activates="slide-out" class="button-collapse top-nav d-inline-block"><i class="material-icons">menu</i></a>
+                    <a class="ml-2">BGP_check_job</a>
+                    <div class="nav-info">
+                        <div>
+                            <span class="new badge passed" data-badge-caption="">PASSED</span>
+                        </div>
+                        <div>
+                            <span>2019-05-17</span>
+                            <span>0:00:07</span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- Collapsible side-nav content -->
+        <ul id="slide-out" class="side-nav">
+            <li class="side-nav-head brown lighten-1 z-depth-1">
+                <span>BGP_check_job</span>
+            </li>
+
+            <!-- Table of Contents -->
+            <li class="no-padding">
+                <ul>
+                    <li><a href="#overview" data-click="true">Overview</a></li>
+                    <li class="no-padding">
+                        <ul class="collapsible ">
+							
+							<li>
+								<a class="collapsible-header"><i class="material-icons">arrow_drop_down</i>Task-1: BGP_Neighbors_Established.py</a>
+								<div class="collapsible-body">
+									<ul>
+										
+										
+										
+                                        <li><a href="#script-1-test-1" data-click="true"><span class="name">commonSetup</span><span class="new badge passed" data-badge-caption="">PASSED</span></a></li>
+										
+										
+                                        <li><a href="#script-1-test-2" data-click="true"><span class="name">BGP_Neighbors_Established</span><span class="new badge passed" data-badge-caption="">PASSED</span></a></li>
+										
+										
+                                        <li><a href="#script-1-test-3" data-click="true"><span class="name">commonCleanup</span><span class="new badge passed" data-badge-caption="">PASSED</span></a></li>
+										
+									</ul>
+								</div>
+							</li>
+							
+                        </ul>
+                    </li>
+                    <li>
+		                <div class="divider m-0"></div>
+		            </li>                    
+                </ul>
+            </li>
+        </ul>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row">
+            <div class="col s12">
+                <ul class="collapsible lean" data-collapsible="expandable">
+                	<!-- Overview -->
+                    <li>
+                        <div id="overview" class="collapsible-header active">
+                            <i class="material-icons">arrow_drop_down</i>
+                            <h6>Overview</h6>
+                        </div>
+                        <div class="collapsible-body">
+                            <div class="row d-flex">
+                                <div class="col m12 l5 overview">
+                                	<table>
+                                		<tr>
+                                			<td><b>Job Name:</b></td>
+                                            <td>BGP_check_job</td>
+                                		</tr>
+                                		<tr>
+                                			<td><b>Start Time:</b></td>
+                                            <td>2019-05-17T14:36:46</td>
+                                		</tr>
+                                		<tr>
+                                			<td><b>End Time:</b></td>
+                                            <td>2019-05-17T14:36:54</td>
+                                		</tr>
+                                		<tr>
+                                			<td><b>Submitter:</b></td>
+                                            <td>sihart</td>
+                                		</tr>
+                                		<tr>
+                                			<td><b>Run Time:</b></td>
+                                            <td>0:00:07</td>
+                                		</tr>
+                                		<tr>
+                                			<td><b>Testbed:</b></td>
+                                            <td>NetDevOpsLive</td>
+                                		</tr>
+                                		
+                                		
+                                	</table>
+                                </div>
+                                <div class="col m12 l7">
+                                    <div id="chartdiv"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Testscripts -->
+                    
+
+
+<!--Testscript content-->
+<li>
+
+    
+    <div id="script-1" class="collapsible-header other active">
+    
+        <i class="material-icons">arrow_drop_down</i>
+        <h6>Task-1: BGP_Neighbors_Established.py</h6> <i class="material-icons">arrow_drop_down</i>
+        
+        
+        <div class="not-collapse expand">
+            <i class="material-icons all tooltipped" data-position="top" data-delay="30" data-tooltip="expand all">expand_more</i>
+            <i class="material-icons none tooltipped" data-position="top" data-delay="30" data-tooltip="collapse all">expand_less</i>
+        </div>
+    </div>
+    <div class="collapsible-body pr-1">
+        
+        
+
+        <!-- Testcases -->
+        <ul class="collapsible lean" data-collapsible="expandable">
+            
+            
+            <li>
+                <div id="script-1-test-1" class="collapsible-header passed">
+                    <!-- <i class="small material-icons state">brightness_1</i> -->
+                    <i class="material-icons">arrow_drop_down</i>
+                    <span class="title">commonSetup</span>
+                    
+                    
+                    <div class="not-collapse expand">
+                        <i class="material-icons all tooltipped" data-position="top" data-delay="30" data-tooltip="expand all">expand_more</i>
+                        <i class="material-icons none tooltipped" data-position="top" data-delay="30" data-tooltip="collapse all">expand_less</i>
+                    </div>
+                    <span class="new badge ml-1" data-badge-caption="">PASSED</span>
+                    <span class="new badge time ml-1" data-badge-caption="">0:00:03</span>
+                </div>
+                <div class="collapsible-body">
+                    
+                    
+                    <!-- Sections -->
+                    <ul class="collapsible lean" data-collapsible="expandable">
+
+                        
+
+                        <!-- Section-1 -->
+                        <li class="section">
+                            <div class="collapsible-header passed">
+                                <!-- <i class="small material-icons state">brightness_1</i> -->
+                                <i class="material-icons">arrow_drop_down</i>
+                                <span class="title">connect</span>
+                                
+                                
+                                <div class="not-collapse expand">
+                                    <i class="material-icons all tooltipped" data-position="top" data-delay="30" data-tooltip="expand all">expand_more</i>
+                                    <i class="material-icons none tooltipped" data-position="top" data-delay="30" data-tooltip="collapse all">expand_less</i>
+                                </div>
+                                <span class="new badge ml-1" data-badge-caption="">PASSED</span>
+                                <span class="new badge time ml-1" data-badge-caption="">0:00:03</span>
+                            </div>
+                            <div class="collapsible-body">
+                                
+                                
+                                <ul class="collapsible lean" data-collapsible="expandable">
+                                    <!-- Steps -->
+                                    
+
+                                    <!-- log -->
+                                    <li class="logs">
+                                        <div class="collapsible-header passed">
+                                            <i class="material-icons">arrow_drop_down</i>
+                                            <span class="title"><b>Section Logs</b></span>
+                                        </div>
+                                        <div class="collapsible-body">
+                                            <pre class="editor" style="height: 1232px;">6: SIHART-M-D02M: 2019-05-17T14:36:47: %AETEST-6-INFO: %[pid=35317][pname=Task-1]: Starting subsection connect
+7: SIHART-M-D02M: 2019-05-17T14:36:47: %SCRIPT-6-INFO: %[part=7.1/3][pid=35317][pname=Task-1]: +------------------------------------------------------------------------------+
+8: SIHART-M-D02M: 2019-05-17T14:36:47: %SCRIPT-6-INFO: %[part=7.2/3][pid=35317][pname=Task-1]: |                            Connect to device &#39;xe&#39;                            |
+9: SIHART-M-D02M: 2019-05-17T14:36:47: %SCRIPT-6-INFO: %[part=7.3/3][pid=35317][pname=Task-1]: +------------------------------------------------------------------------------+
+10: SIHART-M-D02M: 2019-05-17T14:36:47: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ xe logfile /Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/runinfo/BGP_check_job.2019May17_14:36:45.108097/xe-cli-1558100207.log +++
+11: SIHART-M-D02M: 2019-05-17T14:36:47: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ Unicon plugin iosxe +++
+12: SIHART-M-D02M: 2019-05-17T14:36:47: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ connection to spawn: mock_device_cli --os iosxe --mock_data_dir mock/xe --state connect, id: 4585227712 +++
+13: SIHART-M-D02M: 2019-05-17T14:36:47: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: connection to xe
+Trying mock_device ...
+Connected to mock_device.
+Escape character is &#39;^]&#39;.
+switch#
+16: SIHART-M-D02M: 2019-05-17T14:36:49: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ initializing handle +++
+17: SIHART-M-D02M: 2019-05-17T14:36:49: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ xe: executing command &#39;term length 0&#39; +++
+term length 0
+switch#
+20: SIHART-M-D02M: 2019-05-17T14:36:49: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ xe: executing command &#39;term width 0&#39; +++
+term width 0
+switch#
+23: SIHART-M-D02M: 2019-05-17T14:36:49: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ xe: executing command &#39;show version&#39; +++
+show version
+Cisco IOS XE Software, Version 16.09.01
+Cisco IOS Software [Fuji], Virtual XE Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 16.9.1, RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2018 by Cisco Systems, Inc.
+Compiled Tue 17-Jul-18 16:57 by mcpre
+
+
+Cisco IOS-XE software, Copyright (c) 2005-2018 by cisco Systems, Inc.
+All rights reserved.  Certain components of Cisco IOS-XE software are
+licensed under the GNU General Public License (&#34;GPL&#34;) Version 2.0.  The
+software code licensed under GPL Version 2.0 is free software that comes
+with ABSOLUTELY NO WARRANTY.  You can redistribute and/or modify such
+GPL code under the terms of GPL Version 2.0.  For more details, see the
+documentation or &#34;License Notice&#34; file accompanying the IOS-XE software,
+or the applicable URL provided on the flyer accompanying the IOS-XE
+software.
+
+
+ROM: IOS-XE ROMMON
+
+xe uptime is 2 hours, 51 minutes
+Uptime for this control processor is 2 hours, 53 minutes
+System returned to ROM by reload
+System image file is &#34;bootflash:packages.conf&#34;
+Last reload reason: Reload Command
+
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+License Level: ax
+License Type: Default. No valid license found.
+Next reload license Level: ax
+
+cisco CSR1000V (VXE) processor (revision VXE) with 1217428K/3075K bytes of memory.
+Processor board ID 9GOSQDDGADY
+3 Gigabit Ethernet interfaces
+32768K bytes of non-volatile configuration memory.
+3018864K bytes of physical memory.
+7774207K bytes of virtual hard disk at bootflash:.
+0K bytes of WebUI ODM Files at webui:.
+
+Configuration register is 0x2102
+switch#
+29: SIHART-M-D02M: 2019-05-17T14:36:49: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ xe: config +++
+config term
+switch(config)#no logging console
+switch(config)#line console 0
+switch(config-line)#exec-timeout 0
+switch(config-line)#end
+switch#
+40: SIHART-M-D02M: 2019-05-17T14:36:50: %AETEST-6-INFO: %[pid=35317][pname=Task-1]: The result of subsection connect is =&gt; PASSED
+41: SIHART-M-D02M: 2019-05-17T14:36:50: %AETEST-6-INFO: %[pid=35317</pre>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        
+                    </ul>
+                </div>
+            </li>
+            
+            
+            <li>
+                <div id="script-1-test-2" class="collapsible-header passed">
+                    <!-- <i class="small material-icons state">brightness_1</i> -->
+                    <i class="material-icons">arrow_drop_down</i>
+                    <span class="title">BGP_Neighbors_Established</span>
+                    
+                    
+                    <div class="not-collapse expand">
+                        <i class="material-icons all tooltipped" data-position="top" data-delay="30" data-tooltip="expand all">expand_more</i>
+                        <i class="material-icons none tooltipped" data-position="top" data-delay="30" data-tooltip="collapse all">expand_less</i>
+                    </div>
+                    <span class="new badge ml-1" data-badge-caption="">PASSED</span>
+                    <span class="new badge time ml-1" data-badge-caption="">0:00:03</span>
+                </div>
+                <div class="collapsible-body">
+                    
+                    
+                    <!-- Sections -->
+                    <ul class="collapsible lean" data-collapsible="expandable">
+
+                        
+
+                        <!-- Section-1 -->
+                        <li class="section">
+                            <div class="collapsible-header passed">
+                                <!-- <i class="small material-icons state">brightness_1</i> -->
+                                <i class="material-icons">arrow_drop_down</i>
+                                <span class="title">learn_bgp</span>
+                                
+                                <a class="toggle-data not-collapse" href="#!" data-function="toggler" data-target="descr">Description</a>
+                                
+                                
+                                <div class="not-collapse expand">
+                                    <i class="material-icons all tooltipped" data-position="top" data-delay="30" data-tooltip="expand all">expand_more</i>
+                                    <i class="material-icons none tooltipped" data-position="top" data-delay="30" data-tooltip="collapse all">expand_less</i>
+                                </div>
+                                <span class="new badge ml-1" data-badge-caption="">PASSED</span>
+                                <span class="new badge time ml-1" data-badge-caption="">0:00:03</span>
+                            </div>
+                            <div class="collapsible-body">
+                                
+                                <div class="row data-list mb-0 descr" style="display: none;">
+                                    <div class="col s12">
+                                        <span style="display: inline-block;"><b>Description:</b> &emsp14;Sample&emsp14;test&emsp14;section.&emsp14;Only&emsp14;print&emsp14;</span>
+                                    </div>
+                                </div>
+                                
+                                
+                                <ul class="collapsible lean" data-collapsible="expandable">
+                                    <!-- Steps -->
+                                    
+
+                                    <!-- log -->
+                                    <li class="logs">
+                                        <div class="collapsible-header passed">
+                                            <i class="material-icons">arrow_drop_down</i>
+                                            <span class="title"><b>Section Logs</b></span>
+                                        </div>
+                                        <div class="collapsible-body">
+                                            <pre class="editor" style="height: 10794px;">43: SIHART-M-D02M: 2019-05-17T14:36:50: %AETEST-6-INFO: %[pid=35317][pname=Task-1]: Starting section learn_bgp
+44: SIHART-M-D02M: 2019-05-17T14:36:50: %SCRIPT-6-INFO: %[part=44.1/3][pid=35317][pname=Task-1]: +------------------------------------------------------------------------------+
+45: SIHART-M-D02M: 2019-05-17T14:36:50: %SCRIPT-6-INFO: %[part=44.2/3][pid=35317][pname=Task-1]: |                      Gathering BGP Information from xe                       |
+46: SIHART-M-D02M: 2019-05-17T14:36:50: %SCRIPT-6-INFO: %[part=44.3/3][pid=35317][pname=Task-1]: +------------------------------------------------------------------------------+
+47: SIHART-M-D02M: 2019-05-17T14:36:50: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ xe: executing command &#39;show bgp summary&#39; +++
+show bgp summary
+% Command accepted but obsolete, unreleased or unsupported; see documentation.
+BGP router identifier 192.168.0.2, local AS number 1
+BGP table version is 4, main routing table version 4
+3 network entries using 744 bytes of memory
+3 path entries using 408 bytes of memory
+3/3 BGP path/bestpath attribute entries using 840 bytes of memory
+0 BGP route-map cache entries using 0 bytes of memory
+0 BGP filter-list cache entries using 0 bytes of memory
+BGP using 1992 total bytes of memory
+BGP activity 3/0 prefixes, 3/0 paths, scan interval 60 secs
+
+Neighbor        V           AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
+192.168.0.1     4            1     172     187        4    0    0 02:47:18        1
+192.168.0.3     4            1     164     187        4    0    0 02:47:58        1
+switch#
+51: SIHART-M-D02M: 2019-05-17T14:36:50: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ xe: executing command &#39;show ip bgp template peer-session &#39; +++
+show ip bgp template peer-session 
+% Invalid command
+Valid commands:
+ config term
+ dir
+ show access-lists
+ show arp
+ show bgp all
+ show bgp all cluster-ids
+ show bgp all detail
+ show bgp all neighbors
+ show bgp all neighbors 192.168.0.1 advertised-routes
+ show bgp all neighbors 192.168.0.1 policy
+ show bgp all neighbors 192.168.0.1 received-routes
+ show bgp all neighbors 192.168.0.1 routes
+ show bgp all neighbors 192.168.0.3 advertised-routes
+ show bgp all neighbors 192.168.0.3 policy
+ show bgp all neighbors 192.168.0.3 received-routes
+ show bgp all neighbors 192.168.0.3 routes
+ show bgp all neighbors | i BGP neighbor
+ show bgp summary
+ show errdisable recovery
+ show etherchannel summary
+ show interfaces
+ show interfaces accounting
+ show inventory
+ show ip arp summary
+ show ip bgp all dampening parameters
+ show ip bgp template peer-policy 
+ show ip bgp template peer-session 
+ show ip eigrp neighbors detail
+ show ip igmp groups detail
+ show ip igmp interface
+ show ip igmp vrf Mgmt-intf groups detail
+ show ip igmp vrf Mgmt-intf interface
+ show ip interface
+ show ip mroute
+ show ip mroute static
+ show ip mroute vrf Mgmt-intf
+ show ip mroute vrf Mgmt-intf static
+ show ip multicast
+ show ip multicast vrf Mgmt-intf
+ show ip ospf
+ show ip ospf database external
+ show ip ospf database network
+ show ip ospf database opaque-area
+ show ip ospf database router
+ show ip ospf database summary
+ show ip ospf interface
+ show ip ospf interface | section GigabitEthernet2
+ show ip ospf interface | section GigabitEthernet3
+ show ip ospf mpls ldp interface
+ show ip ospf mpls traffic-eng link
+ show ip ospf neighbor detail
+ show ip ospf sham-links
+ show ip ospf virtual-links
+ show ip pim bsr-router
+ show ip pim interface
+ show ip pim interface detail
+ show ip pim interface df
+ show ip pim neighbor
+ show ip pim rp mapping
+ show ip pim vrf Mgmt-intf bsr-router
+ show ip pim vrf Mgmt-intf interface
+ show ip pim vrf Mgmt-intf interface detail
+ show ip pim vrf Mgmt-intf interface df
+ show ip pim vrf Mgmt-intf neighbor
+ show ip pim vrf Mgmt-intf rp mapping
+ show ip prefix-list detail
+ show ip protocols
+ show ip protocols vrf Mgmt-intf | sec rip
+ show ip protocols | sec rip
+ show ip rip database
+ show ip rip database vrf Mgmt-intf
+ show ip route
+ show ip route vrf Mgmt-intf
+ show ip static route
+ show ip static route vrf Mgmt-intf
+ show ip traffic
+ show ipv6 eigrp neighbors detail
+ show ipv6 interface
+ show ipv6 mld groups detail
+ show ipv6 mld interface
+ show ipv6 mld vrf Mgmt-intf groups detail
+ show ipv6 mld vrf Mgmt-intf interface
+ show ipv6 mroute
+ show ipv6 mroute vrf Mgmt-intf
+ show ipv6 pim bsr candidate-rp
+ show ipv6 pim bsr election
+ show ipv6 pim interface
+ show ipv6 pim neighbor
+ show ipv6 pim vrf Mgmt-intf bsr candidate-rp
+ show ipv6 pim vrf Mgmt-intf bsr election
+ show ipv6 pim vrf Mgmt-intf interface
+ show ipv6 pim vrf Mgmt-intf neighbor
+ show ipv6 prefix-list detail
+ show ipv6 protocols vrf Mgmt-intf | sec rip
+ show ipv6 protocols | sec rip
+ show ipv6 route updated
+ show ipv6 route vrf Mgmt-intf updated
+ show ipv6 static detail
+ show ipv6 static vrf Mgmt-intf detail
+ show issu rollback-timer
+ show issu state detail
+ show lacp counters
+ show lacp neighbor
+ show lacp sys-id
+ show lisp all service ethernet
+ show lisp all service ethernet summary
+ show lisp all service ipv4
+ show lisp all service ipv4 summary
+ show lisp all service ipv6
+ show lisp all service ipv6 summary
+ show lldp
+ show lldp entry *
+ show lldp interface
+ show lldp neighbors detail
+ show lldp traffic
+ show mac address-table
+ show mac address-table aging-time
+ show mac address-table learning
+ show ntp associations
+ show ntp config
+ show ntp status
+ show pagp  counters
+ show pagp internal
+ show pagp neighbor
+ show platform
+ show redundancy
+ show route-map all
+ show running-config
+ show running-config | section router ospf 1
+ show spanning-tree
+ show spanning-tree detail
+ show spanning-tree mst configuration
+ show spanning-tree mst detail
+ show spanning-tree summary
+ show standby all
+ show standby delay
+ show version
+ show vlan
+ show vrf detail
+ show vrf detail | inc \(VRF
+ term length 0
+ term width 0
+
+switch#
+59: SIHART-M-D02M: 2019-05-17T14:36:50: %GENIE-6-INFO: %[part=59.1/2][pid=35317][pname=Task-1]: Could not learn &lt;class &#39;genie.libs.parser.iosxe.show_bgp.ShowIpBgpTemplatePeerSession&#39;&gt;
+60: SIHART-M-D02M: 2019-05-17T14:36:50: %GENIE-6-INFO: %[part=59.2/2][pid=35317][pname=Task-1]: Invalid command has been executed
+61: SIHART-M-D02M: 2019-05-17T14:36:50: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ xe: executing command &#39;show ip bgp template peer-policy &#39; +++
+show ip bgp template peer-policy 
+% Invalid command
+Valid commands:
+ config term
+ dir
+ show access-lists
+ show arp
+ show bgp all
+ show bgp all cluster-ids
+ show bgp all detail
+ show bgp all neighbors
+ show bgp all neighbors 192.168.0.1 advertised-routes
+ show bgp all neighbors 192.168.0.1 policy
+ show bgp all neighbors 192.168.0.1 received-routes
+ show bgp all neighbors 192.168.0.1 routes
+ show bgp all neighbors 192.168.0.3 advertised-routes
+ show bgp all neighbors 192.168.0.3 policy
+ show bgp all neighbors 192.168.0.3 received-routes
+ show bgp all neighbors 192.168.0.3 routes
+ show bgp all neighbors | i BGP neighbor
+ show bgp summary
+ show errdisable recovery
+ show etherchannel summary
+ show interfaces
+ show interfaces accounting
+ show inventory
+ show ip arp summary
+ show ip bgp all dampening parameters
+ show ip bgp template peer-policy 
+ show ip bgp template peer-session 
+ show ip eigrp neighbors detail
+ show ip igmp groups detail
+ show ip igmp interface
+ show ip igmp vrf Mgmt-intf groups detail
+ show ip igmp vrf Mgmt-intf interface
+ show ip interface
+ show ip mroute
+ show ip mroute static
+ show ip mroute vrf Mgmt-intf
+ show ip mroute vrf Mgmt-intf static
+ show ip multicast
+ show ip multicast vrf Mgmt-intf
+ show ip ospf
+ show ip ospf database external
+ show ip ospf database network
+ show ip ospf database opaque-area
+ show ip ospf database router
+ show ip ospf database summary
+ show ip ospf interface
+ show ip ospf interface | section GigabitEthernet2
+ show ip ospf interface | section GigabitEthernet3
+ show ip ospf mpls ldp interface
+ show ip ospf mpls traffic-eng link
+ show ip ospf neighbor detail
+ show ip ospf sham-links
+ show ip ospf virtual-links
+ show ip pim bsr-router
+ show ip pim interface
+ show ip pim interface detail
+ show ip pim interface df
+ show ip pim neighbor
+ show ip pim rp mapping
+ show ip pim vrf Mgmt-intf bsr-router
+ show ip pim vrf Mgmt-intf interface
+ show ip pim vrf Mgmt-intf interface detail
+ show ip pim vrf Mgmt-intf interface df
+ show ip pim vrf Mgmt-intf neighbor
+ show ip pim vrf Mgmt-intf rp mapping
+ show ip prefix-list detail
+ show ip protocols
+ show ip protocols vrf Mgmt-intf | sec rip
+ show ip protocols | sec rip
+ show ip rip database
+ show ip rip database vrf Mgmt-intf
+ show ip route
+ show ip route vrf Mgmt-intf
+ show ip static route
+ show ip static route vrf Mgmt-intf
+ show ip traffic
+ show ipv6 eigrp neighbors detail
+ show ipv6 interface
+ show ipv6 mld groups detail
+ show ipv6 mld interface
+ show ipv6 mld vrf Mgmt-intf groups detail
+ show ipv6 mld vrf Mgmt-intf interface
+ show ipv6 mroute
+ show ipv6 mroute vrf Mgmt-intf
+ show ipv6 pim bsr candidate-rp
+ show ipv6 pim bsr election
+ show ipv6 pim interface
+ show ipv6 pim neighbor
+ show ipv6 pim vrf Mgmt-intf bsr candidate-rp
+ show ipv6 pim vrf Mgmt-intf bsr election
+ show ipv6 pim vrf Mgmt-intf interface
+ show ipv6 pim vrf Mgmt-intf neighbor
+ show ipv6 prefix-list detail
+ show ipv6 protocols vrf Mgmt-intf | sec rip
+ show ipv6 protocols | sec rip
+ show ipv6 route updated
+ show ipv6 route vrf Mgmt-intf updated
+ show ipv6 static detail
+ show ipv6 static vrf Mgmt-intf detail
+ show issu rollback-timer
+ show issu state detail
+ show lacp counters
+ show lacp neighbor
+ show lacp sys-id
+ show lisp all service ethernet
+ show lisp all service ethernet summary
+ show lisp all service ipv4
+ show lisp all service ipv4 summary
+ show lisp all service ipv6
+ show lisp all service ipv6 summary
+ show lldp
+ show lldp entry *
+ show lldp interface
+ show lldp neighbors detail
+ show lldp traffic
+ show mac address-table
+ show mac address-table aging-time
+ show mac address-table learning
+ show ntp associations
+ show ntp config
+ show ntp status
+ show pagp  counters
+ show pagp internal
+ show pagp neighbor
+ show platform
+ show redundancy
+ show route-map all
+ show running-config
+ show running-config | section router ospf 1
+ show spanning-tree
+ show spanning-tree detail
+ show spanning-tree mst configuration
+ show spanning-tree mst detail
+ show spanning-tree summary
+ show standby all
+ show standby delay
+ show version
+ show vlan
+ show vrf detail
+ show vrf detail | inc \(VRF
+ term length 0
+ term width 0
+
+switch#
+69: SIHART-M-D02M: 2019-05-17T14:36:51: %GENIE-6-INFO: %[part=69.1/2][pid=35317][pname=Task-1]: Could not learn &lt;class &#39;genie.libs.parser.iosxe.show_bgp.ShowIpBgpTemplatePeerPolicy&#39;&gt;
+70: SIHART-M-D02M: 2019-05-17T14:36:51: %GENIE-6-INFO: %[part=69.2/2][pid=35317][pname=Task-1]: Invalid command has been executed
+71: SIHART-M-D02M: 2019-05-17T14:36:51: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ xe: executing command &#39;show vrf detail | inc \(VRF&#39; +++
+show vrf detail | inc \(VRF
+VRF Mgmt-intf (VRF Id = 1); default RD &lt;not set&gt;; default VPNID &lt;not set&gt;
+switch#
+75: SIHART-M-D02M: 2019-05-17T14:36:51: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ xe: executing command &#39;show bgp all cluster-ids&#39; +++
+show bgp all cluster-ids
+Global cluster-id: 192.168.0.2 (configured: 0.0.0.0)
+BGP client-to-client reflection:         Configured    Used
+  all (inter-cluster and intra-cluster): ENABLED
+  intra-cluster:                         ENABLED       ENABLED
+
+List of cluster-ids:
+Cluster-id     #-neighbors C2C-rfl-CFG C2C-rfl-USE
+switch#
+79: SIHART-M-D02M: 2019-05-17T14:36:51: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ xe: executing command &#39;show ip bgp all dampening parameters&#39; +++
+show ip bgp all dampening parameters
+For address family: IPv4 Unicast
+
+% dampening not enabled for base
+
+For address family: IPv6 Unicast
+
+% dampening not enabled for base
+
+For address family: IPv4 Multicast
+
+% dampening not enabled for base
+
+For address family: L2VPN E-VPN
+
+% dampening not enabled for base
+
+For address family: MVPNv4 Unicast
+
+% dampening not enabled for base
+
+For address family: MVPNv6 Unicast
+
+% dampening not enabled for base
+switch#
+83: SIHART-M-D02M: 2019-05-17T14:36:51: %GENIE-6-INFO: %[part=83.1/2][pid=35317][pname=Task-1]: Could not learn &lt;class &#39;genie.libs.parser.iosxe.show_bgp.ShowIpBgpAllDampeningParameters&#39;&gt;
+84: SIHART-M-D02M: 2019-05-17T14:36:51: %GENIE-6-INFO: %[part=83.2/2][pid=35317][pname=Task-1]: Parser Output is empty
+85: SIHART-M-D02M: 2019-05-17T14:36:51: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ xe: executing command &#39;show bgp all neighbors&#39; +++
+show bgp all neighbors
+For address family: IPv4 Unicast
+BGP neighbor is 192.168.0.1,  remote AS 1, internal link
+ Description: iBGP peer nx
+  BGP version 4, remote router ID 192.168.0.1
+  BGP state = Established, up for 02:47:21
+  Last read 00:00:19, last write 00:00:00, hold time is 180, keepalive interval is 60 seconds
+  Neighbor sessions:
+    1 active, is not multisession capable (disabled)
+  Neighbor capabilities:
+    Route refresh: advertised and received(new)
+    Four-octets ASN Capability: advertised and received
+    Address family IPv4 Unicast: advertised and received
+    Graceful Restart Capability: received
+      Remote Restart timer is 120 seconds
+      Address families advertised by peer:
+        IPv4 Unicast (was not preserved
+    Enhanced Refresh Capability: advertised
+    Multisession Capability: 
+    Stateful switchover support enabled: NO for session 1
+  Message statistics:
+    InQ depth is 0
+    OutQ depth is 0
+    
+                         Sent       Rcvd
+    Opens:                  1          1
+    Notifications:          0          0
+    Updates:                2          2
+    Keepalives:           185        169
+    Route Refresh:          0          0
+    Total:                188        172
+  Do log neighbor state changes (via global configuration)
+  Default minimum time between advertisement runs is 0 seconds
+
+  Address tracking is enabled, the RIB does have a route to 192.168.0.1
+  Route to peer address reachability Up: 1; Down: 0
+    Last notification 02:47:26
+  Connections established 1; dropped 0
+  Last reset never
+  Interface associated: (none) (peering address NOT in same link)
+  Transport(tcp) path-mtu-discovery is enabled
+  Graceful-Restart is disabled
+  SSO is disabled
+Connection state is ESTAB, I/O status: 1, unread input bytes: 0            
+Connection is ECN Disabled, Mininum incoming TTL 0, Outgoing TTL 255
+Local host: 192.168.0.2, Local port: 179
+Foreign host: 192.168.0.1, Foreign port: 34018
+Connection tableid (VRF): 0
+Maximum output segment queue size: 50
+
+Enqueued packets for retransmit: 0, input: 0  mis-ordered: 0 (0 bytes)
+
+Event Timers (current time is 0x9DE232):
+Timer          Starts    Wakeups            Next
+Retrans           187          0             0x0
+TimeWait            0          0             0x0
+AckHold           171        165             0x0
+SendWnd             0          0             0x0
+KeepAlive           0          0             0x0
+GiveUp              0          0             0x0
+PmtuAger            0          0             0x0
+DeadWait            0          0             0x0
+Linger              0          0             0x0
+ProcessQ            0          0             0x0
+
+iss: 1571531583  snduna: 1571535235  sndnxt: 1571535235
+irs: 1042975119  rcvnxt: 1042978473
+
+sndwnd:  29200  scale:      0  maxrcvwnd:  16384
+rcvwnd:  15966  scale:      0  delrcvwnd:    418
+
+SRTT: 1000 ms, RTTO: 1003 ms, RTV: 3 ms, KRTT: 0 ms
+minRTT: 1 ms, maxRTT: 1000 ms, ACK hold: 200 ms
+uptime: 10042190 ms, Sent idletime: 407 ms, Receive idletime: 405 ms 
+Status Flags: passive open, gen tcbs
+Option Flags: nagle, path mtu capable
+IP Precedence value : 6
+
+Datagrams (max data segment is 1460 bytes):
+Rcvd: 359 (out of order: 0), with data: 170, total data bytes: 3353
+Sent: 356 (retransmit: 0, fastretransmit: 0, partialack: 0, Second Congestion: 0), with data: 187, total data bytes: 3651
+
+ Packets received in fast path: 0, fast processed: 0, slow path: 0
+ fast lock acquisition failures: 0, slow path: 0
+TCP Semaphore      0x7F10ABD72298  FREE 
+
+BGP neighbor is 192.168.0.3,  remote AS 1, internal link
+ Description: iBGP peer xr
+  BGP version 4, remote router ID 192.168.0.3
+  BGP state = Established, up for 02:48:01
+  Last read 00:00:38, last write 00:00:59, hold time is 180, keepalive interval is 60 seconds
+  Neighbor sessions:
+    1 active, is not multisession capable (disabled)
+  Neighbor capabilities:
+    Route refresh: advertised and received(new)
+    Four-octets ASN Capability: advertised and received
+    Address family IPv4 Unicast: advertised and received
+    Enhanced Refresh Capability: advertised
+    Multisession Capability: 
+    Stateful switchover support enabled: NO for session 1
+  Message statistics:
+    InQ depth is 0
+    OutQ depth is 0
+    
+                         Sent       Rcvd
+    Opens:                  1          1
+    Notifications:          0          0
+    Updates:                2          2
+    Keepalives:           184        161
+    Route Refresh:          0          0
+    Total:                187        164
+  Do log neighbor state changes (via global configuration)
+  Default minimum time between advertisement runs is 0 seconds
+
+  Address tracking is enabled, the RIB does have a route to 192.168.0.3
+  Route to peer address reachability Up: 1; Down: 0
+    Last notification 02:48:05
+  Connections established 1; dropped 0
+  Last reset never
+  Interface associated: (none) (peering address NOT in same link)
+  Transport(tcp) path-mtu-discovery is enabled
+  Graceful-Restart is disabled
+  SSO is disabled
+Connection state is ESTAB, I/O status: 1, unread input bytes: 0            
+Connection is ECN Disabled, Mininum incoming TTL 0, Outgoing TTL 255
+Local host: 192.168.0.2, Local port: 179
+Foreign host: 192.168.0.3, Foreign port: 27376
+Connection tableid (VRF): 0
+Maximum output segment queue size: 50
+
+Enqueued packets for retransmit: 0, input: 0  mis-ordered: 0 (0 bytes)
+
+Event Timers (current time is 0x9DE233):
+Timer          Starts    Wakeups            Next
+Retrans           186          0             0x0
+TimeWait            0          0             0x0
+AckHold           164        161             0x0
+SendWnd             0          0             0x0
+KeepAlive           0          0             0x0
+GiveUp              0          0             0x0
+PmtuAger            0          0             0x0
+DeadWait            0          0             0x0
+Linger              0          0             0x0
+ProcessQ            0          0             0x0
+
+iss: 1278377312  snduna: 1278380945  sndnxt: 1278380945
+irs: 1194708170  rcvnxt: 1194711362
+
+sndwnd:  31723  scale:      0  maxrcvwnd:  16384
+rcvwnd:  15700  scale:      0  delrcvwnd:    684
+
+SRTT: 1000 ms, RTTO: 1003 ms, RTV: 3 ms, KRTT: 0 ms
+minRTT: 3 ms, maxRTT: 1000 ms, ACK hold: 200 ms
+uptime: 10081824 ms, Sent idletime: 37655 ms, Receive idletime: 38062 ms 
+Status Flags: passive open, gen tcbs
+Option Flags: nagle, path mtu capable
+IP Precedence value : 6
+
+Datagrams (max data segment is 1240 bytes):
+Rcvd: 349 (out of order: 0), with data: 164, total data bytes: 3191
+Sent: 351 (retransmit: 0, fastretransmit: 0, partialack: 0, Second Congestion: 0), with data: 186, total data bytes: 3632
+
+ Packets received in fast path: 0, fast processed: 0, slow path: 0
+ fast lock acquisition failures: 0, slow path: 0
+TCP Semaphore      0x7F10ABD72368  FREE 
+
+
+For address family: IPv6 Unicast
+
+For address family: IPv4 Multicast
+
+For address family: L2VPN E-VPN
+
+For address family: MVPNv4 Unicast
+
+For address family: MVPNv6 Unicast
+switch#
+96: SIHART-M-D02M: 2019-05-17T14:36:51: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ xe: executing command &#39;show bgp all neighbors 192.168.0.1 policy&#39; +++
+show bgp all neighbors 192.168.0.1 policy
+ Neighbor: 192.168.0.1, Address-Family: IPv4 Unicast
+switch#
+100: SIHART-M-D02M: 2019-05-17T14:36:51: %GENIE-6-INFO: %[part=100.1/2][pid=35317][pname=Task-1]: Could not learn &lt;class &#39;genie.libs.parser.iosxe.show_bgp.ShowBgpAllNeighborsPolicy&#39;&gt;
+101: SIHART-M-D02M: 2019-05-17T14:36:51: %GENIE-6-INFO: %[part=100.2/2][pid=35317][pname=Task-1]: Parser Output is empty
+102: SIHART-M-D02M: 2019-05-17T14:36:51: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ xe: executing command &#39;show bgp all neighbors 192.168.0.3 policy&#39; +++
+show bgp all neighbors 192.168.0.3 policy
+ Neighbor: 192.168.0.3, Address-Family: IPv4 Unicast
+switch#
+106: SIHART-M-D02M: 2019-05-17T14:36:51: %GENIE-6-INFO: %[part=106.1/2][pid=35317][pname=Task-1]: Could not learn &lt;class &#39;genie.libs.parser.iosxe.show_bgp.ShowBgpAllNeighborsPolicy&#39;&gt;
+107: SIHART-M-D02M: 2019-05-17T14:36:51: %GENIE-6-INFO: %[part=106.2/2][pid=35317][pname=Task-1]: Parser Output is empty
+108: SIHART-M-D02M: 2019-05-17T14:36:51: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ xe: executing command &#39;show bgp all&#39; +++
+show bgp all
+For address family: IPv4 Unicast
+
+BGP table version is 4, local router ID is 192.168.0.2
+Status codes: s suppressed, d damped, h history, * valid, &gt; best, i - internal, 
+              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter, 
+              x best-external, a additional-path, c RIB-compressed, 
+              t secondary path, L long-lived-stale,
+Origin codes: i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+     Network          Next Hop            Metric LocPrf Weight Path
+ r&gt;i  192.168.0.1/32   192.168.0.1                   100      0 i
+ *&gt;   192.168.0.2/32   0.0.0.0                  0         32768 i
+ r&gt;i  192.168.0.3/32   192.168.0.3              0    100      0 i
+
+For address family: IPv6 Unicast
+
+
+For address family: IPv4 Multicast
+
+
+For address family: L2VPN E-VPN
+
+
+For address family: MVPNv4 Unicast
+
+
+For address family: MVPNv6 Unicast
+switch#
+112: SIHART-M-D02M: 2019-05-17T14:36:51: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ xe: executing command &#39;show bgp all detail&#39; +++
+show bgp all detail
+For address family: IPv4 Unicast
+
+BGP routing table entry for 192.168.0.1/32, version 2
+  Paths: (1 available, best #1, table default, RIB-failure(17))
+  Not advertised to any peer
+  Refresh Epoch 1
+  Local
+    192.168.0.1 (metric 2) from 192.168.0.1 (192.168.0.1)
+      Origin IGP, localpref 100, valid, internal, best
+      rx pathid: 0, tx pathid: 0x0
+BGP routing table entry for 192.168.0.2/32, version 3
+  Paths: (1 available, best #1, table default)
+  Advertised to update-groups:
+     1         
+  Refresh Epoch 1
+  Local
+    0.0.0.0 from 0.0.0.0 (192.168.0.2)
+      Origin IGP, metric 0, localpref 100, weight 32768, valid, sourced, local, best
+      rx pathid: 0, tx pathid: 0x0
+BGP routing table entry for 192.168.0.3/32, version 4
+  Paths: (1 available, best #1, table default, RIB-failure(17))
+  Not advertised to any peer
+  Refresh Epoch 1
+  Local
+    192.168.0.3 (metric 2) from 192.168.0.3 (192.168.0.3)
+      Origin IGP, metric 0, localpref 100, valid, internal, best
+      rx pathid: 0, tx pathid: 0x0
+
+For address family: IPv6 Unicast
+
+
+For address family: IPv4 Multicast
+
+
+For address family: L2VPN E-VPN
+
+
+For address family: MVPNv4 Unicast
+
+
+For address family: MVPNv6 Unicast
+switch#
+117: SIHART-M-D02M: 2019-05-17T14:36:51: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ xe: executing command &#39;show bgp all neighbors 192.168.0.1 advertised-routes&#39; +++
+show bgp all neighbors 192.168.0.1 advertised-routes
+For address family: IPv4 Unicast
+BGP table version is 4, local router ID is 192.168.0.2
+Status codes: s suppressed, d damped, h history, * valid, &gt; best, i - internal, 
+              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter, 
+              x best-external, a additional-path, c RIB-compressed, 
+              t secondary path, L long-lived-stale,
+Origin codes: i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+     Network          Next Hop            Metric LocPrf Weight Path
+ *&gt;   192.168.0.2/32   0.0.0.0                  0         32768 i
+
+Total number of prefixes 1
+switch#
+121: SIHART-M-D02M: 2019-05-17T14:36:52: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ xe: executing command &#39;show bgp all neighbors | i BGP neighbor&#39; +++
+show bgp all neighbors | i BGP neighbor
+BGP neighbor is 192.168.0.1,  remote AS 1, internal link
+BGP neighbor is 192.168.0.3,  remote AS 1, internal link
+switch#
+125: SIHART-M-D02M: 2019-05-17T14:36:52: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ xe: executing command &#39;show bgp all neighbors 192.168.0.3 advertised-routes&#39; +++
+show bgp all neighbors 192.168.0.3 advertised-routes
+For address family: IPv4 Unicast
+BGP table version is 4, local router ID is 192.168.0.2
+Status codes: s suppressed, d damped, h history, * valid, &gt; best, i - internal, 
+              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter, 
+              x best-external, a additional-path, c RIB-compressed, 
+              t secondary path, L long-lived-stale,
+Origin codes: i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+     Network          Next Hop            Metric LocPrf Weight Path
+ *&gt;   192.168.0.2/32   0.0.0.0                  0         32768 i
+
+Total number of prefixes 1
+switch#
+129: SIHART-M-D02M: 2019-05-17T14:36:52: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ xe: executing command &#39;show bgp all neighbors | i BGP neighbor&#39; +++
+show bgp all neighbors | i BGP neighbor
+BGP neighbor is 192.168.0.1,  remote AS 1, internal link
+BGP neighbor is 192.168.0.3,  remote AS 1, internal link
+switch#
+133: SIHART-M-D02M: 2019-05-17T14:36:52: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ xe: executing command &#39;show bgp all neighbors 192.168.0.1 routes&#39; +++
+show bgp all neighbors 192.168.0.1 routes
+For address family: IPv4 Unicast
+BGP table version is 4, local router ID is 192.168.0.2
+Status codes: s suppressed, d damped, h history, * valid, &gt; best, i - internal, 
+              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter, 
+              x best-external, a additional-path, c RIB-compressed, 
+              t secondary path, L long-lived-stale,
+Origin codes: i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+     Network          Next Hop            Metric LocPrf Weight Path
+ r&gt;i  192.168.0.1/32   192.168.0.1                   100      0 i
+
+Total number of prefixes 1
+switch#
+137: SIHART-M-D02M: 2019-05-17T14:36:52: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ xe: executing command &#39;show bgp all neighbors | i BGP neighbor&#39; +++
+show bgp all neighbors | i BGP neighbor
+BGP neighbor is 192.168.0.1,  remote AS 1, internal link
+BGP neighbor is 192.168.0.3,  remote AS 1, internal link
+switch#
+141: SIHART-M-D02M: 2019-05-17T14:36:52: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ xe: executing command &#39;show bgp all neighbors 192.168.0.3 routes&#39; +++
+show bgp all neighbors 192.168.0.3 routes
+For address family: IPv4 Unicast
+BGP table version is 4, local router ID is 192.168.0.2
+Status codes: s suppressed, d damped, h history, * valid, &gt; best, i - internal, 
+              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter, 
+              x best-external, a additional-path, c RIB-compressed, 
+              t secondary path, L long-lived-stale,
+Origin codes: i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+     Network          Next Hop            Metric LocPrf Weight Path
+ r&gt;i  192.168.0.3/32   192.168.0.3              0    100      0 i
+
+Total number of prefixes 1
+switch#
+145: SIHART-M-D02M: 2019-05-17T14:36:52: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ xe: executing command &#39;show bgp all neighbors | i BGP neighbor&#39; +++
+show bgp all neighbors | i BGP neighbor
+BGP neighbor is 192.168.0.1,  remote AS 1, internal link
+BGP neighbor is 192.168.0.3,  remote AS 1, internal link
+switch#
+149: SIHART-M-D02M: 2019-05-17T14:36:52: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ xe: executing command &#39;show bgp all neighbors 192.168.0.1 received-routes&#39; +++
+show bgp all neighbors 192.168.0.1 received-routes
+For address family: IPv4 Unicast
+% Inbound soft reconfiguration not enabled on 192.168.0.1
+switch#
+153: SIHART-M-D02M: 2019-05-17T14:36:52: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ xe: executing command &#39;show bgp all neighbors | i BGP neighbor&#39; +++
+show bgp all neighbors | i BGP neighbor
+BGP neighbor is 192.168.0.1,  remote AS 1, internal link
+BGP neighbor is 192.168.0.3,  remote AS 1, internal link
+switch#
+157: SIHART-M-D02M: 2019-05-17T14:36:53: %GENIE-6-INFO: %[part=157.1/2][pid=35317][pname=Task-1]: Could not learn &lt;class &#39;genie.libs.parser.iosxe.show_bgp.ShowBgpAllNeighborsReceivedRoutes&#39;&gt;
+158: SIHART-M-D02M: 2019-05-17T14:36:53: %GENIE-6-INFO: %[part=157.2/2][pid=35317][pname=Task-1]: Parser Output is empty
+159: SIHART-M-D02M: 2019-05-17T14:36:53: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ xe: executing command &#39;show bgp all neighbors 192.168.0.3 received-routes&#39; +++
+show bgp all neighbors 192.168.0.3 received-routes
+For address family: IPv4 Unicast
+% Inbound soft reconfiguration not enabled on 192.168.0.3
+switch#
+163: SIHART-M-D02M: 2019-05-17T14:36:53: %UNICON-6-INFO: %[pid=35317][pname=Task-1]: +++ xe: executing command &#39;show bgp all neighbors | i BGP neighbor&#39; +++
+show bgp all neighbors | i BGP neighbor
+BGP neighbor is 192.168.0.1,  remote AS 1, internal link
+BGP neighbor is 192.168.0.3,  remote AS 1, internal link
+switch#
+167: SIHART-M-D02M: 2019-05-17T14:36:53: %GENIE-6-INFO: %[part=167.1/2][pid=35317][pname=Task-1]: Could not learn &lt;class &#39;genie.libs.parser.iosxe.show_bgp.ShowBgpAllNeighborsReceivedRoutes&#39;&gt;
+168: SIHART-M-D02M: 2019-05-17T14:36:53: %GENIE-6-INFO: %[part=167.2/2][pid=35317][pname=Task-1]: Parser Output is empty
+169: SIHART-M-D02M: 2019-05-17T14:36:53: %ROOT-6-INFO: %[pid=35317][pname=Task-1]: +====================================================================================================================================================+
+170: SIHART-M-D02M: 2019-05-17T14:36:53: %ROOT-6-INFO: %[pid=35317][pname=Task-1]: | Commands for learning feature &#39;Bgp&#39;                                                                                                                |
+171: SIHART-M-D02M: 2019-05-17T14:36:53: %ROOT-6-INFO: %[pid=35317][pname=Task-1]: +====================================================================================================================================================+
+172: SIHART-M-D02M: 2019-05-17T14:36:53: %ROOT-6-INFO: %[pid=35317][pname=Task-1]: | - Parsed commands                                                                                                                                  |
+173: SIHART-M-D02M: 2019-05-17T14:36:53: %ROOT-6-INFO: %[pid=35317][pname=Task-1]: |----------------------------------------------------------------------------------------------------------------------------------------------------|
+174: SIHART-M-D02M: 2019-05-17T14:36:53: %ROOT-6-INFO: %[pid=35317][pname=Task-1]: |   cmd: &lt;class &#39;genie.libs.parser.iosxe.show_bgp.ShowBgpAllSummary&#39;&gt;                                                                                |
+175: SIHART-M-D02M: 2019-05-17T14:36:53: %ROOT-6-INFO: %[pid=35317][pname=Task-1]: |   cmd: &lt;class &#39;genie.libs.parser.iosxe.show_bgp.ShowBgpAllClusterIds&#39;&gt;                                                                             |
+176: SIHART-M-D02M: 2019-05-17T14:36:53: %ROOT-6-INFO: %[pid=35317][pname=Task-1]: |   cmd: &lt;class &#39;genie.libs.parser.iosxe.show_bgp.ShowBgpAllNeighbors&#39;&gt;                                                                              |
+177: SIHART-M-D02M: 2019-05-17T14:36:53: %ROOT-6-INFO: %[pid=35317][pname=Task-1]: |   cmd: &lt;class &#39;genie.libs.parser.iosxe.show_bgp.ShowBgpAll&#39;&gt;                                                                                       |
+178: SIHART-M-D02M: 2019-05-17T14:36:53: %ROOT-6-INFO: %[pid=35317][pname=Task-1]: |   cmd: &lt;class &#39;genie.libs.parser.iosxe.show_bgp.ShowBgpAllDetail&#39;&gt;                                                                                 |
+179: SIHART-M-D02M: 2019-05-17T14:36:53: %ROOT-6-INFO: %[pid=35317][pname=Task-1]: |   cmd: &lt;class &#39;genie.libs.parser.iosxe.show_bgp.ShowBgpAllNeighborsAdvertisedRoutes&#39;&gt;, arguments: {&#39;neighbor&#39;:&#39;192.168.0.1&#39;}                       |
+180: SIHART-M-D02M: 2019-05-17T14:36:53: %ROOT-6-INFO: %[pid=35317][pname=Task-1]: |   cmd: &lt;class &#39;genie.libs.parser.iosxe.show_bgp.ShowBgpAllNeighborsAdvertisedRoutes&#39;&gt;, arguments: {&#39;neighbor&#39;:&#39;192.168.0.3&#39;}                       |
+181: SIHART-M-D02M: 2019-05-17T14:36:53: %ROOT-6-INFO: %[pid=35317][pname=Task-1]: |   cmd: &lt;class &#39;genie.libs.parser.iosxe.show_bgp.ShowBgpAllNeighborsRoutes&#39;&gt;, arguments: {&#39;neighbor&#39;:&#39;192.168.0.1&#39;}                                 |
+182: SIHART-M-D02M: 2019-05-17T14:36:53: %ROOT-6-INFO: %[pid=35317][pname=Task-1]: |   cmd: &lt;class &#39;genie.libs.parser.iosxe.show_bgp.ShowBgpAllNeighborsRoutes&#39;&gt;, arguments: {&#39;neighbor&#39;:&#39;192.168.0.3&#39;}                                 |
+183: SIHART-M-D02M: 2019-05-17T14:36:53: %ROOT-6-INFO: %[pid=35317][pname=Task-1]: |====================================================================================================================================================|
+184: SIHART-M-D02M: 2019-05-17T14:36:53: %ROOT-6-INFO: %[pid=35317][pname=Task-1]: | - Commands not accepted on the device                                                                                                              |
+185: SIHART-M-D02M: 2019-05-17T14:36:53: %ROOT-6-INFO: %[pid=35317][pname=Task-1]: |----------------------------------------------------------------------------------------------------------------------------------------------------|
+186: SIHART-M-D02M: 2019-05-17T14:36:53: %ROOT-6-INFO: %[pid=35317][pname=Task-1]: |   cmd: &lt;class &#39;genie.libs.parser.iosxe.show_bgp.ShowIpBgpTemplatePeerSession&#39;&gt;                                                                     |
+187: SIHART-M-D02M: 2019-05-17T14:36:53: %ROOT-6-INFO: %[pid=35317][pname=Task-1]: |   cmd: &lt;class &#39;genie.libs.parser.iosxe.show_bgp.ShowIpBgpTemplatePeerPolicy&#39;&gt;                                                                      |
+188: SIHART-M-D02M: 2019-05-17T14:36:53: %ROOT-6-INFO: %[pid=35317][pname=Task-1]: |====================================================================================================================================================|
+189: SIHART-M-D02M: 2019-05-17T14:36:53: %ROOT-6-INFO: %[pid=35317][pname=Task-1]: | - Commands with empty output                                                                                                                       |
+190: SIHART-M-D02M: 2019-05-17T14:36:53: %ROOT-6-INFO: %[pid=35317][pname=Task-1]: |----------------------------------------------------------------------------------------------------------------------------------------------------|
+191: SIHART-M-D02M: 2019-05-17T14:36:53: %ROOT-6-INFO: %[pid=35317][pname=Task-1]: |   cmd: &lt;class &#39;genie.libs.parser.iosxe.show_bgp.ShowIpBgpAllDampeningParameters&#39;&gt;                                                                  |
+192: SIHART-M-D02M: 2019-05-17T14:36:53: %ROOT-6-INFO: %[pid=35317][pname=Task-1]: |   cmd: &lt;class &#39;genie.libs.parser.iosxe.show_bgp.ShowBgpAllNeighborsPolicy&#39;&gt;, arguments: {&#39;neighbor&#39;:&#39;192.168.0.1&#39;}                                 |
+193: SIHART-M-D02M: 2019-05-17T14:36:53: %ROOT-6-INFO: %[pid=35317][pname=Task-1]: |   cmd: &lt;class &#39;genie.libs.parser.iosxe.show_bgp.ShowBgpAllNeighborsPolicy&#39;&gt;, arguments: {&#39;neighbor&#39;:&#39;192.168.0.3&#39;}                                 |
+194: SIHART-M-D02M: 2019-05-17T14:36:53: %ROOT-6-INFO: %[pid=35317][pname=Task-1]: |   cmd: &lt;class &#39;genie.libs.parser.iosxe.show_bgp.ShowBgpAllNeighborsReceivedRoutes&#39;&gt;, arguments: {&#39;neighbor&#39;:&#39;192.168.0.1&#39;}                         |
+195: SIHART-M-D02M: 2019-05-17T14:36:53: %ROOT-6-INFO: %[pid=35317][pname=Task-1]: |   cmd: &lt;class &#39;genie.libs.parser.iosxe.show_bgp.ShowBgpAllNeighborsReceivedRoutes&#39;&gt;, arguments: {&#39;neighbor&#39;:&#39;192.168.0.3&#39;}                         |
+196: SIHART-M-D02M: 2019-05-17T14:36:53: %ROOT-6-INFO: %[pid=35317][pname=Task-1]: |====================================================================================================================================================|
+197: SIHART-M-D02M: 2019-05-17T14:36:53: %AETEST-6-INFO: %[pid=35317][pname=Task-1]: The result of section learn_bgp is =&gt; PASSED
+198: SIHART-M-D02M: 2019-05-17T14:36:53: %AETEST-6-INFO: %[pid=35317][pname=Task-1]: Starting section check_bgp
+199: SIHART-M-D02M: 2019-05-17T14:36:53: %SCRIPT-6-INFO: %[part=199.1/4][pid=35317][pname=Task-1]: | Device   | Peer        | State       | Pass/Fail   |
+200: SIHART-M-D02M: 2019-05-17T14:36:53: %SCRIPT-6-INFO: %[part=199.2/4][pid=35317][pname=Task-1]: |----------+-------------+-------------+-------------|
+201: SIHART-M-D02M: 2019-05-17T14:36:53: %SCRIPT-6-INFO: %[part=199.3/4][pid=35317][pname=Task-1]: | xe       | 192.168.0.3 | Established | Passed      |
+202: SIHART-M-D02M: 2019-05-17T14:36:53: %SCRIPT-6-INFO: %[part=199.4/4][pid=35317][pname=Task-1</pre>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        
+
+                        <!-- Section-1 -->
+                        <li class="section">
+                            <div class="collapsible-header passed">
+                                <!-- <i class="small material-icons state">brightness_1</i> -->
+                                <i class="material-icons">arrow_drop_down</i>
+                                <span class="title">check_bgp</span>
+                                
+                                <a class="toggle-data not-collapse" href="#!" data-function="toggler" data-target="descr">Description</a>
+                                
+                                
+                                <div class="not-collapse expand">
+                                    <i class="material-icons all tooltipped" data-position="top" data-delay="30" data-tooltip="expand all">expand_more</i>
+                                    <i class="material-icons none tooltipped" data-position="top" data-delay="30" data-tooltip="collapse all">expand_less</i>
+                                </div>
+                                <span class="new badge ml-1" data-badge-caption="">PASSED</span>
+                                <span class="new badge time ml-1" data-badge-caption="">0:00:00</span>
+                            </div>
+                            <div class="collapsible-body">
+                                
+                                <div class="row data-list mb-0 descr" style="display: none;">
+                                    <div class="col s12">
+                                        <span style="display: inline-block;"><b>Description:</b> &emsp14;Sample&emsp14;test&emsp14;section.&emsp14;Only&emsp14;print&emsp14;</span>
+                                    </div>
+                                </div>
+                                
+                                
+                                <ul class="collapsible lean" data-collapsible="expandable">
+                                    <!-- Steps -->
+                                    
+
+                                    <!-- log -->
+                                    <li class="logs">
+                                        <div class="collapsible-header passed">
+                                            <i class="material-icons">arrow_drop_down</i>
+                                            <span class="title"><b>Section Logs</b></span>
+                                        </div>
+                                        <div class="collapsible-body">
+                                            <pre class="editor" style="height: 126px;">198: SIHART-M-D02M: 2019-05-17T14:36:53: %AETEST-6-INFO: %[pid=35317][pname=Task-1]: Starting section check_bgp
+199: SIHART-M-D02M: 2019-05-17T14:36:53: %SCRIPT-6-INFO: %[part=199.1/4][pid=35317][pname=Task-1]: | Device   | Peer        | State       | Pass/Fail   |
+200: SIHART-M-D02M: 2019-05-17T14:36:53: %SCRIPT-6-INFO: %[part=199.2/4][pid=35317][pname=Task-1]: |----------+-------------+-------------+-------------|
+201: SIHART-M-D02M: 2019-05-17T14:36:53: %SCRIPT-6-INFO: %[part=199.3/4][pid=35317][pname=Task-1]: | xe       | 192.168.0.3 | Established | Passed      |
+202: SIHART-M-D02M: 2019-05-17T14:36:53: %SCRIPT-6-INFO: %[part=199.4/4][pid=35317][pname=Task-1]: | xe       | 192.168.0.1 | Established | Passed      |
+203: SIHART-M-D02M: 2019-05-17T14:36:53: %AETEST-6-INFO: %[pid=35317][pname=Task-1]: Passed reason: All BGP Neighbors are established
+204: SIHART-M-D02M: 2019-05-17T14:36:53: %AETEST-6-INFO: %[pid=35317][pname=Task-1]: The result of section check_bgp is =&gt; PASSED
+</pre>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        
+                    </ul>
+                </div>
+            </li>
+            
+            
+            <li>
+                <div id="script-1-test-3" class="collapsible-header passed">
+                    <!-- <i class="small material-icons state">brightness_1</i> -->
+                    <i class="material-icons">arrow_drop_down</i>
+                    <span class="title">commonCleanup</span>
+                    
+                    
+                    <div class="not-collapse expand">
+                        <i class="material-icons all tooltipped" data-position="top" data-delay="30" data-tooltip="expand all">expand_more</i>
+                        <i class="material-icons none tooltipped" data-position="top" data-delay="30" data-tooltip="collapse all">expand_less</i>
+                    </div>
+                    <span class="new badge ml-1" data-badge-caption="">PASSED</span>
+                    <span class="new badge time ml-1" data-badge-caption="">0:00:00</span>
+                </div>
+                <div class="collapsible-body">
+                    
+                    
+                    <!-- Sections -->
+                    <ul class="collapsible lean" data-collapsible="expandable">
+
+                        
+
+                        <!-- Section-1 -->
+                        <li class="section">
+                            <div class="collapsible-header passed">
+                                <!-- <i class="small material-icons state">brightness_1</i> -->
+                                <i class="material-icons">arrow_drop_down</i>
+                                <span class="title">clean_everything</span>
+                                
+                                <a class="toggle-data not-collapse" href="#!" data-function="toggler" data-target="descr">Description</a>
+                                
+                                
+                                <div class="not-collapse expand">
+                                    <i class="material-icons all tooltipped" data-position="top" data-delay="30" data-tooltip="expand all">expand_more</i>
+                                    <i class="material-icons none tooltipped" data-position="top" data-delay="30" data-tooltip="collapse all">expand_less</i>
+                                </div>
+                                <span class="new badge ml-1" data-badge-caption="">PASSED</span>
+                                <span class="new badge time ml-1" data-badge-caption="">0:00:00</span>
+                            </div>
+                            <div class="collapsible-body">
+                                
+                                <div class="row data-list mb-0 descr" style="display: none;">
+                                    <div class="col s12">
+                                        <span style="display: inline-block;"><b>Description:</b> &emsp14;Common&emsp14;Cleanup&emsp14;Subsection&emsp14;</span>
+                                    </div>
+                                </div>
+                                
+                                
+                                <ul class="collapsible lean" data-collapsible="expandable">
+                                    <!-- Steps -->
+                                    
+
+                                    <!-- log -->
+                                    <li class="logs">
+                                        <div class="collapsible-header passed">
+                                            <i class="material-icons">arrow_drop_down</i>
+                                            <span class="title"><b>Section Logs</b></span>
+                                        </div>
+                                        <div class="collapsible-body">
+                                            <pre class="editor" style="height: 70px;">207: SIHART-M-D02M: 2019-05-17T14:36:53: %AETEST-6-INFO: %[pid=35317][pname=Task-1]: Starting subsection clean_everything
+208: SIHART-M-D02M: 2019-05-17T14:36:53: %SCRIPT-6-INFO: %[pid=35317][pname=Task-1]: Aetest Common Cleanup 
+209: SIHART-M-D02M: 2019-05-17T14:36:53: %AETEST-6-INFO: %[pid=35317][pname=Task-1]: The result of subsection clean_everything is =&gt; PASSED
+</pre>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        
+                    </ul>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+</li>
+
+
+                </ul>
+            </div>
+        </div>
+        </div>
+
+        <div class="fixed-action-btn">
+		    <a class="btn-floating btn-large waves-effect waves-light red scrollToTop" style="display: none;">
+		      <i class="large material-icons">arrow_upward</i>
+		    </a>
+		</div>
+    </main>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="https://www.amcharts.com/lib/3/pie.js"></script>
+    <!-- <script src="https://www.amcharts.com/lib/3/serial.js"></script> -->
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+
+    <!-- AceEditor -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+
+
+    // Strip whitespace from Ace Editor text
+	var p = document.getElementsByClassName("editor");
+	for (i = 0; i < p.length; i++) {
+		p[i].textContent = p[i].textContent.replace(/^\s+/mg, "");
+	};
+
+	// Initialize Ace Editor for all .editor elements
+    var editor;
+    $('.editor').each(function( index ) {
+    	editor = ace.edit(this);
+
+    	editor.setOptions({
+	    	readOnly: true,
+	    	showLineNumbers: false,
+	    	showGutter: false,
+	    	showPrintMargin: false,
+	    });
+		editor.setTheme("ace/theme/chrome");
+    });
+
+
+    // Initialize collapse button and collapsible accordion
+    $(".button-collapse").sideNav();
+    $('.collapsible').collapsible();
+
+
+    // Open parent collapsibles when child collapsible is opened
+    $('[data-click]').on('click', function(e) {
+        var el = $($(this).attr('href'));
+        var oneUp = $(el).closest('.collapsible-body').prev('.collapsible-header');
+        var twoUp = $(oneUp).closest('.collapsible-body').prev('.collapsible-header');
+
+        $(el).trigger('click');
+        $.each([oneUp, twoUp], function(i, val) {
+            if (!$(val).hasClass('active'))
+                $(val).trigger('click');
+        });
+
+        // close sidenav on link click
+        $(this).sideNav('hide');
+    });
+
+
+    // Stop collapse event from actions clicked inside collapsible headers
+    $(".not-collapse").on("click", function(e) { e.stopPropagation(); });
+
+    // Expand or Collapse sections by trigerring a click
+    $('.expand i').on('click', function(e) {
+    	var parent, all, el;
+
+    	el = $(this);
+		parent = el.closest('.collapsible-header');
+		all = parent.next('.collapsible-body')
+				    .find('.collapsible-header');
+
+		if ( el.closest('.side-nav').length !== 0 ) {
+			headers = $('.side-nav .collapsible-header');
+
+			if ( el.hasClass('all') && !headers.hasClass('active'))
+				headers.trigger('click');
+			else if ( el.hasClass('none') && headers.hasClass('active') )
+				headers.trigger('click');
+		}
+
+		// check if the click is to expand all sections
+     	else if ( el.hasClass('all') ) {
+    		all.each( function() {
+    			if ( !$(this).hasClass('active') )
+    				$(this).trigger('click');
+    		});
+    		if ( !parent.hasClass('active') )
+    			parent.trigger('click');
+    	}
+
+    	// check if the click is to collapse all sections
+    	else if ( el.hasClass('none') ) {
+    		all.each( function() {
+    			if ( $(this).hasClass('active') )
+    				$(this).trigger('click');
+    		});
+    		// close the parent collapse section if it's open
+    		if ( parent.hasClass('active') )
+    			parent.trigger('click');
+    	}
+    });
+
+
+	// Toggle scrollToTop button visibility based on scroll
+	$(document).ready(function(){
+		//Check to see if the window is top if not then display button
+		$(window).scroll(function(){
+			if ($(this).scrollTop() > 100)
+				$('.scrollToTop').fadeIn();
+			else
+				$('.scrollToTop').fadeOut();
+		});
+		//Click event to scroll to top
+		$('.scrollToTop').click(function(){
+			$('html, body').animate({scrollTop : 0},800);
+			return false;
+		});
+	});
+
+
+	// Setup custom collapse sections
+	$('[data-function="toggler"]').on('click', function (e) {
+	    var el = $(this);
+	    var header = el.closest('.collapsible-header');
+		var collapse;
+
+		// check the data-target, find that first child, then
+		// assign for toggling
+	    if (el.attr('data-target') == 'descr') {
+	    	if (header.next('.collapsible-body').length !== 0){
+	    		console.log(header.next('.collapsible-body'))
+	    		collapse = header.next('.collapsible-body').find('.descr').first();
+	    	}
+	    	else
+	    		collapse = header.next('.descr');
+	    }
+	    else if (el.attr('data-target') == 'meta')
+	    	collapse = header.next('.collapsible-body').find('.meta').first();
+
+	    if (!header.hasClass('active'))
+	    	header.trigger('click');
+
+     	collapse.slideToggle();
+	});
+
+	// Setup the Pie Chart
+    var chart = AmCharts.makeChart("chartdiv", {
+	  "type": "pie",
+	  "startDuration": 0,
+	   "theme": "light",
+	  "addClassNames": true,
+	  "legend":{
+	   	"position":"right",
+	    "marginRight":100,
+	    "autoMargins":false
+	  },
+	  "innerRadius": "30%",
+	  "defs": {
+	    "filter": [{
+	      "id": "shadow",
+	      "width": "200%",
+	      "height": "200%",
+	      "feOffset": {
+	        "result": "offOut",
+	        "in": "SourceAlpha",
+	        "dx": 0,
+	        "dy": 0
+	      },
+	      "feGaussianBlur": {
+	        "result": "blurOut",
+	        "in": "offOut",
+	        "stdDeviation": 5
+	      },
+	      "feBlend": {
+	        "in": "SourceGraphic",
+	        "in2": "blurOut",
+	        "mode": "normal"
+	      }
+	    }]
+	  },
+	  "dataProvider": [{
+            "status": "passed",
+            "count": 3,
+            "color": "rgb(0, 170, 0)" //#00AA00
+        }, {
+            "status": "passx",
+            "count": 0,
+            "color": "rgb(0, 170, 187)" //#00AABB
+        }, {
+            "status": "failed",
+            "count": 0,
+            "color": "rgb(255, 0, 0)" //#FF0000
+        }, {
+            "status": "errored",
+            "count": 0,
+            "color": "rgb(223, 1, 215)" //#DF01D7
+        }, {
+            "status": "aborted",
+            "count": 0,
+            "color": "rgb(0, 0, 0)" //#000000
+        }, {
+            "status": "blocked",
+            "count": 0,
+            "color": "rgb(161, 10, 40)" //#A10A28
+        }, {
+            "status": "skipped",
+            "count": 0,
+            "color": "rgb(110, 110, 110)" //#6E6E6E
+        }],
+	  "valueField": "count",
+	  "titleField": "status",
+	  "colorField": "color",
+	  "export": {
+	    "enabled": true
+	  }
+	});
+
+	chart.addListener("init", handleInit);
+
+	chart.addListener("rollOverSlice", function(e) {
+	  handleRollOver(e);
+	});
+
+	function handleInit(){
+	  chart.legend.addListener("rollOverItem", handleRollOver);
+	}
+
+	function handleRollOver(e){
+	  var wedge = e.dataItem.wedge.node;
+	  wedge.parentNode.appendChild(wedge);
+	}
+    </script>
+</body>
+
+</html>

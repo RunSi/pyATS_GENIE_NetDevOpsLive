@@ -1,0 +1,840 @@
+configure:
+  commands:
+    end:
+      new_state: exec
+    line console 0:
+      new_state: configure_line
+    no logging console: ''
+  prompt: switch(config)#
+configure_line:
+  commands:
+    end:
+      new_state: execute
+    exec-timeout 0: ''
+  prompt: switch(config-line)#
+connect:
+  commands:
+    ? ''
+    : new_state: execute
+  preface: 'Trying mock_device ...
+
+    Connected to mock_device.
+
+    Escape character is ''^]''.'
+  prompt: ''
+execute:
+  commands:
+    term length 0: ''
+    term width 0: ''
+    show version: "\rSat May 11 00:40:31.410 UTC\r\n\r\nCisco IOS XR Software, Version\
+      \ 6.1.3[Default]\r\nCopyright (c) 2017 by Cisco Systems, Inc.\r\n\r\nROM: GRUB,\
+      \ Version 1.99(0), DEV RELEASE\r\n\r\nxr uptime is 16 hours, 13 minutes\r\n\
+      System image file is \"bootflash:disk0/xrvr-os-mbi-6.1.3/mbixrvr-rp.vm\"\r\n\
+      \r\ncisco IOS XRv Series (Intel 686 F6M15S0) processor with 3145215K bytes of\
+      \ memory.\r\nIntel 686 F6M15S0 processor at 2061MHz, Revision 2.174\r\nIOS XRv\
+      \ Chassis\r\n\r\n1 Management Ethernet\r\n2 GigabitEthernet\r\n97070k bytes\
+      \ of non-volatile configuration memory.\r\n866M bytes of hard disk.\r\n2321392k\
+      \ bytes of disk0: (Sector size 512 bytes).\r\n\r\nConfiguration register on\
+      \ node 0/0/CPU0 is 0x2102\r\nBoot device on node 0/0/CPU0 is disk0:\r\nPackage\
+      \ active on node 0/0/CPU0:\r\niosxr-infra, V 6.1.3[Default], Cisco Systems,\
+      \ at disk0:iosxr-infra-6.1.3\r\n    Built on Mon Feb 13 15:01:56 UTC 2017\r\n\
+      \    By iox-lnx-005 in /auto/srcarchive14/production/6.1.3/xrvr/workspace for\
+      \ pie\r\n\r\niosxr-fwding, V 6.1.3[Default], Cisco Systems, at disk0:iosxr-fwding-6.1.3\r\
+      \n    Built on Mon Feb 13 15:01:56 UTC 2017\r\n    By iox-lnx-005 in /auto/srcarchive14/production/6.1.3/xrvr/workspace\
+      \ for pie\r\n\r\niosxr-routing, V 6.1.3[Default], Cisco Systems, at disk0:iosxr-routing-6.1.3\r\
+      \n    Built on Mon Feb 13 15:01:56 UTC 2017\r\n    By iox-lnx-005 in /auto/srcarchive14/production/6.1.3/xrvr/workspace\
+      \ for pie\r\n\r\niosxr-ce, V 6.1.3[Default], Cisco Systems, at disk0:iosxr-ce-6.1.3\r\
+      \n    Built on Mon Feb 13 15:01:56 UTC 2017\r\n    By iox-lnx-005 in /auto/srcarchive14/production/6.1.3/xrvr/workspace\
+      \ for pie\r\n\r\nxrvr-os-mbi, V 6.1.3[Default], Cisco Systems, at disk0:xrvr-os-mbi-6.1.3\r\
+      \n    Built on Mon Feb 13 15:02:45 UTC 2017\r\n    By iox-lnx-005 in /auto/srcarchive14/production/6.1.3/xrvr/workspace\
+      \ for pie\r\n\r\nxrvr-base, V 6.1.3[Default], Cisco Systems, at disk0:xrvr-base-6.1.3\r\
+      \n    Built on Mon Feb 13 15:01:56 UTC 2017\r\n    By iox-lnx-005 in /auto/srcarchive14/production/6.1.3/xrvr/workspace\
+      \ for pie\r\n\r\nxrvr-fwding, V 6.1.3[Default], Cisco Systems, at disk0:xrvr-fwding-6.1.3\r\
+      \n    Built on Mon Feb 13 15:01:56 UTC 2017\r\n    By iox-lnx-005 in /auto/srcarchive14/production/6.1.3/xrvr/workspace\
+      \ for pie\r\n\r\nxrvr-mgbl-x, V 6.1.3[Default], Cisco Systems, at disk0:xrvr-mgbl-x-6.1.3\r\
+      \n    Built on Mon Feb 13 15:02:04 UTC 2017\r\n    By iox-lnx-005 in /auto/srcarchive14/production/6.1.3/xrvr/workspace\
+      \ for pie\r\n\r\niosxr-mpls, V 6.1.3[Default], Cisco Systems, at disk0:iosxr-mpls-6.1.3\r\
+      \n    Built on Mon Feb 13 15:01:56 UTC 2017\r\n    By iox-lnx-005 in /auto/srcarchive14/production/6.1.3/xrvr/workspace\
+      \ for pie\r\n\r\niosxr-mgbl, V 6.1.3[Default], Cisco Systems, at disk0:iosxr-mgbl-6.1.3\r\
+      \n    Built on Mon Feb 13 15:01:56 UTC 2017\r\n    By iox-lnx-005 in /auto/srcarchive14/production/6.1.3/xrvr/workspace\
+      \ for pie\r\n\r\niosxr-mcast, V 6.1.3[Default], Cisco Systems, at disk0:iosxr-mcast-6.1.3\r\
+      \n    Built on Mon Feb 13 15:01:56 UTC 2017\r\n    By iox-lnx-005 in /auto/srcarchive14/production/6.1.3/xrvr/workspace\
+      \ for pie\r\n\r\nxrvr-mcast-supp, V 6.1.3[Default], Cisco Systems, at disk0:xrvr-mcast-supp-6.1.3\r\
+      \n    Built on Mon Feb 13 15:01:56 UTC 2017\r\n    By iox-lnx-005 in /auto/srcarchive14/production/6.1.3/xrvr/workspace\
+      \ for pie\r\n\r\niosxr-bng, V 6.1.3[Default], Cisco Systems, at disk0:iosxr-bng-6.1.3\r\
+      \n    Built on Mon Feb 13 15:01:57 UTC 2017\r\n    By iox-lnx-005 in /auto/srcarchive14/production/6.1.3/xrvr/workspace\
+      \ for pie\r\n\r\nxrvr-bng-supp, V 6.1.3[Default], Cisco Systems, at disk0:xrvr-bng-supp-6.1.3\r\
+      \n    Built on Mon Feb 13 15:01:58 UTC 2017\r\n    By iox-lnx-005 in /auto/srcarchive14/production/6.1.3/xrvr/workspace\
+      \ for pie\r\n\r\niosxr-security, V 6.1.3[Default], Cisco Systems, at disk0:iosxr-security-6.1.3\r\
+      \n    Built on Mon Feb 13 15:01:49 UTC 2017\r\n    By iox-lnx-005 in /auto/srcarchive14/production/6.1.3/xrvr/workspace\
+      \ for pie\r\n\r\nxrvr-fullk9-x, V 6.1.3[Default], Cisco Systems, at disk0:xrvr-fullk9-x-6.1.3\r\
+      \n    Built on Mon Feb 13 15:02:49 UTC 2017\r\n    By iox-lnx-005 in /auto/srcarchive14/production/6.1.3/xrvr/workspace\
+      \ for pie"
+    config term:
+      new_state: configure
+    show access-lists afi-all: "\rSat May 11 00:39:27.114 UTC"
+    show access-lists ethernet-services: "\rSat May 11 00:39:27.694 UTC"
+    show arp detail: '% Invalid command at ''^'' marker.'
+    show ipv4 vrf all interface: "\rSat May 11 00:39:28.784 UTC\r\nLoopback0 is Up,\
+      \ ipv4 protocol is Up\r\n  Vrf is default (vrfid 0x60000000)\r\n  Internet address\
+      \ is 192.168.0.3/32\r\n  MTU is 1500 (1500 is available to IP)\r\n  Helper address\
+      \ is not set\r\n  Directed broadcast forwarding is disabled\r\n  Outgoing access\
+      \ list is not set\r\n  Inbound  common access list is not set, access list is\
+      \ not set\r\n  Proxy ARP is disabled\r\n  ICMP redirects are never sent\r\n\
+      \  ICMP unreachables are always sent\r\n  ICMP mask replies are never sent\r\
+      \n  Table Id is 0xe0000000\r\nMgmtEth0/0/CPU0/0 is Up, ipv4 protocol is Up\r\
+      \n  Vrf is Mgmt-intf (vrfid 0x60000002)\r\n  Internet address is 172.16.30.62/24\r\
+      \n  MTU is 1514 (1500 is available to IP)\r\n  Helper address is not set\r\n\
+      \  Multicast reserved groups joined: 224.0.0.2 224.0.0.1\r\n  Directed broadcast\
+      \ forwarding is disabled\r\n  Outgoing access list is not set\r\n  Inbound \
+      \ common access list is not set, access list is not set\r\n  Proxy ARP is disabled\r\
+      \n  ICMP redirects are never sent\r\n  ICMP unreachables are always sent\r\n\
+      \  ICMP mask replies are never sent\r\n  Table Id is 0xe0000011\r\nGigabitEthernet0/0/0/0\
+      \ is Up, ipv4 protocol is Up\r\n  Vrf is default (vrfid 0x60000000)\r\n  Internet\
+      \ protocol processing disabled\r\nGigabitEthernet0/0/0/1 is Up, ipv4 protocol\
+      \ is Up\r\n  Vrf is default (vrfid 0x60000000)\r\n  Internet address is 10.0.0.6/30\r\
+      \n  MTU is 1514 (1500 is available to IP)\r\n  Helper address is not set\r\n\
+      \  Multicast reserved groups joined: 224.0.0.2 224.0.0.1 224.0.0.5\r\n     \
+      \ 224.0.0.6\r\n  Directed broadcast forwarding is disabled\r\n  Outgoing access\
+      \ list is not set\r\n  Inbound  common access list is not set, access list is\
+      \ not set\r\n  Proxy ARP is disabled\r\n  ICMP redirects are never sent\r\n\
+      \  ICMP unreachables are always sent\r\n  ICMP mask replies are never sent\r\
+      \n  Table Id is 0xe0000000"
+    show arp traffic detail: '% Invalid command at ''^'' marker.'
+    show bgp instances: "\rSat May 11 00:39:30.724 UTC\r\n\r\nNumber of BGP instances:\
+      \ 1\r\n\r\nID  Placed-Grp  Name              AS        VRFs    Address Families\r\
+      \n--------------------------------------------------------------------------------\r\
+      \n0   v4_routing  default           1         0       IPv4 Unicast"
+    show placement program all: "\rSat May 11 00:39:31.154 UTC\r\nDisplay program\
+      \ related information. This is the program information corresponding to this\
+      \ LR as\r\nperceived by the placement daemon.\r\n------------------------------------------------------------------------------------------------------------------------------------------\r\
+      \n                   Process Information\r\n------------------------------------------------------------------------------------------------------------------------------------------\r\
+      \nProgram                                 Group               jid  Active  \
+      \       Active-state             Standby        Standby-state  \r\n------------------------------------------------------------------------------------------------------------------------------------------\r\
+      \nftp_fs                                  central-services    1170 0/0/CPU0\
+      \       RUNNING                  NONE           NOT_SPAWNED    \r\ntty_verifyd\
+      \                             central-services    1175 0/0/CPU0       RUNNING\
+      \                  NONE           NOT_SPAWNED    \r\nrcp_fs                \
+      \                  central-services    1173 0/0/CPU0       RUNNING         \
+      \         NONE           NOT_SPAWNED    \r\nintf_mgbl                      \
+      \         central-services    1144 0/0/CPU0       RUNNING                  NONE\
+      \           NOT_SPAWNED    \r\npython_process_manager                  central-services\
+      \    1172 0/0/CPU0       RUNNING                  NONE           NOT_SPAWNED\
+      \    \r\nssh_server                              central-services    1133 0/0/CPU0\
+      \       RUNNING                  NONE           NOT_SPAWNED    \r\nbundlemgr_distrib\
+      \                       central-services    1165 0/0/CPU0       RUNNING    \
+      \              NONE           NOT_SPAWNED    \r\nschema_server             \
+      \              central-services    1184 0/0/CPU0       RUNNING             \
+      \     NONE           NOT_SPAWNED    \r\nethernet_stats_controller_edm      \
+      \     central-services    1169 0/0/CPU0       RUNNING                  NONE\
+      \           NOT_SPAWNED    \r\nsnmppingd                               central-services\
+      \    1185 0/0/CPU0       RUNNING                  NONE           NOT_SPAWNED\
+      \    \r\ntelemetry_encoder                       central-services    1174 0/0/CPU0\
+      \       RUNNING                  NONE           NOT_SPAWNED    \r\nqos_ma  \
+      \                                central-services    1180 0/0/CPU0       RUNNING\
+      \                  NONE           NOT_SPAWNED    \r\nbfd                   \
+      \                  central-services    1166 0/0/CPU0       RUNNING         \
+      \         NONE           NOT_SPAWNED    \r\nipv6_mpa                       \
+      \         central-services    1154 0/0/CPU0       RUNNING                  NONE\
+      \           NOT_SPAWNED    \r\nmpp_srvr                                central-services\
+      \    1108 0/0/CPU0       RUNNING                  NONE           NOT_SPAWNED\
+      \    \r\nssh_conf_verifier                       central-services    1132 0/0/CPU0\
+      \       RUNNING                  NONE           NOT_SPAWNED    \r\nauto_ip_ring\
+      \                            central-services    1164 0/0/CPU0       RUNNING\
+      \                  NONE           NOT_SPAWNED    \r\neth_gl_cfg            \
+      \                  central-services    1155 0/0/CPU0       RUNNING         \
+      \         NONE           NOT_SPAWNED    \r\nes_acl_mgr                     \
+      \         central-services    1178 0/0/CPU0       RUNNING                  NONE\
+      \           NOT_SPAWNED    \r\nipv4_mpa                                central-services\
+      \    1153 0/0/CPU0       RUNNING                  NONE           NOT_SPAWNED\
+      \    \r\nicpe_satmgr                             central-services    1171 0/0/CPU0\
+      \       RUNNING                  NONE           NOT_SPAWNED    \r\ndomain_services\
+      \                         central-services    1168 0/0/CPU0       RUNNING  \
+      \                NONE           NOT_SPAWNED    \r\nl2vpn_mgr               \
+      \                v4-routing          1182 0/0/CPU0       RUNNING           \
+      \       NONE           NOT_SPAWNED    \r\nipv4_rib                         \
+      \       v4-routing          1147 0/0/CPU0       RUNNING                  NONE\
+      \           NOT_SPAWNED    \r\npolicy_repository                       v4-routing\
+      \          1152 0/0/CPU0       RUNNING                  NONE           NOT_SPAWNED\
+      \    \r\nospf(1)                                 v4-routing          1018 0/0/CPU0\
+      \       RUNNING                  NONE           NOT_SPAWNED    \r\nipv4_static\
+      \                             v4-routing          1042 0/0/CPU0       RUNNING\
+      \                  NONE           NOT_SPAWNED    \r\nipv4_rump             \
+      \                  v4-routing          1176 0/0/CPU0       RUNNING         \
+      \         NONE           NOT_SPAWNED    \r\nospf_uv                        \
+      \         v4-routing          1116 0/0/CPU0       RUNNING                  NONE\
+      \           NOT_SPAWNED    \r\nipv4_local                              v4-routing\
+      \          1158 0/0/CPU0       RUNNING                  NONE           NOT_SPAWNED\
+      \    \r\nbgp_epe                                 v4-routing          1167 0/0/CPU0\
+      \       RUNNING                  NONE           NOT_SPAWNED    \r\nrt_check_mgr\
+      \                            v4-routing          1179 0/0/CPU0       RUNNING\
+      \                  NONE           NOT_SPAWNED    \r\nbpm                   \
+      \                  v4-routing          1067 0/0/CPU0       RUNNING         \
+      \         NONE           NOT_SPAWNED    \r\nipv4_connected                 \
+      \         v4-routing          1157 0/0/CPU0       RUNNING                  NONE\
+      \           NOT_SPAWNED    \r\nmpls_static                             v4-routing\
+      \          1143 0/0/CPU0       RUNNING                  NONE           NOT_SPAWNED\
+      \    \r\nbgp(default)                            v4-routing          1052 0/0/CPU0\
+      \       RUNNING                  NONE           NOT_SPAWNED    \r\nl2tp_mgr\
+      \                                v4-routing          1183 0/0/CPU0       RUNNING\
+      \                  NONE           NOT_SPAWNED    \r\nmpls_ldp              \
+      \                  v4-routing          1181 0/0/CPU0       RUNNING         \
+      \         NONE           NOT_SPAWNED    \r\nstatsd_manager_g               \
+      \         netmgmt             1145 0/0/CPU0       RUNNING                  NONE\
+      \           NOT_SPAWNED    \r\nipv4_mfwd_ma                            mcast-routing\
+      \       1146 0/0/CPU0       RUNNING                  NONE           NOT_SPAWNED\
+      \    \r\npim6                                    mcast-routing       1163 0/0/CPU0\
+      \       RUNNING                  NONE           NOT_SPAWNED    \r\nmrib6   \
+      \                                mcast-routing       1151 0/0/CPU0       RUNNING\
+      \                  NONE           NOT_SPAWNED    \r\npim                   \
+      \                  mcast-routing       1162 0/0/CPU0       RUNNING         \
+      \         NONE           NOT_SPAWNED    \r\nmrib                           \
+      \         mcast-routing       1150 0/0/CPU0       RUNNING                  NONE\
+      \           NOT_SPAWNED    \r\nmld                                     mcast-routing\
+      \       1161 0/0/CPU0       RUNNING                  NONE           NOT_SPAWNED\
+      \    \r\nigmp                                    mcast-routing       1156 0/0/CPU0\
+      \       RUNNING                  NONE           NOT_SPAWNED    \r\nipv6_mfwd_ma\
+      \                            mcast-routing       1148 0/0/CPU0       RUNNING\
+      \                  NONE           NOT_SPAWNED    \r\nipv6_rump             \
+      \                  v6-routing          1177 0/0/CPU0       RUNNING         \
+      \         NONE           NOT_SPAWNED    \r\nipv6_rib                       \
+      \         v6-routing          1149 0/0/CPU0       RUNNING                  NONE\
+      \           NOT_SPAWNED    \r\nipv6_connected                          v6-routing\
+      \          1159 0/0/CPU0       RUNNING                  NONE           NOT_SPAWNED\
+      \    \r\nipv6_local                              v6-routing          1160 0/0/CPU0\
+      \       RUNNING                  NONE           NOT_SPAWNED    \r\n------------------------------------------------------------------------------------------------------------------------------------------"
+    show run formal | i session-group: "\rSat May 11 00:39:31.844 UTC\r\nBuilding\
+      \ configuration..."
+    show run formal | i af-group: "\rSat May 11 00:39:32.204 UTC\r\nBuilding configuration..."
+    show bgp instance all all all  process detail: "\rSat May 11 00:39:32.584 UTC\r\
+      \n\r\nBGP instance 0: 'default'\r\n=========================\r\n\r\nBGP Process\
+      \ Information: \r\nBGP is operating in STANDALONE mode\r\nAutonomous System\
+      \ number format: ASPLAIN\r\nAutonomous System: 1\r\nRouter ID: 192.168.0.3 (manually\
+      \ configured)\r\nDefault Cluster ID: 192.168.0.3\r\nActive Cluster IDs:  192.168.0.3\r\
+      \nFast external fallover enabled\r\nPlatform RLIMIT max: 2147483648 bytes\r\n\
+      Maximum limit for BMP buffer size: 409 MB\r\nDefault value for BMP buffer size:\
+      \ 307 MB\r\nNeighbor logging is enabled\r\nEnforce first AS enabled\r\nDefault\
+      \ local preference: 100\r\nDefault keepalive: 60\r\nNon-stop routing is enabled\r\
+      \nUpdate delay: 120\r\nGeneric scan interval: 60\r\n\r\nBGP Speaker process:\
+      \ 0, Node: node0_0_CPU0\r\nRestart count: 1\r\n                           Total\
+      \           Nbrs Estab/Cfg\r\nDefault VRFs:              1               1/2\r\
+      \nNon-Default VRFs:          0               0/0\r\n\r\n                   \
+      \        Sent            Received\r\nUpdates:                   10         \
+      \     6               \r\nNotifications:             1               0     \
+      \          \r\n\r\n                           Number          Memory Used\r\n\
+      Attributes:                2               496             \r\nAS Paths:   \
+      \               0               0               \r\nCommunities:           \
+      \    0               0               \r\nExtended communities:      0      \
+      \         0               \r\nPMSI Tunnel attr:          0               0 \
+      \              \r\nRIBRNH Tunnel attr:        0               0            \
+      \   \r\nPPMP attr:                 0               0               \r\nPE distinguisher\
+      \ labels:   0               0               \r\nRoute Reflector Entries:   0\
+      \               0               \r\nNexthop Entries:           18          \
+      \    13992           \r\n\r\n                           Alloc           Free\
+      \          \r\nPool 200:                  0               0             \r\n\
+      Pool 300:                  3004            3003          \r\nPool 400:     \
+      \             0               0             \r\nPool 500:                  1\
+      \               1             \r\nPool 600:                  2             \
+      \  2             \r\nPool 700:                  0               0          \
+      \   \r\nPool 800:                  0               0             \r\nPool 900:\
+      \                  0               0             \r\nPool 1200:            \
+      \     0               0             \r\nPool 2200:                 0       \
+      \        0             \r\nPool 3300:                 0               0    \
+      \         \r\nPool 4000:                 0               0             \r\n\
+      Pool 4500:                 0               0             \r\nPool 5000:    \
+      \             0               0             \r\nPool 20000:                0\
+      \               0             \r\n\r\nMessage logging pool summary:\r\n    \
+      \                       Alloc           Free          \r\nPool 100:        \
+      \          11              1             \r\nPool 200:                  0  \
+      \             0             \r\nPool 500:                  0               0\
+      \             \r\nPool 2200:                 0               0             \r\
+      \nPool 4500:                 0               0             \r\n\r\nAddress family:\
+      \ IPv4 Unicast\r\nDampening is not enabled\r\nClient reflection is enabled in\
+      \ global config\r\nDynamic MED is Disabled\r\nDynamic MED interval : 10 minutes\r\
+      \nDynamic MED Timer : Not Running\r\nDynamic MED Periodic Timer : Not Running\r\
+      \nScan interval: 60\r\nTotal prefixes scanned: 2\r\nPrefixes scanned per segment:\
+      \ 100000\r\nNumber of scan segments: 1\r\nNexthop resolution minimum prefix-length:\
+      \ 0 (not configured)\r\nMain Table Version: 11\r\nTable version synced to RIB:\
+      \ 11\r\nTable version acked by RIB: 11\r\nIGP notification: IGPs notified\r\n\
+      RIB has converged: version 5\r\nRIB table prefix-limit reached ?  [No], version\
+      \ 0\r\nPermanent Network Unconfigured\r\n\r\nState: Normal mode.\r\nBGP Table\
+      \ Version: 11\r\nAttribute download: Disabled\r\nLabel retention timer value\
+      \ 5 mins\r\nSoft Reconfig Entries: 0\r\nTable bit-field size : 1 Chunk element\
+      \ size : 3\r\n\r\n                   Last 8 Triggers       Ver         Tbl Ver\
+      \     Trig TID  \r\n\r\nLabel Thread       Total triggers: 0\r\n\r\nImport Thread\
+      \      May 11 00:30:44.420   11          11          6         \r\n        \
+      \           May 11 00:28:13.310   10          11          9         \r\n   \
+      \                May 10 15:57:59.647   10          10          3         \r\n\
+      \                   May 10 14:51:55.689   10          10          3        \
+      \ \r\n                   May 10 08:33:06.616   10          10          3   \
+      \      \r\n                   May 10 08:32:19.149   9           10         \
+      \ 9         \r\n                   May 10 08:32:17.919   8           9     \
+      \      3         \r\n                   May 10 08:32:04.120   7           8\
+      \           9         \r\n                   Total triggers: 10\r\n\r\nRIB Thread\
+      \         May 11 00:30:44.420   11          11          6         \r\n     \
+      \              May 11 00:28:13.310   10          11          4         \r\n\
+      \                   May 11 00:28:13.310   10          11          9        \
+      \ \r\n                   May 10 15:57:59.647   10          10          3   \
+      \      \r\n                   May 10 14:51:55.689   10          10         \
+      \ 3         \r\n                   May 10 08:33:06.616   10          10    \
+      \      3         \r\n                   May 10 08:32:19.149   9           10\
+      \          4         \r\n                   May 10 08:32:19.149   9        \
+      \   10          9         \r\n                   Total triggers: 15\r\n\r\n\
+      Update Thread      May 11 00:30:44.420   11          11          6         \r\
+      \n                   May 11 00:28:13.310   11          11          16      \
+      \  \r\n                   May 11 00:28:13.310   10          11          9  \
+      \       \r\n                   May 10 15:57:59.647   10          10        \
+      \  3         \r\n                   May 10 14:51:55.689   10          10   \
+      \       3         \r\n                   May 10 08:33:06.616   10          10\
+      \          3         \r\n                   May 10 08:32:19.149   10       \
+      \   10          16        \r\n                   May 10 08:32:19.149   9   \
+      \        10          9         \r\n                   Total triggers: 19\r\n\
+      \r\n                           Allocated       Freed         \r\nPrefixes: \
+      \                 3               1             \r\nPaths:                 \
+      \    3               1             \r\nPath-elems:                3        \
+      \       1             \r\n\r\n                           Number          Mem\
+      \ Used      \r\nPrefixes:                  2               184           \r\n\
+      Paths:                     2               128           \r\nPath-elems:   \
+      \             2               126"
+    show bgp instance all vrf all ipv4 unicast process detail: "\rSat May 11 00:39:33.184\
+      \ UTC\r\n\r\nBGP instance 0: 'default'\r\n=========================\r\n% None\
+      \ of the requested address families are configured for instance 'default'(26723)"
+    show bgp instance all vrf all ipv6 unicast process detail: "\rSat May 11 00:39:33.554\
+      \ UTC\r\n\r\nBGP instance 0: 'default'\r\n=========================\r\n% None\
+      \ of the requested address families are configured for instance 'default'(26723)"
+    show bgp instance all all all  neighbors detail: "\rSat May 11 00:39:33.954 UTC\r\
+      \n\r\nBGP instance 0: 'default'\r\n=========================\r\n\r\nBGP neighbor\
+      \ is 192.168.0.1\r\n Remote AS 1, local AS 1, internal link\r\n Description:\
+      \ iBGP peer nx\r\n Remote router ID 0.0.0.0\r\n  BGP state = Idle (No route\
+      \ to multi-hop neighbor)\r\n  NSR State: None\r\n  Last read 00:00:00, Last\
+      \ read before reset 00:11:51\r\n  Hold time is 180, keepalive interval is 60\
+      \ seconds\r\n  Configured hold time: 180, keepalive: 60, min acceptable hold\
+      \ time: 3\r\n  Last write 00:08:51, attempted 21, written 21\r\n  Second last\
+      \ write 00:08:59, attempted 19, written 19\r\n  Last write before reset 00:08:59,\
+      \ attempted 19, written 19\r\n  Second last write before reset 00:09:59, attempted\
+      \ 19, written 19\r\n  Last write pulse rcvd  May 11 00:27:42.252 last full not\
+      \ set pulse count 2377\r\n  Last write pulse rcvd before reset 00:11:51\r\n\
+      \  Socket not armed for io, not armed for read, not armed for write\r\n  Last\
+      \ write thread event before reset 00:08:59, second last 00:08:59\r\n  Last KA\
+      \ expiry before reset 00:08:59, second last 00:09:59\r\n  Last KA error before\
+      \ reset 00:00:00, KA not sent 00:00:00\r\n  Last KA start before reset 00:08:59,\
+      \ second last 00:09:59\r\n  Precedence: internet\r\n  Non-stop routing is enabled\r\
+      \n  Entered Neighbor NSR TCP mode:\r\n    TCP Initial Sync :              ---\
+      \                \r\n    TCP Initial Sync Phase Two :    ---               \
+      \ \r\n    TCP Initial Sync Done :         ---                \r\n  Multi-protocol\
+      \ capability received\r\n  Message stats:\r\n    InQ depth: 0, OutQ depth: 0\r\
+      \n                    Last_Sent               Sent  Last_Rcvd              \
+      \ Rcvd\r\n    Open:           May 10 08:31:49.381        1  May 10 08:31:49.381\
+      \        1\r\n    Notification:   May 11 00:30:42.360        1  ---        \
+      \                0\r\n    Update:         May 10 08:32:19.179        2  May\
+      \ 10 08:31:50.391        2\r\n    Keepalive:      May 11 00:30:34.461      959\
+      \  May 11 00:27:42.252     1418\r\n    Route_Refresh:  ---                 \
+      \       0  ---                        0\r\n    Total:                      \
+      \             963                          1421\r\n  Minimum time between advertisement\
+      \ runs is 0 secs\r\n  Inbound message logging enabled, 3 messages buffered\r\
+      \n  Outbound message logging enabled, 3 messages buffered\r\n\r\n For Address\
+      \ Family: IPv4 Unicast\r\n  BGP neighbor version 0\r\n  Update group: 0.2 Filter-group:\
+      \ 0.0  No Refresh request being processed\r\n  Route refresh request: received\
+      \ 0, sent 0\r\n  0 accepted prefixes, 0 are bestpaths\r\n  Cumulative no. of\
+      \ prefixes denied: 0. \r\n  Prefix advertised 0, suppressed 0, withdrawn 0\r\
+      \n  Maximum prefixes allowed 1048576\r\n  Threshold for warning message 75%,\
+      \ restart interval 0 min\r\n  AIGP is enabled\r\n  An EoR was received during\
+      \ read-only mode\r\n  Last ack version 0, Last synced ack version 0\r\n  Outstanding\
+      \ version objects: current 0, max 1\r\n  Additional-paths operation: None\r\n\
+      \  Send Multicast Attributes\r\n\r\n  Connections established 1; dropped 1\r\
+      \n  Local host: 192.168.0.3, Local port: 179, IF Handle: 0x00000000\r\n  Foreign\
+      \ host: 192.168.0.1, Foreign port: 24770\r\n  Last reset 00:08:51, due to BGP\
+      \ Notification sent: hold time expired\r\n  Time since last notification sent\
+      \ to neighbor: 00:08:51\r\n  Error Code: hold time expired\r\n  Notification\
+      \ data sent:\r\n    None\r\n\r\nBGP neighbor is 192.168.0.2\r\n Remote AS 1,\
+      \ local AS 1, internal link\r\n Description: iBGP peer xe\r\n Remote router\
+      \ ID 192.168.0.2\r\n  BGP state = Established, up for 16:08:27\r\n  NSR State:\
+      \ None\r\n  Last read 00:00:10, Last read before reset 00:00:00\r\n  Hold time\
+      \ is 180, keepalive interval is 60 seconds\r\n  Configured hold time: 180, keepalive:\
+      \ 60, min acceptable hold time: 3\r\n  Last write 00:00:59, attempted 19, written\
+      \ 19\r\n  Second last write 00:01:59, attempted 19, written 19\r\n  Last write\
+      \ before reset 00:00:00, attempted 0, written 0\r\n  Second last write before\
+      \ reset 00:00:00, attempted 0, written 0\r\n  Last write pulse rcvd  May 11\
+      \ 00:39:23.344 last full not set pulse count 2547\r\n  Last write pulse rcvd\
+      \ before reset 00:00:00\r\n  Socket not armed for io, armed for read, armed\
+      \ for write\r\n  Last write thread event before reset 00:00:00, second last\
+      \ 00:00:00\r\n  Last KA expiry before reset 00:00:00, second last 00:00:00\r\
+      \n  Last KA error before reset 00:00:00, KA not sent 00:00:00\r\n  Last KA start\
+      \ before reset 00:00:00, second last 00:00:00\r\n  Precedence: internet\r\n\
+      \  Non-stop routing is enabled\r\n  Entered Neighbor NSR TCP mode:\r\n    TCP\
+      \ Initial Sync :              ---                \r\n    TCP Initial Sync Phase\
+      \ Two :    ---                \r\n    TCP Initial Sync Done :         ---  \
+      \              \r\n  Multi-protocol capability received\r\n  Neighbor capabilities:\
+      \            Adv         Rcvd\r\n    Route refresh:                  Yes   \
+      \      Yes\r\n    4-byte AS:                      Yes         Yes\r\n    Address\
+      \ family IPv4 Unicast:    Yes         Yes\r\n  Message stats:\r\n    InQ depth:\
+      \ 0, OutQ depth: 0\r\n                    Last_Sent               Sent  Last_Rcvd\
+      \               Rcvd\r\n    Open:           May 10 08:31:06.894        1  May\
+      \ 10 08:31:06.904        1\r\n    Notification:   ---                      \
+      \  0  ---                        0\r\n    Update:         May 10 08:32:19.179\
+      \        2  May 10 15:57:59.647        4\r\n    Keepalive:      May 11 00:38:34.598\
+      \      967  May 11 00:39:23.344     1573\r\n    Route_Refresh:  ---        \
+      \                0  ---                        0\r\n    Total:             \
+      \                      970                          1578\r\n  Minimum time between\
+      \ advertisement runs is 0 secs\r\n  Inbound message logging enabled, 3 messages\
+      \ buffered\r\n  Outbound message logging enabled, 3 messages buffered\r\n\r\n\
+      \ For Address Family: IPv4 Unicast\r\n  BGP neighbor version 11\r\n  Update\
+      \ group: 0.2 Filter-group: 0.1  No Refresh request being processed\r\n  Route\
+      \ refresh request: received 0, sent 0\r\n  1 accepted prefixes, 1 are bestpaths\r\
+      \n  Cumulative no. of prefixes denied: 0. \r\n  Prefix advertised 1, suppressed\
+      \ 0, withdrawn 0\r\n  Maximum prefixes allowed 1048576\r\n  Threshold for warning\
+      \ message 75%, restart interval 0 min\r\n  AIGP is enabled\r\n  An EoR was received\
+      \ during read-only mode\r\n  Last ack version 11, Last synced ack version 0\r\
+      \n  Outstanding version objects: current 0, max 1\r\n  Additional-paths operation:\
+      \ None\r\n  Send Multicast Attributes\r\n\r\n  Connections established 1; dropped\
+      \ 0\r\n  Local host: 192.168.0.3, Local port: 27376, IF Handle: 0x00000000\r\
+      \n  Foreign host: 192.168.0.2, Foreign port: 179\r\n  Last reset 00:00:00"
+    show bgp instance all vrf all ipv4 unicast neighbors detail: "\rSat May 11 00:39:34.624\
+      \ UTC\r\n\r\nBGP instance 0: 'default'\r\n========================="
+    show bgp instance all vrf all ipv6 unicast neighbors detail: "\rSat May 11 00:39:35.093\
+      \ UTC\r\n\r\nBGP instance 0: 'default'\r\n========================="
+    'show bgp instance all all all ': "\rSat May 11 00:39:35.463 UTC\r\n\r\nBGP instance\
+      \ 0: 'default'\r\n=========================\r\n\r\nAddress Family: IPv4 Unicast\r\
+      \n----------------------------\r\n\r\nBGP router identifier 192.168.0.3, local\
+      \ AS number 1\r\nBGP generic scan interval 60 secs\r\nNon-stop routing is enabled\r\
+      \nBGP table state: Active\r\nTable ID: 0xe0000000   RD version: 11\r\nBGP main\
+      \ routing table version 11\r\nBGP NSR Initial initsync version 5 (Reached)\r\
+      \nBGP NSR/ISSU Sync-Group versions 0/0\r\nBGP scan interval 60 secs\r\n\r\n\
+      Status codes: s suppressed, d damped, h history, * valid, > best\r\n       \
+      \       i - internal, r RIB-failure, S stale, N Nexthop-discard\r\nOrigin codes:\
+      \ i - IGP, e - EGP, ? - incomplete\r\n   Network            Next Hop       \
+      \     Metric LocPrf Weight Path\r\n*>i192.168.0.2/32     192.168.0.2       \
+      \       0    100      0 i\r\n*> 192.168.0.3/32     0.0.0.0                 \
+      \ 0         32768 i\r\n\r\nProcessed 2 prefixes, 2 paths"
+    show bgp instance all vrf all ipv4 unicast: "\rSat May 11 00:39:35.743 UTC\r\n\
+      \r\nBGP instance 0: 'default'\r\n=========================\r\n% None of the\
+      \ requested address families are configured for instance 'default'(26791)"
+    show bgp instance all vrf all ipv6 unicast: "\rSat May 11 00:39:35.983 UTC\r\n\
+      \r\nBGP instance 0: 'default'\r\n=========================\r\n% None of the\
+      \ requested address families are configured for instance 'default'(26791)"
+    show bgp instance all all all  summary: "\rSat May 11 00:39:36.223 UTC\r\n\r\n\
+      BGP instance 0: 'default'\r\n=========================\r\n\r\nAddress Family:\
+      \ IPv4 Unicast\r\n----------------------------\r\n\r\nBGP router identifier\
+      \ 192.168.0.3, local AS number 1\r\nBGP generic scan interval 60 secs\r\nNon-stop\
+      \ routing is enabled\r\nBGP table state: Active\r\nTable ID: 0xe0000000   RD\
+      \ version: 11\r\nBGP main routing table version 11\r\nBGP NSR Initial initsync\
+      \ version 5 (Reached)\r\nBGP NSR/ISSU Sync-Group versions 0/0\r\nBGP scan interval\
+      \ 60 secs\r\n\r\nBGP is operating in STANDALONE mode.\r\n\r\n\r\nProcess   \
+      \    RcvTblVer   bRIB/RIB   LabelVer  ImportVer  SendTblVer  StandbyVer\r\n\
+      Speaker              11         11         11         11          11       \
+      \    0\r\n\r\nNeighbor        Spk    AS MsgRcvd MsgSent   TblVer  InQ OutQ \
+      \ Up/Down  St/PfxRcd\r\n192.168.0.1       0     1    1421     963        0 \
+      \   0    0 00:08:54 Idle\r\n192.168.0.2       0     1    1578     971      \
+      \ 11    0    0 16:08:29          1"
+    show bgp instance all vrf all ipv4 unicast summary: "\rSat May 11 00:39:36.593\
+      \ UTC\r\n\r\nBGP instance 0: 'default'\r\n=========================\r\n% None\
+      \ of the requested address families are configured for instance 'default'(26791)"
+    show bgp instance all vrf all ipv6 unicast summary: "\rSat May 11 00:39:37.303\
+      \ UTC\r\n\r\nBGP instance 0: 'default'\r\n=========================\r\n% None\
+      \ of the requested address families are configured for instance 'default'(26791)"
+    show bgp instance all all all  neighbors 192.168.0.1 advertised-routes: "\rSat\
+      \ May 11 00:39:37.613 UTC\r\n\r\nBGP instance 0: 'default'\r\n=========================\r\
+      \n\r\nAddress Family: IPv4 Unicast\r\n----------------------------"
+    show bgp instance all all all  neighbors 192.168.0.2 advertised-routes: "\rSat\
+      \ May 11 00:39:37.923 UTC\r\n\r\nBGP instance 0: 'default'\r\n=========================\r\
+      \n\r\nAddress Family: IPv4 Unicast\r\n----------------------------\r\n\r\nNetwork\
+      \            Next Hop        From            AS Path\r\n192.168.0.3/32     192.168.0.3\
+      \     Local           i\r\n\r\nProcessed 1 prefixes, 1 paths"
+    show bgp instance all all all  neighbors 192.168.0.1 received routes: "\rSat May\
+      \ 11 00:39:38.273 UTC\r\n\r\nBGP instance 0: 'default'\r\n=========================\r\
+      \n\r\nAddress Family: IPv4 Unicast\r\n----------------------------\r\n\r\n%\
+      \ The 'show bgp neighbor received routes' command is only available when inbound\
+      \ soft reconfiguration is active.  To activate inbound soft reconfiguration,\
+      \ use the 'soft-reconfiguration inbound' command.  If the neighbor supports\
+      \ route-refresh, the 'always' option to the command must also be specified."
+    show bgp instance all all all  neighbors 192.168.0.2 received routes: "\rSat May\
+      \ 11 00:39:38.913 UTC\r\n\r\nBGP instance 0: 'default'\r\n=========================\r\
+      \n\r\nAddress Family: IPv4 Unicast\r\n----------------------------\r\n\r\n%\
+      \ The 'show bgp neighbor received routes' command is only available when inbound\
+      \ soft reconfiguration is active.  To activate inbound soft reconfiguration,\
+      \ use the 'soft-reconfiguration inbound' command.  If the neighbor supports\
+      \ route-refresh, the 'always' option to the command must also be specified."
+    show bgp instance all all all  neighbors 192.168.0.1 routes: "\rSat May 11 00:39:39.483\
+      \ UTC\r\n\r\nBGP instance 0: 'default'\r\n=========================\r\n\r\n\
+      Address Family: IPv4 Unicast\r\n----------------------------"
+    show bgp instance all all all  neighbors 192.168.0.2 routes: "\rSat May 11 00:39:39.773\
+      \ UTC\r\n\r\nBGP instance 0: 'default'\r\n=========================\r\n\r\n\
+      Address Family: IPv4 Unicast\r\n----------------------------\r\n\r\nBGP router\
+      \ identifier 192.168.0.3, local AS number 1\r\nBGP generic scan interval 60\
+      \ secs\r\nNon-stop routing is enabled\r\nBGP table state: Active\r\nTable ID:\
+      \ 0xe0000000   RD version: 11\r\nBGP main routing table version 11\r\nBGP NSR\
+      \ Initial initsync version 5 (Reached)\r\nBGP NSR/ISSU Sync-Group versions 0/0\r\
+      \nBGP scan interval 60 secs\r\n\r\nStatus codes: s suppressed, d damped, h history,\
+      \ * valid, > best\r\n              i - internal, r RIB-failure, S stale, N Nexthop-discard\r\
+      \nOrigin codes: i - IGP, e - EGP, ? - incomplete\r\n   Network            Next\
+      \ Hop            Metric LocPrf Weight Path\r\n*>i192.168.0.2/32     192.168.0.2\
+      \              0    100      0 i\r\n\r\nProcessed 1 prefixes, 1 paths"
+    show eigrp ipv4 vrf all neighbors detail: "\rSat May 11 00:39:40.873 UTC\r\n\r\
+      \n% EIGRP: EIGRP not configured"
+    show eigrp ipv6 vrf all neighbors detail: "\rSat May 11 00:39:41.093 UTC\r\n\r\
+      \n% EIGRP: EIGRP not configured"
+    show hsrp detail: "\rSat May 11 00:39:43.683 UTC"
+    show interface detail: "\rSat May 11 00:39:46.943 UTC\r\nLoopback0 is up, line\
+      \ protocol is up \r\n  Interface state transitions: 1\r\n  Hardware is Loopback\
+      \ interface(s)\r\n  Description: Loopback\r\n  Internet address is 192.168.0.3/32\r\
+      \n  MTU 1500 bytes, BW 0 Kbit\r\n     reliability Unknown, txload Unknown, rxload\
+      \ Unknown\r\n  Encapsulation Loopback,  loopback not set,\r\n  Last link flapped\
+      \ 16:08:53\r\n  Last input Unknown, output Unknown\r\n  Last clearing of \"\
+      show interface\" counters Unknown\r\n  Input/output data rate is disabled.\r\
+      \n\r\nNull0 is up, line protocol is up \r\n  Interface state transitions: 1\r\
+      \n  Hardware is Null interface\r\n  Internet address is Unknown\r\n  MTU 1500\
+      \ bytes, BW 0 Kbit\r\n     reliability 255/255, txload Unknown, rxload Unknown\r\
+      \n  Encapsulation Null,  loopback not set,\r\n  Last link flapped 16:09:44\r\
+      \n  Last input never, output never\r\n  Last clearing of \"show interface\"\
+      \ counters never\r\n  5 minute input rate 0 bits/sec, 0 packets/sec\r\n  5 minute\
+      \ output rate 0 bits/sec, 0 packets/sec\r\n     0 packets input, 0 bytes, 0\
+      \ total input drops\r\n     0 drops for unrecognized upper-level protocol\r\n\
+      \     Received 0 broadcast packets, 0 multicast packets\r\n     0 packets output,\
+      \ 0 bytes, 0 total output drops\r\n     Output 0 broadcast packets, 0 multicast\
+      \ packets\r\n\r\nMgmtEth0/0/CPU0/0 is up, line protocol is up \r\n  Interface\
+      \ state transitions: 1\r\n  Hardware is Management Ethernet, address is 5e00.8002.0000\
+      \ (bia 5e00.8002.0000)\r\n  Description: OOB Management\r\n  Internet address\
+      \ is 172.16.30.62/24\r\n  MTU 1514 bytes, BW 1000000 Kbit (Max: 1000000 Kbit)\r\
+      \n     reliability 255/255, txload 0/255, rxload 0/255\r\n  Encapsulation ARPA,\r\
+      \n  Duplex unknown, 1000Mb/s, unknown, link type is autonegotiation\r\n  output\
+      \ flow control is off, input flow control is off\r\n  Carrier delay (up) is\
+      \ 10 msec\r\n  loopback not set,\r\n  Last link flapped 16:08:59\r\n  ARP type\
+      \ ARPA, ARP timeout 04:00:00\r\n  Last input 00:00:03, output 00:00:03\r\n \
+      \ Last clearing of \"show interface\" counters never\r\n  5 minute input rate\
+      \ 0 bits/sec, 1 packets/sec\r\n  5 minute output rate 0 bits/sec, 0 packets/sec\r\
+      \n     38313 packets input, 4183814 bytes, 0 total input drops\r\n     0 drops\
+      \ for unrecognized upper-level protocol\r\n     Received 13351 broadcast packets,\
+      \ 7771 multicast packets\r\n              0 runts, 0 giants, 0 throttles, 0\
+      \ parity\r\n     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort\r\
+      \n     17181 packets output, 1681215 bytes, 0 total output drops\r\n     Output\
+      \ 2 broadcast packets, 0 multicast packets\r\n     0 output errors, 0 underruns,\
+      \ 0 applique, 0 resets\r\n     0 output buffer failures, 0 output buffers swapped\
+      \ out\r\n     1 carrier transitions\r\n\r\nGigabitEthernet0/0/0/0 is up, line\
+      \ protocol is up \r\n  Interface state transitions: 1\r\n  Hardware is GigabitEthernet,\
+      \ address is fa16.3ec5.bcb3 (bia fa16.3ec5.bcb3)\r\n  Description: GigabitEthernet0/0/0/0\r\
+      \n  Internet address is Unknown\r\n  MTU 1514 bytes, BW 1000000 Kbit (Max: 1000000\
+      \ Kbit)\r\n     reliability 255/255, txload 0/255, rxload 0/255\r\n  Encapsulation\
+      \ ARPA,\r\n  Full-duplex, 1000Mb/s, unknown, link type is force-up\r\n  output\
+      \ flow control is off, input flow control is off\r\n  Carrier delay (up) is\
+      \ 10 msec\r\n  loopback not set,\r\n  Last link flapped 16:08:59\r\n  Last input\
+      \ never, output never\r\n  Last clearing of \"show interface\" counters never\r\
+      \n  5 minute input rate 0 bits/sec, 0 packets/sec\r\n  5 minute output rate\
+      \ 0 bits/sec, 0 packets/sec\r\n     0 packets input, 0 bytes, 0 total input\
+      \ drops\r\n     0 drops for unrecognized upper-level protocol\r\n     Received\
+      \ 0 broadcast packets, 0 multicast packets\r\n              0 runts, 0 giants,\
+      \ 0 throttles, 0 parity\r\n     0 input errors, 0 CRC, 0 frame, 0 overrun, 0\
+      \ ignored, 0 abort\r\n     0 packets output, 0 bytes, 0 total output drops\r\
+      \n     Output 0 broadcast packets, 0 multicast packets\r\n     0 output errors,\
+      \ 0 underruns, 0 applique, 0 resets\r\n     0 output buffer failures, 0 output\
+      \ buffers swapped out\r\n     1 carrier transitions\r\n\r\nGigabitEthernet0/0/0/1\
+      \ is up, line protocol is up \r\n  Interface state transitions: 1\r\n  Hardware\
+      \ is GigabitEthernet, address is fa16.3e15.f3b4 (bia fa16.3e15.f3b4)\r\n  Description:\
+      \ to xe\r\n  Internet address is 10.0.0.6/30\r\n  MTU 1514 bytes, BW 1000000\
+      \ Kbit (Max: 1000000 Kbit)\r\n     reliability 255/255, txload 0/255, rxload\
+      \ 0/255\r\n  Encapsulation ARPA,\r\n  Full-duplex, 1000Mb/s, unknown, link type\
+      \ is force-up\r\n  output flow control is off, input flow control is off\r\n\
+      \  Carrier delay (up) is 10 msec\r\n  loopback not set,\r\n  Last link flapped\
+      \ 16:08:59\r\n  ARP type ARPA, ARP timeout 04:00:00\r\n  Last input 00:00:00,\
+      \ output 00:00:03\r\n  Last clearing of \"show interface\" counters never\r\n\
+      \  5 minute input rate 0 bits/sec, 0 packets/sec\r\n  5 minute output rate 0\
+      \ bits/sec, 0 packets/sec\r\n     14151 packets input, 1387020 bytes, 0 total\
+      \ input drops\r\n     0 drops for unrecognized upper-level protocol\r\n    \
+      \ Received 3 broadcast packets, 9174 multicast packets\r\n              0 runts,\
+      \ 0 giants, 0 throttles, 0 parity\r\n     0 input errors, 0 CRC, 0 frame, 0\
+      \ overrun, 0 ignored, 0 abort\r\n     11194 packets output, 892436 bytes, 0\
+      \ total output drops\r\n     Output 1 broadcast packets, 6242 multicast packets\r\
+      \n     0 output errors, 0 underruns, 0 applique, 0 resets\r\n     0 output buffer\
+      \ failures, 0 output buffers swapped out\r\n     1 carrier transitions"
+    show vrf all detail: "\rSat May 11 00:39:47.493 UTC\r\n\r\nVRF Mgmt-intf; RD not\
+      \ set; VPN ID not set\r\nVRF mode: Regular\r\nDescription not set\r\nInterfaces:\r\
+      \n  MgmtEth0/0/CPU0/0\r\nAddress family IPV4 Unicast\r\n  No import VPN route-target\
+      \ communities\r\n  No export VPN route-target communities\r\n  No import route\
+      \ policy\r\n  No export route policy\r\nAddress family IPV6 Unicast\r\n  No\
+      \ import VPN route-target communities\r\n  No export VPN route-target communities\r\
+      \n  No import route policy\r\n  No export route policy"
+    show ethernet tags: "\rSat May 11 00:39:47.863 UTC\r\nSt:    AD - Administratively\
+      \ Down, Dn - Down, Up - Up\r\nLy:    L2 - Switched layer 2 service, L3 = Terminated\
+      \ layer 3 service,\r\nXtra   C - Match on Cos, E  - Match on Ethertype, M -\
+      \ Match on source MAC\r\n-,+:   Ingress rewrite operation; number of tags to\
+      \ pop and push respectively\r\n\r\nInterface               St  MTU  Ly Outer\
+      \            Inner            Xtra -,+"
+    show interfaces accounting: "\rSat May 11 00:39:48.223 UTC\r\nNo accounting statistics\
+      \ available for Loopback0\r\nNo accounting statistics available for Null0\r\n\
+      No accounting statistics available for GigabitEthernet0/0/0/0\r\n\r\nGigabitEthernet0/0/0/1\r\
+      \n  Protocol              Pkts In         Chars In     Pkts Out        Chars\
+      \ Out\r\n  IPV4_UNICAST            14147          1387061         4945     \
+      \      235376\r\n  ARP                         6              360          \
+      \  7              294\r\n\r\n\r\nMgmtEth0/0/CPU0/0\r\n  Protocol           \
+      \   Pkts In         Chars In     Pkts Out        Chars Out\r\n  IPV4_UNICAST\
+      \            17153          1688928        17099          1438365\r\n  ARP \
+      \                    13413           804780           81             3402"
+    show ipv6 vrf all interface: "\rSat May 11 00:39:48.793 UTC\r\nLoopback0 is Up,\
+      \ ipv6 protocol is Up, Vrfid is default (0x60000000)\r\n  IPv6 is disabled,\
+      \ link-local address unassigned\r\n  No global unicast address is configured\r\
+      \nMgmtEth0/0/CPU0/0 is Up, ipv6 protocol is Up, Vrfid is Mgmt-intf (0x60000002)\r\
+      \n  IPv6 is disabled, link-local address unassigned\r\n  No global unicast address\
+      \ is configured\r\nGigabitEthernet0/0/0/0 is Up, ipv6 protocol is Up, Vrfid\
+      \ is default (0x60000000)\r\n  IPv6 is disabled, link-local address unassigned\r\
+      \n  No global unicast address is configured\r\nGigabitEthernet0/0/0/1 is Up,\
+      \ ipv6 protocol is Up, Vrfid is default (0x60000000)\r\n  IPv6 is disabled,\
+      \ link-local address unassigned\r\n  No global unicast address is configured"
+    show lacp system-id: "\rSat May 11 00:39:58.502 UTC\r\n\r\nPriority  MAC Address\r\
+      \n--------  -----------------\r\n  0x8000  02-84-57-bd-0c-04"
+    show bundle: "\rSat May 11 00:39:58.832 UTC\r\nNo data to retrieve"
+    show lacp: "\rSat May 11 00:39:59.182 UTC\r\nNo data to retrieve"
+    show lldp: "\rSat May 11 00:40:03.502 UTC\r\n% LLDP is not enabled"
+    show lldp entry *: "\rSat May 11 00:40:03.832 UTC\r\n% LLDP is not enabled"
+    show lldp neighbors detail: "\rSat May 11 00:40:04.131 UTC\r\n% LLDP is not enabled"
+    show lldp traffic: "\rSat May 11 00:40:04.471 UTC\r\n% LLDP is not enabled"
+    show lldp interface: "\rSat May 11 00:40:04.841 UTC\r\n% LLDP is not enabled"
+    show pim vrf Mgmt-intf ipv4 interface detail: "\rSat May 11 00:40:05.471 UTC\r\
+      \nNo interfaces found for VRF Mgmt-intf."
+    show pim vrf Mgmt-intf ipv6 interface detail: "\rSat May 11 00:40:05.841 UTC\r\
+      \nNo interfaces found for VRF Mgmt-intf."
+    show pim vrf Mgmt-intf ipv4 rpf summary: "\rSat May 11 00:40:06.291 UTC\r\n\r\n\
+      Cant find default RPF Table!!"
+    show pim vrf Mgmt-intf ipv6 rpf summary: "\rSat May 11 00:40:06.641 UTC\r\n\r\n\
+      Cant find default RPF Table!!"
+    show pim vrf Mgmt-intf ipv4 mstatic: "\rSat May 11 00:40:07.001 UTC\r\nNo info\
+      \ found in Multicast Static Routes DB"
+    show pim vrf Mgmt-intf ipv6 mstatic: "\rSat May 11 00:40:07.471 UTC\r\nNo info\
+      \ found in Multicast Static Routes DB"
+    show mrib vrf Mgmt-intf ipv4 route: "\rSat May 11 00:40:07.901 UTC\r\nNo MRIB\
+      \ route-DB"
+    show mrib vrf Mgmt-intf ipv6 route: "\rSat May 11 00:40:08.251 UTC\r\nNo MRIB\
+      \ route-DB"
+    show ntp associations: "\rSat May 11 00:40:12.671 UTC"
+    show ntp status: "\rSat May 11 00:40:12.811 UTC\r\n\r\nClock is unsynchronized,\
+      \ stratum 16, no reference clock\r\nnominal freq is 100.0069 Hz, actual freq\
+      \ is 100.0069 Hz, precision is 2**10\r\nreference time is 00000000.00000000\
+      \ (00:00:00.000 UTC Thu Jan  1 1970)\r\nclock offset is 0.000 msec, root delay\
+      \ is 0.000 msec\r\nroot dispersion is 855.97 msec, peer dispersion is 0.00 msec\r\
+      \nloopfilter state is 'NSET' (Never set), drift is 0.0000000000 s/s\r\nsystem\
+      \ poll interval is 64, never updated"
+    show running-config ntp: "\rSat May 11 00:40:13.091 UTC\r\n% No such configuration\
+      \ item(s)"
+    show ospf vrf all-inclusive: "\rSat May 11 00:40:14.371 UTC\r\n\r\n Routing Process\
+      \ \"ospf 1\" with ID 192.168.0.3\r\n Role: Primary Active\r\n NSR (Non-stop\
+      \ routing) is Enabled\r\n Supports only single TOS(TOS0) routes\r\n Supports\
+      \ opaque LSA\r\n Router is not originating router-LSAs with maximum metric\r\
+      \n Initial SPF schedule delay 50 msecs\r\n Minimum hold time between two consecutive\
+      \ SPFs 200 msecs\r\n Maximum wait time between two consecutive SPFs 5000 msecs\r\
+      \n Initial LSA throttle delay 50 msecs\r\n Minimum hold time for LSA throttle\
+      \ 200 msecs\r\n Maximum wait time for LSA throttle 5000 msecs\r\n Minimum LSA\
+      \ interval 200 msecs. Minimum LSA arrival 100 msecs\r\n LSA refresh interval\
+      \ 1800 seconds\r\n Flood pacing interval 33 msecs. Retransmission pacing interval\
+      \ 66 msecs\r\n Adjacency stagger enabled; initial (per area): 2, maximum: 64\r\
+      \n    Number of neighbors forming: 0, 1 full\r\n Maximum number of configured\
+      \ interfaces 1024\r\n Number of external LSA 0. Checksum Sum 00000000\r\n Number\
+      \ of opaque AS LSA 0. Checksum Sum 00000000\r\n Number of DCbitless external\
+      \ and opaque AS LSA 0\r\n Number of DoNotAge external and opaque AS LSA 0\r\n\
+      \ Number of areas in this router is 1. 1 normal 0 stub 0 nssa\r\n External flood\
+      \ list length 0\r\n SNMP trap is enabled\r\n LSD connected, registered, bound,\
+      \ revision 1\r\n Segment Routing Global Block default (16000-23999), not allocated\r\
+      \n Strict-SPF capability is enabled\r\n    Area BACKBONE(0)\r\n\tNumber of interfaces\
+      \ in this area is 2\r\n\tSPF algorithm executed 7 times\r\n\tNumber of LSA 4.\
+      \  Checksum Sum 0x015d12\r\n\tNumber of opaque link LSA 0.  Checksum Sum 00000000\r\
+      \n\tNumber of DCbitless LSA 1\r\n\tNumber of indication LSA 0\r\n\tNumber of\
+      \ DoNotAge LSA 0\r\n\tFlood list length 0\r\n\tNumber of LFA enabled interfaces\
+      \ 0, LFA revision 0\r\n\tNumber of Per Prefix LFA enabled interfaces 0\r\n\t\
+      Number of neighbors forming in staggered mode 0, 1 full"
+    show protocols afi-all all: "\rSat May 11 00:40:14.821 UTC\r\n\r\nRouting Protocol\
+      \ \"BGP 1\"\r\nNon-stop routing is enabled\r\nGraceful restart is not enabled\r\
+      \nCurrent BGP NSR state - Active Ready\r\nBGP NSR state not ready: Wait for\
+      \ standby ready msg\r\n\r\nAddress Family IPv4 Unicast:\r\n  Distance: external\
+      \ 20 internal 200 local 200\r\n  Sourced Networks:\r\n    192.168.0.3/32\r\n\
+      \  Routing Information Sources:\r\n    Neighbor          State/Last update received\
+      \  NSR-State  GR-Enabled\r\n    192.168.0.1       Idle                     \
+      \   None         No\r\n    192.168.0.2       08:42:15                    None\
+      \         No\r\n\r\nAddress Family IPv4 Labeled-unicast:\r\n  Distance: external\
+      \ 20 internal 200 local 200\r\n  Sourced Networks:\r\n    192.168.0.3/32\r\n\
+      \r\n\r\nRouting Protocol OSPF 1\r\n  Router Id: 192.168.0.3\r\n  Distance: 110\r\
+      \n  Non-Stop Forwarding: Disabled\r\n  Redistribution:\r\n    None\r\n  Area\
+      \ 0\r\n    Loopback0\r\n    GigabitEthernet0/0/0/1"
+    show ospf mpls traffic-eng link: "\rSat May 11 00:40:15.541 UTC\r\n\r\n      \
+      \      OSPF Router with ID (192.168.0.3) (Process ID 1)\r\n\r\n  Area 0 MPLS\
+      \ TE not initialized"
+    show ospf vrf all-inclusive database router: "\rSat May 11 00:40:15.891 UTC\r\n\
+      \r\n\r\n            OSPF Router with ID (192.168.0.3) (Process ID 1)\r\n\r\n\
+      \t\tRouter Link States (Area 0)\r\n\r\n  Adv Router is not-reachable\r\n  LS\
+      \ age: 1435\r\n  Options: (No TOS-capability, No DC)\r\n  LS Type: Router Links\r\
+      \n  Link State ID: 192.168.0.1\r\n  Advertising Router: 192.168.0.1\r\n  LS\
+      \ Seq Number: 80000031\r\n  Checksum: 0xb9ca\r\n  Length: 48\r\n   Number of\
+      \ Links: 2\r\n\r\n    Link connected to: a Stub Network\r\n     (Link ID) Network/subnet\
+      \ number: 192.168.0.1\r\n     (Link Data) Network Mask: 255.255.255.255\r\n\
+      \      Number of TOS metrics: 0\r\n       TOS 0 Metrics: 1\r\n\r\n    Link connected\
+      \ to: a Transit Network\r\n     (Link ID) Designated Router address: 10.0.0.10\r\
+      \n     (Link Data) Router Interface address: 10.0.0.9\r\n      Number of TOS\
+      \ metrics: 0\r\n       TOS 0 Metrics: 40\r\n\r\n\r\n  Routing Bit Set on this\
+      \ LSA\r\n  LS age: 726\r\n  Options: (No TOS-capability, DC)\r\n  LS Type: Router\
+      \ Links\r\n  Link State ID: 192.168.0.2\r\n  Advertising Router: 192.168.0.2\r\
+      \n  LS Seq Number: 80000032\r\n  Checksum: 0x622e\r\n  Length: 48\r\n   Number\
+      \ of Links: 2\r\n\r\n    Link connected to: a Stub Network\r\n     (Link ID)\
+      \ Network/subnet number: 192.168.0.2\r\n     (Link Data) Network Mask: 255.255.255.255\r\
+      \n      Number of TOS metrics: 0\r\n       TOS 0 Metrics: 1\r\n\r\n    Link\
+      \ connected to: a Transit Network\r\n     (Link ID) Designated Router address:\
+      \ 10.0.0.5\r\n     (Link Data) Router Interface address: 10.0.0.5\r\n      Number\
+      \ of TOS metrics: 0\r\n       TOS 0 Metrics: 1\r\n\r\n\r\n  LS age: 1067\r\n\
+      \  Options: (No TOS-capability, DC)\r\n  LS Type: Router Links\r\n  Link State\
+      \ ID: 192.168.0.3\r\n  Advertising Router: 192.168.0.3\r\n  LS Seq Number: 80000024\r\
+      \n  Checksum: 0x9208\r\n  Length: 48\r\n   Number of Links: 2\r\n\r\n    Link\
+      \ connected to: a Stub Network\r\n     (Link ID) Network/subnet number: 192.168.0.3\r\
+      \n     (Link Data) Network Mask: 255.255.255.255\r\n      Number of TOS metrics:\
+      \ 0\r\n       TOS 0 Metrics: 1\r\n\r\n    Link connected to: a Transit Network\r\
+      \n     (Link ID) Designated Router address: 10.0.0.5\r\n     (Link Data) Router\
+      \ Interface address: 10.0.0.6\r\n      Number of TOS metrics: 0\r\n       TOS\
+      \ 0 Metrics: 1"
+    show ospf vrf all-inclusive database network: "\rSat May 11 00:40:16.401 UTC\r\
+      \n\r\n\r\n            OSPF Router with ID (192.168.0.3) (Process ID 1)\r\n\r\
+      \n\t\tNet Link States (Area 0)\r\n\r\n  Routing Bit Set on this LSA\r\n  LS\
+      \ age: 1119\r\n  Options: (No TOS-capability, DC)\r\n  LS Type: Network Links\r\
+      \n  Link State ID: 10.0.0.5 (address of Designated Router)\r\n  Advertising\
+      \ Router: 192.168.0.2\r\n  LS Seq Number: 8000002b\r\n  Checksum: 0x655b\r\n\
+      \  Length: 32\r\n  Network Mask: /30\r\n\tAttached Router: 192.168.0.2\r\n\t\
+      Attached Router: 192.168.0.3"
+    show ospf vrf all-inclusive database external: "\rSat May 11 00:40:16.681 UTC\r\
+      \n\r\n\r\n            OSPF Router with ID (192.168.0.3) (Process ID 1)"
+    show ospf vrf all-inclusive database summary: "\rSat May 11 00:40:17.011 UTC\r\
+      \n\r\n\r\n            OSPF Router with ID (192.168.0.3) (Process ID 1)"
+    show ospf vrf all-inclusive database opaque-area: "\rSat May 11 00:40:17.371 UTC\r\
+      \n\r\n\r\n            OSPF Router with ID (192.168.0.3) (Process ID 1)"
+    show ospf vrf all-inclusive virtual-links: "\rSat May 11 00:40:17.611 UTC"
+    show ospf vrf all-inclusive interface: "\rSat May 11 00:40:17.881 UTC\r\n\r\n\
+      Interfaces for OSPF 1\r\n\r\nLoopback0 is up, line protocol is up \r\n  Internet\
+      \ Address 192.168.0.3/32, Area 0\r\n  Process ID 1, Router ID 192.168.0.3, Network\
+      \ Type LOOPBACK, Cost: 1\r\n  Loopback interface is treated as a stub Host\r\
+      \nGigabitEthernet0/0/0/1 is up, line protocol is up \r\n  Internet Address 10.0.0.6/30,\
+      \ Area 0\r\n  Process ID 1, Router ID 192.168.0.3, Network Type BROADCAST, Cost:\
+      \ 1\r\n  Transmit Delay is 1 sec, State BDR, Priority 1, MTU 1500, MaxPktSz\
+      \ 1500\r\n  Designated Router (ID) 192.168.0.2, Interface address 10.0.0.5\r\
+      \n  Backup Designated router (ID) 192.168.0.3, Interface address 10.0.0.6\r\n\
+      \  Timer intervals configured, Hello 10, Dead 40, Wait 40, Retransmit 5\r\n\
+      \    Hello due in 00:00:01:791\r\n  Index 2/2, flood queue length 0\r\n  Next\
+      \ 0(0)/0(0)\r\n  Last flood scan length is 1, maximum is 1\r\n  Last flood scan\
+      \ time is 0 msec, maximum is 9 msec\r\n  LS Ack List: current length 0, high\
+      \ water mark 4\r\n  Neighbor Count is 1, Adjacent neighbor count is 1\r\n  \
+      \  Adjacent with neighbor 192.168.0.2  (Designated Router)\r\n  Suppress hello\
+      \ for 0 neighbor(s)\r\n  Multi-area interface Count is 0"
+    show ospf vrf all-inclusive neighbor detail: "\rSat May 11 00:40:18.171 UTC\r\n\
+      \r\n* Indicates MADJ interface\r\n# Indicates Neighbor awaiting BFD session\
+      \ up\r\n\r\nNeighbors for OSPF 1\r\n\r\n Neighbor 192.168.0.2, interface address\
+      \ 10.0.0.5\r\n    In the area 0 via interface GigabitEthernet0/0/0/1 \r\n  \
+      \  Neighbor priority is 1, State is FULL, 6 state changes\r\n    DR is 10.0.0.5\
+      \ BDR is 10.0.0.6\r\n    Options is 0x52  \r\n    LLS Options is 0x1 (LR)\r\n\
+      \    Dead timer due in 00:00:35\r\n    Neighbor is up for 16:09:14\r\n    Number\
+      \ of DBD retrans during last exchange 0\r\n    Index 1/1, retransmission queue\
+      \ length 0, number of retransmission 3\r\n    First 0(0)/0(0) Next 0(0)/0(0)\r\
+      \n    Last retransmission scan length is 1, maximum is 1\r\n    Last retransmission\
+      \ scan time is 0 msec, maximum is 0 msec\r\n    LS Ack list: NSR-sync pending\
+      \ 0, high water mark 0\r\n\r\n\r\nTotal neighbor count: 1"
+    show ospf vrf all-inclusive sham-links: "\rSat May 11 00:40:18.541 UTC"
+    admin show diag chassis: '% Invalid command at ''^'' marker.'
+    show install active summary: "\rSat May 11 00:40:33.100 UTC\r\nDefault Profile:\r\
+      \n  SDRs:\r\n    Owner\r\n  Active Packages:\r\n    disk0:xrvr-fullk9-x-6.1.3"
+    dir: "\rSat May 11 00:40:34.579 UTC\r\n\r\nDirectory of disk0:\r\n\r\n2      \
+      \     drwx  1024        Mon Feb 13 15:08:30 2017  .boot\r\n63477       drwx\
+      \  1024        Mon Feb 13 15:10:32 2017  aaa\r\n63478       drwx  1024     \
+      \   Mon Feb 13 15:10:32 2017  onepk_cli_rdsfs\r\n63479       drwx  1024    \
+      \    Fri May 10 08:29:52 2019  config\r\n63480       drwx  1024        Mon Feb\
+      \ 13 15:11:10 2017  sysmgr_debug\r\n63481       drwx  1024        Mon Feb 13\
+      \ 15:11:10 2017  clihistory\r\n63485       drwx  1024        Mon Feb 13 15:12:12\
+      \ 2017  snmp\r\n63486       drwx  1024        Mon Feb 13 15:13:02 2017  cepki\r\
+      \n63487       drwx  1024        Mon Feb 13 15:13:09 2017  eem_rdsfs\r\n63488\
+      \       drwx  1024        Mon Feb 13 15:13:25 2017  iosxr-security-6.1.3\r\n\
+      63489       drwx  1024        Fri May 10 08:29:58 2019  instdb\r\n63492    \
+      \   drwx  1024        Mon Feb 13 15:13:26 2017  xrvr-bng-supp-6.1.3\r\n63493\
+      \       drwx  1024        Mon Feb 13 15:13:26 2017  iosxr-bng-6.1.3\r\n63494\
+      \       drwx  1024        Mon Feb 13 15:13:26 2017  xrvr-mcast-supp-6.1.3\r\n\
+      63495       drwx  1024        Mon Feb 13 15:13:31 2017  iosxr-mcast-6.1.3\r\n\
+      63496       drwx  1024        Mon Feb 13 15:13:36 2017  iosxr-mgbl-6.1.3\r\n\
+      63497       drwx  1024        Mon Feb 13 15:13:42 2017  iosxr-mpls-6.1.3\r\n\
+      63498       drwx  1024        Mon Feb 13 15:13:42 2017  xrvr-fwding-6.1.3\r\n\
+      63499       drwx  1024        Mon Feb 13 15:13:43 2017  xrvr-base-6.1.3\r\n\
+      63500       drwx  1024        Mon Feb 13 15:13:45 2017  xrvr-os-mbi-6.1.3\r\n\
+      63502       drwx  1024        Mon Feb 13 15:13:47 2017  iosxr-ce-6.1.3\r\n63503\
+      \       drwx  1024        Mon Feb 13 15:13:58 2017  iosxr-routing-6.1.3\r\n\
+      63504       drwx  1024        Mon Feb 13 15:14:26 2017  iosxr-fwding-6.1.3\r\
+      \n63505       drwx  1024        Mon Feb 13 15:14:55 2017  iosxr-infra-6.1.3\r\
+      \n63506       drwx  1024        Mon Feb 13 15:14:56 2017  xrvr-mgbl-x-6.1.3\r\
+      \n63507       drwx  1024        Mon Feb 13 15:14:56 2017  xrvr-fullk9-x-6.1.3\r\
+      \n3           -rw-  0           Fri May 10 08:28:27 2019  sam_certdb\r\n63513\
+      \       drwx  1024        Fri May 10 08:28:46 2019  license\r\n63519       drwx\
+      \  1024        Fri May 10 08:30:13 2019  sm_rdsfs\r\n63520       drwx  1024\
+      \        Fri May 10 08:35:03 2019  var\r\n63521       drwx  1024        Fri\
+      \ May 10 08:30:13 2019  virtual-instance\r\n63522       drwx  1024        Fri\
+      \ May 10 08:30:35 2019  sdk_python\r\n63523       drwx  1024        Fri May\
+      \ 10 08:30:38 2019  telemetry_policies\r\n63524       drwx  1024        Fri\
+      \ May 10 08:30:38 2019  telemetry_maps\r\n4           -rw-  822         Fri\
+      \ May 10 08:30:56 2019  cvac.log\r\n63525       drwx  1024        Fri May 10\
+      \ 08:35:03 2019  usr\r\n63526       drwx  1024        Fri May 10 09:25:09 2019\
+      \  nvgen_traces\r\n\r\n2377105408 bytes total (1561255936 bytes free)"
+    show sdr detail: "\rSat May 11 00:40:34.829 UTC\r\nSDR Information:\r\n__________________________________________________\r\
+      \n\tSDR_id               : 0\r\n\tSDR_name             : Owner\r\n\tdSDRsc node\
+      \          : 0/0/CPU0\r\n\tdSDRsc partner node  : NONE\r\n\tprimary node1  \
+      \      : 0/0/CPU0\r\n\tprimary node2        : NONE\r\n\tmac addr           \
+      \  : 0284.57bd.0c00\r\n\r\n\r\n\r\nSDR Inventory\r\n--------------\r\n\r\nType\
+      \       NodeName    NodeState         RedState   PartnerName\r\n---------------------------------------------------------------\r\
+      \nRP         0/0/CPU0    IOS XR RUN        Primary    NONE"
+    show platform: "\rSat May 11 00:40:35.159 UTC\r\nNode\t\tType\t\tPLIM\t\tState\t\
+      \tConfig State\r\n-----------------------------------------------------------------------------\r\
+      \n0/0/CPU0        RP(Active)      N/A             IOS XR RUN      PWR,NSHUT,MON"
+    show redundancy summary: "\rSat May 11 00:40:35.489 UTC\r\n    Active Node   \
+      \ Standby Node\r\n    -----------    ------------\r\n       0/0/CPU0       \
+      \      N/A"
+    show redundancy: "\rSat May 11 00:40:35.699 UTC\r\nRedundancy information for\
+      \ node 0/0/CPU0:\r\n==========================================\r\nNode 0/0/CPU0\
+      \ is in ACTIVE role\r\nNode 0/0/CPU0 has no valid partner\r\n\r\nDetails\r\n\
+      --------\r\nCurrent active rmf state: \r\n    NSR not ready since Standby is\
+      \ not Present\r\n\r\nReload and boot info\r\n----------------------\r\nRP reloaded\
+      \ Fri May 10 08:27:14 2019: 16 hours, 13 minutes ago\r\nActive node booted Fri\
+      \ May 10 08:27:14 2019: 16 hours, 13 minutes ago\r\n\r\nActive node reload :\
+      \ Unable to retrieve reboot reason"
+    null: {}
+    show route ipv4: "\rSat May 11 00:40:45.249 UTC\r\n\r\nCodes: C - connected, S\
+      \ - static, R - RIP, B - BGP, (>) - Diversion path\r\n       D - EIGRP, EX -\
+      \ EIGRP external, O - OSPF, IA - OSPF inter area\r\n       N1 - OSPF NSSA external\
+      \ type 1, N2 - OSPF NSSA external type 2\r\n       E1 - OSPF external type 1,\
+      \ E2 - OSPF external type 2, E - EGP\r\n       i - ISIS, L1 - IS-IS level-1,\
+      \ L2 - IS-IS level-2\r\n       ia - IS-IS inter area, su - IS-IS summary null,\
+      \ * - candidate default\r\n       U - per-user static route, o - ODR, L - local,\
+      \ G  - DAGR, l - LISP\r\n       A - access/subscriber, a - Application route\r\
+      \n       M - mobile route, r - RPL, (!) - FRR Backup path\r\n\r\nGateway of\
+      \ last resort is not set\r\n\r\nC    10.0.0.4/30 is directly connected, 16:09:51,\
+      \ GigabitEthernet0/0/0/1\r\nL    10.0.0.6/32 is directly connected, 16:09:51,\
+      \ GigabitEthernet0/0/0/1\r\nO    192.168.0.2/32 [110/2] via 10.0.0.5, 16:09:41,\
+      \ GigabitEthernet0/0/0/1\r\nL    192.168.0.3/32 is directly connected, 16:09:51,\
+      \ Loopback0"
+    show route ipv6: "\rSat May 11 00:40:45.479 UTC\r\n\r\n% No matching routes found"
+    show static topology detail: "\rSat May 11 00:40:46.999 UTC\r\n\r\nNo routes in\
+      \ this topology"
+    show running-config: "\rSat May 11 00:41:06.147 UTC\r\nBuilding configuration...\r\
+      \n!! IOS XR Configuration 6.1.3\r\n!! Last configuration change at Sat May 11\
+      \ 00:39:26 2019 by cisco\r\n!\r\n!  IOS-XR Config generated on 2019-03-28 16:24\r\
+      \n! by autonetkit_0.23.5\r\nhostname xr\r\nservice timestamps log datetime msec\r\
+      \nservice timestamps debug datetime msec\r\ntelnet vrf default ipv4 server max-servers\
+      \ 10\r\ntelnet vrf Mgmt-intf ipv4 server max-servers 10\r\ndomain name virl.info\r\
+      \ndomain lookup disable\r\nvrf Mgmt-intf\r\n address-family ipv4 unicast\r\n\
+      \ !\r\n address-family ipv6 unicast\r\n !\r\n!\r\nline template vty\r\n timestamp\r\
+      \n exec-timeout 720 0\r\n!\r\nline console\r\n exec-timeout 0 0\r\n absolute-timeout\
+      \ 0\r\n session-timeout 0\r\n!\r\nline default\r\n exec-timeout 0 0\r\n absolute-timeout\
+      \ 0\r\n session-timeout 0\r\n!\r\nvty-pool default 0 50\r\ncontrol-plane\r\n\
+      \ management-plane\r\n  inband\r\n   interface all\r\n    allow all\r\n   !\r\
+      \n  !\r\n !\r\n!\r\ninterface Loopback0\r\n description Loopback\r\n ipv4 address\
+      \ 192.168.0.3 255.255.255.255\r\n!\r\ninterface MgmtEth0/0/CPU0/0\r\n description\
+      \ OOB Management\r\n ! Configured on launch\r\n vrf Mgmt-intf\r\n ipv4 address\
+      \ 172.16.30.62 255.255.255.0\r\n!\r\ninterface GigabitEthernet0/0/0/0\r\n description\
+      \ GigabitEthernet0/0/0/0\r\n!\r\ninterface GigabitEthernet0/0/0/1\r\n description\
+      \ to xe\r\n ipv4 address 10.0.0.6 255.255.255.252\r\n!\r\nroute-policy bgp_in\r\
+      \n  pass\r\nend-policy\r\n!\r\nroute-policy bgp_out\r\n  pass\r\nend-policy\r\
+      \n!\r\nrouter static\r\n vrf Mgmt-intf\r\n  address-family ipv4 unicast\r\n\
+      \   0.0.0.0/0 172.16.30.254\r\n  !\r\n !\r\n!\r\nrouter ospf 1\r\n log adjacency\
+      \ changes\r\n area 0\r\n  interface Loopback0\r\n   passive enable\r\n  !\r\n\
+      \  interface GigabitEthernet0/0/0/1\r\n   cost 1\r\n  !\r\n !\r\n!\r\nrouter\
+      \ bgp 1\r\n bgp router-id 192.168.0.3\r\n address-family ipv4 unicast\r\n  network\
+      \ 192.168.0.3/32\r\n !\r\n ! iBGP\r\n ! iBGP peers\r\n neighbor 192.168.0.1\r\
+      \n  remote-as 1\r\n  description iBGP peer nx\r\n  update-source Loopback0\r\
+      \n  address-family ipv4 unicast\r\n  !\r\n !\r\n neighbor 192.168.0.2\r\n  remote-as\
+      \ 1\r\n  description iBGP peer xe\r\n  update-source Loopback0\r\n  address-family\
+      \ ipv4 unicast\r\n  !\r\n !\r\n!\r\nssh server v2\r\nssh server vrf Mgmt-intf\r\
+      \nend"
+  prompt: switch#

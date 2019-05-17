@@ -1,0 +1,201 @@
+0: SIHART-M-D02M: 2019-05-17T14:36:45: %AEREPORT-6-INFO: %[pid=35217][pname=MainProcess]: AERunner logger initialized
+0: SIHART-M-D02M: 2019-05-17T14:36:45: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering run_server ###############
+1: SIHART-M-D02M: 2019-05-17T14:36:45: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>,), {}
+2: SIHART-M-D02M: 2019-05-17T14:36:45: %AEREPORT-6-INFO: %[pid=35262][pname=ForkProcess-2]: Starting AEReport XML-RPC server-------------------
+3: SIHART-M-D02M: 2019-05-17T14:36:45: %AEREPORT-6-INFO: %[pid=35262][pname=ForkProcess-2]: AEReport server (port 51820) ready to receive requests------------
+1: SIHART-M-D02M: 2019-05-17T14:36:46: %AEREPORT-7-DEBUG: %[pid=35217][pname=MainProcess]: AEReport Server has been started on host SIHART-M-D02M with pid 35262
+2: SIHART-M-D02M: 2019-05-17T14:36:46: %AEREPORT-7-DEBUG: %[pid=35217][pname=MainProcess]: AEReport server has been invoked from pid 35217
+3: SIHART-M-D02M: 2019-05-17T14:36:46: %AEREPORT-7-DEBUG: %[pid=35217][pname=MainProcess]: Client (host: SIHART-M-D02M, pid: 35217, ppid: 32235) trying to connect to Server (host: SIHART-M-D02M, port: 51820)
+4: SIHART-M-D02M: 2019-05-17T14:36:46: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering register_client ###############
+5: SIHART-M-D02M: 2019-05-17T14:36:46: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, 'SIHART-M-D02M', '35217', 'SIHART-M-D02M', '32235'), {}
+6: SIHART-M-D02M: 2019-05-17T14:36:46: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+7: SIHART-M-D02M: 2019-05-17T14:36:46: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting register_client  ###############
+4: SIHART-M-D02M: 2019-05-17T14:36:46: %AEREPORT-7-DEBUG: %[pid=35217][pname=MainProcess]: Client (host: SIHART-M-D02M, pid: 35217, ppid: 32235) is connected on port 51820
+5: SIHART-M-D02M: 2019-05-17T14:36:46: %AEREPORT-7-DEBUG: %[pid=35217][pname=MainProcess]: Enabled AEClient auto-reconnect
+8: SIHART-M-D02M: 2019-05-17T14:36:46: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering start_testsuite ###############
+9: SIHART-M-D02M: 2019-05-17T14:36:46: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'jobname': 'BGP_check_job', 'submitter': 'sihart', 'archivefile': None, 'pid': '35217', 'clienthost': 'SIHART-M-D02M'}), {}
+10: SIHART-M-D02M: 2019-05-17T14:36:46: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+11: SIHART-M-D02M: 2019-05-17T14:36:46: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting start_testsuite  ###############
+12: SIHART-M-D02M: 2019-05-17T14:36:46: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering set_ats ###############
+13: SIHART-M-D02M: 2019-05-17T14:36:46: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'path': '/Users/sihart/.pyenv/versions/3.6.7', 'version': '19.4.0', 'pid': '35217', 'clienthost': 'SIHART-M-D02M'}), {}
+14: SIHART-M-D02M: 2019-05-17T14:36:46: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+15: SIHART-M-D02M: 2019-05-17T14:36:46: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting set_ats  ###############
+16: SIHART-M-D02M: 2019-05-17T14:36:46: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering set_initinfo ###############
+17: SIHART-M-D02M: 2019-05-17T14:36:46: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'jobid': 'BGP_check_job.2019May17_14:36:45.108097', 'host': 'SIHART-M-D02M', 'image': None, 'release': None, 'testbed': None, 'params': {'cli': '/Users/sihart/.pyenv/versions/3.6.7/bin/easypy BGP_check_job.py -html_logs myhtml -no_archive -testbed_file ../mock_test.yaml'}, 'pid': '35217', 'clienthost': 'SIHART-M-D02M'}), {}
+18: SIHART-M-D02M: 2019-05-17T14:36:46: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+19: SIHART-M-D02M: 2019-05-17T14:36:46: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting set_initinfo  ###############
+20: SIHART-M-D02M: 2019-05-17T14:36:46: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering start_jobexecution ###############
+21: SIHART-M-D02M: 2019-05-17T14:36:46: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'pid': '35217', 'clienthost': 'SIHART-M-D02M'}), {}
+22: SIHART-M-D02M: 2019-05-17T14:36:46: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+23: SIHART-M-D02M: 2019-05-17T14:36:46: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting start_jobexecution  ###############
+0: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35317][pname=Task-1]: Client (host: SIHART-M-D02M, pid: 35317, ppid: 35217) trying to connect to Server (host: SIHART-M-D02M, port: 51820)
+24: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering register_client ###############
+25: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, 'SIHART-M-D02M', '35317', 'SIHART-M-D02M', '35217'), {}
+26: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+27: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting register_client  ###############
+1: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35317][pname=Task-1]: Client (host: SIHART-M-D02M, pid: 35317, ppid: 35217) is connected on port 51820
+28: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering start_testscript ###############
+29: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'logfilepath': '/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/runinfo/BGP_check_job.2019May17_14:36:45.108097/TaskLog.Task-1', 'logging': 'filepertestcase', 'taskid': 'Task-1', 'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+30: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+31: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting start_testscript  ###############
+32: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering set_initinfo ###############
+33: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'script': {'name': 'BGP_Neighbors_Established.py', 'path': '/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies', 'version': '', 'description': None}, 'pargs': "{'testbed': <pyats.topology.testbed.Testbed object at 0x11118d320>}", 'logfile': {'file_path': '/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/runinfo/BGP_check_job.2019May17_14:36:45.108097/TaskLog.Task-1'}, 'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+34: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+35: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting set_initinfo  ###############
+36: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering start_commonsetup ###############
+37: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'logfilepath': '/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/runinfo/BGP_check_job.2019May17_14:36:45.108097/TaskLog.Task-1', 'name': 'common_setup', 'xref': {'file': '/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/BGP_Neighbors_Established.py', 'line': 28}, 'extra': {'module': 'pyats.aetest.testscript.BGP_Neighbors_Established'}, 'description': ' Common Setup section ', 'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+38: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering start_testsection ###############
+39: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'logfilepath': '/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/runinfo/BGP_check_job.2019May17_14:36:45.108097/TaskLog.Task-1', 'name': 'common_setup', 'xref': {'file': '/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/BGP_Neighbors_Established.py', 'line': 28}, 'extra': {'module': 'pyats.aetest.testscript.BGP_Neighbors_Established'}, 'description': ' Common Setup section ', 'pid': '35317', 'clienthost': 'SIHART-M-D02M', 'sectionid': 'commonSetup'}), {}
+40: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+41: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting start_testsection  ###############
+42: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering set_attribute ###############
+43: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>,), {'kwargs': {'pid': '35317', 'clienthost': 'SIHART-M-D02M', 'description': ' Common Setup section '}}
+44: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+45: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting set_attribute  ###############
+46: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+47: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting start_commonsetup  ###############
+48: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering start_commonsubsection ###############
+49: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'name': 'connect', 'logfilepath': '/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/runinfo/BGP_check_job.2019May17_14:36:45.108097/TaskLog.Task-1', 'xref': {'file': '/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/BGP_Neighbors_Established.py', 'line': 35}, 'extra': {'module': 'pyats.aetest.sections'}, 'description': None, 'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+50: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+51: SIHART-M-D02M: 2019-05-17T14:36:47: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting start_commonsubsection  ###############
+52: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering set_attribute ###############
+53: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'id': {'name': 'connect'}, 'name': 'connect', 'description': None, 'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+54: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+55: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting set_attribute  ###############
+56: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering stop_commonsubsection ###############
+57: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'result': {'mode': 'auto', 'value': 'passed'}, 'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+58: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering set_result ###############
+59: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'result': {'mode': 'auto', 'value': 'passed'}, 'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+60: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+61: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting set_result  ###############
+62: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+63: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting stop_commonsubsection  ###############
+64: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering set_result ###############
+65: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'result': {'mode': 'auto', 'value': 'passed'}, 'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+66: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+67: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting set_result  ###############
+68: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering stop_commonsetup ###############
+69: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+70: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering stop_testsection ###############
+71: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+72: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+73: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting stop_testsection  ###############
+74: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+75: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting stop_commonsetup  ###############
+76: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering start_testcase ###############
+77: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'tcid': 'BGP_Neighbors_Established', 'logfilepath': '/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/runinfo/BGP_check_job.2019May17_14:36:45.108097/TaskLog.Task-1', 'name': 'BGP_Neighbors_Established', 'xref': {'file': '/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/BGP_Neighbors_Established.py', 'line': 60}, 'extra': {'module': 'pyats.aetest.testscript.BGP_Neighbors_Established'}, 'description': ' This is user Testcases section ', 'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+78: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+79: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting start_testcase  ###############
+80: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering start_testsection ###############
+81: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'sectionid': 'learn_bgp', 'name': 'learn_bgp', 'logfilepath': '/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/runinfo/BGP_check_job.2019May17_14:36:45.108097/TaskLog.Task-1', 'xref': {'file': '/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/BGP_Neighbors_Established.py', 'line': 64}, 'extra': {'module': 'pyats.aetest.sections'}, 'description': ' Sample test section. Only print ', 'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+82: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+83: SIHART-M-D02M: 2019-05-17T14:36:50: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting start_testsection  ###############
+84: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering set_attribute ###############
+85: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'name': 'learn_bgp', 'description': ' Sample test section. Only print ', 'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+86: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+87: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting set_attribute  ###############
+88: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering stop_testsection ###############
+89: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'result': {'mode': 'auto', 'value': 'passed'}, 'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+90: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering set_result ###############
+91: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'result': {'mode': 'auto', 'value': 'passed'}, 'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+92: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+93: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting set_result  ###############
+94: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+95: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting stop_testsection  ###############
+96: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering start_testsection ###############
+97: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'sectionid': 'check_bgp', 'name': 'check_bgp', 'logfilepath': '/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/runinfo/BGP_check_job.2019May17_14:36:45.108097/TaskLog.Task-1', 'xref': {'file': '/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/BGP_Neighbors_Established.py', 'line': 77}, 'extra': {'module': 'pyats.aetest.sections'}, 'description': ' Sample test section. Only print ', 'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+98: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+99: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting start_testsection  ###############
+100: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering set_attribute ###############
+101: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'name': 'check_bgp', 'description': ' Sample test section. Only print ', 'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+102: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+103: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting set_attribute  ###############
+104: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering stop_testsection ###############
+105: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'result': {'mode': 'auto', 'value': 'passed'}, 'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+106: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering set_result ###############
+107: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'result': {'mode': 'auto', 'value': 'passed'}, 'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+108: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+109: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting set_result  ###############
+110: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+111: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting stop_testsection  ###############
+112: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering set_initinfo ###############
+113: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'id': {'name': 'BGP_Neighbors_Established'}, 'name': 'BGP_Neighbors_Established', 'description': ' This is user Testcases section ', 'swversion': 'None', 'hwversion': 'None', 'fwversion': 'None', 'tstversion': 'None', 'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+114: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+115: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting set_initinfo  ###############
+116: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering stop_testcase ###############
+117: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'result': {'mode': 'auto', 'value': 'passed'}, 'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+118: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering set_result ###############
+119: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'result': {'mode': 'auto', 'value': 'passed'}, 'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+120: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+121: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting set_result  ###############
+122: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+123: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting stop_testcase  ###############
+124: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering start_commoncleanup ###############
+125: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'logfilepath': '/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/runinfo/BGP_check_job.2019May17_14:36:45.108097/TaskLog.Task-1', 'name': 'common_cleanup', 'xref': {'file': '/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/BGP_Neighbors_Established.py', 'line': 123}, 'extra': {'module': 'pyats.aetest.testscript.BGP_Neighbors_Established'}, 'description': ' Common Cleanup for Sample Test ', 'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+126: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering start_testsection ###############
+127: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'logfilepath': '/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/runinfo/BGP_check_job.2019May17_14:36:45.108097/TaskLog.Task-1', 'name': 'common_cleanup', 'xref': {'file': '/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/BGP_Neighbors_Established.py', 'line': 123}, 'extra': {'module': 'pyats.aetest.testscript.BGP_Neighbors_Established'}, 'description': ' Common Cleanup for Sample Test ', 'pid': '35317', 'clienthost': 'SIHART-M-D02M', 'sectionid': 'commonCleanup'}), {}
+128: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+129: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting start_testsection  ###############
+130: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+131: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting start_commoncleanup  ###############
+132: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering start_commonsubsection ###############
+133: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'name': 'clean_everything', 'logfilepath': '/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/runinfo/BGP_check_job.2019May17_14:36:45.108097/TaskLog.Task-1', 'xref': {'file': '/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/BGP_Neighbors_Established.py', 'line': 131}, 'extra': {'module': 'pyats.aetest.sections'}, 'description': ' Common Cleanup Subsection ', 'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+134: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+135: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting start_commonsubsection  ###############
+136: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering set_attribute ###############
+137: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'id': {'name': 'clean_everything'}, 'name': 'clean_everything', 'description': ' Common Cleanup Subsection ', 'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+138: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+139: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting set_attribute  ###############
+140: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering stop_commonsubsection ###############
+141: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'result': {'mode': 'auto', 'value': 'passed'}, 'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+142: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering set_result ###############
+143: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'result': {'mode': 'auto', 'value': 'passed'}, 'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+144: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+145: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting set_result  ###############
+146: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+147: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting stop_commonsubsection  ###############
+148: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering set_result ###############
+149: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'result': {'mode': 'auto', 'value': 'passed'}, 'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+150: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+151: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting set_result  ###############
+152: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering stop_commoncleanup ###############
+153: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+154: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering stop_testsection ###############
+155: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+156: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+157: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting stop_testsection  ###############
+158: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+159: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting stop_commoncleanup  ###############
+160: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering stop_testscript ###############
+161: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'pid': '35317', 'clienthost': 'SIHART-M-D02M'}), {}
+162: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+163: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting stop_testscript  ###############
+164: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering stop_jobexecution ###############
+165: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'pid': '35217', 'clienthost': 'SIHART-M-D02M'}), {}
+166: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+167: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting stop_jobexecution  ###############
+168: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering set_initinfo ###############
+169: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'image': None, 'release': None, 'pid': '35217', 'clienthost': 'SIHART-M-D02M'}), {}
+170: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+171: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting set_initinfo  ###############
+172: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering set_initinfo ###############
+173: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'testbed': 'NetDevOpsLive', 'pid': '35217', 'clienthost': 'SIHART-M-D02M'}), {}
+174: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+175: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting set_initinfo  ###############
+176: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering generate_html_logs ###############
+177: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'file': '/Users/sihart/Genie_NetDevOpsLive/bgp_adjacencies/runinfo/BGP_check_job.2019May17_14:36:45.108097/TaskLog.html', 'pid': '35217', 'clienthost': 'SIHART-M-D02M'}), {}
+178: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+179: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting generate_html_logs  ###############
+180: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering stop_testsuite ###############
+181: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'pid': '35217', 'clienthost': 'SIHART-M-D02M'}), {}
+182: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+183: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting stop_testsuite  ###############
+184: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Entering generate_xml_reports ###############
+185: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>, {'pid': '35217', 'clienthost': 'SIHART-M-D02M'}), {}
+186: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: Returning None
+187: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35262][pname=ForkProcess-2]: ############### Exiting generate_xml_reports  ###############
+12: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35217][pname=MainProcess]: Disabled AEClient auto-reconnect
+13: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35217][pname=MainProcess]: ############### Entering terminate_server ###############
+14: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35217][pname=MainProcess]: Arguments are: (<pyats.aereport.aerunner.AERunner object at 0x10ac2b860>,), {}
+15: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35217][pname=MainProcess]: Terminate server invoked on pid 35262
+16: SIHART-M-D02M: 2019-05-17T14:36:53: %AEREPORT-7-DEBUG: %[pid=35217][pname=MainProcess]: AEReport server (pid 35262) terminated.
