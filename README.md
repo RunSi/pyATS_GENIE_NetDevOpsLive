@@ -7,8 +7,8 @@
 Clone this repository and move to directory 
 
 ```bash
-git clone 
-cd ~/Genie_NetDevOpsLive
+git clone https://github.com/RunSi/pyATS_GENIE_NetDevOpsLive.git
+cd ~/pyATS_GENIE_NetDevOpsLive
 ```
 
 Create a Python virtual environment and install necessary libraries
@@ -33,9 +33,9 @@ pip install -r requirements.txt
 
 As part of this lab we shall be leveraging GENIE _mock devices_.  Mock devices are recordings of real devices, in this instance an XE, an NXOS and an XR device.  The GENIE CLI commands / ROBOT examples / Python examples can all be used on real devices with changes to the **testbed** files.
 
+### Network Topology
 
-
-###Network Topology
+![](/Users/sihart/pyATS_GENIE_NetDevOpsLive/images/GENIE_Topology/Slide1.png)
 
 
 
