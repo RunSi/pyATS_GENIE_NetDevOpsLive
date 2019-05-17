@@ -35,7 +35,7 @@ As part of this lab we shall be leveraging GENIE _mock devices_.  Mock devices a
 
 ### Network Topology
 
-![](/Users/sihart/pyATS_GENIE_NetDevOpsLive/images/GENIE_Topology/Slide1.png)
+![](/images/GENIE_Topology/Slide1.png)
 
 
 
