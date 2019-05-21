@@ -132,7 +132,6 @@ To iterate a few points about pyATS and Genie:
 - The Cisco internal and customer external version of pyATS/Genie is exactly the same
 - New libraries and innovation are being released as we speak!
 - Genie libraries can be used in many ways:
-  - With the [Genie CLI](https://pubhub.devnetcloud.com/media/pyats-packages/docs/genie/cli.html)
+  - With the [Genie CLI](https://pubhub.devnetcloud.com/media/pyats-packages/docs/genie/cli/index.html)
   - RobotFramework [Genie library](https://pubhub.devnetcloud.com/media/pyats-packages/docs/genie/robot/index.html)
   - As a pure [Python library](https://pubhub.devnetcloud.com/media/pyats-packages/docs/genie/)
-
