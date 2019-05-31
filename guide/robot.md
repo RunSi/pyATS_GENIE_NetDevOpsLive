@@ -54,7 +54,7 @@ In the previous step we've taken a snapshot of our network when it was performin
 With an editor open the script below, and examine its content:
 
 ```
-robot_compare_snapshot/compare_snapshot.robot
+robot_compare_snapshot/robot_compare_snapshot.robot
 ```
 
 This is the 2nd RobotFramework based script which, upon running, will:
@@ -73,7 +73,7 @@ export unicon_replay=~/pyATS_GENIE_NetDevOpsLive/record_disaster
 
 # run robot script
 cd ../robot_compare_snapshot
-robot --outputdir run compare_snapshot.robot
+robot --outputdir run robot_compare_snapshot.robot
 ```
 
 And again, open the `run/log.html` with a web browser to view the log.
