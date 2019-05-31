@@ -70,7 +70,7 @@ Now a network topology is loaded where the state of the network has changed.  Th
 
 ```python
 from genie.conf import Genie
-testbed = Genie.init('mock_disaster.yaml’) 
+testbed = Genie.init('mock_disaster.yaml') 
 
 uut = testbed.devices.xe
 uut.connect()   
@@ -79,7 +79,7 @@ uut.connect()
 Now learn the new state of the interface, the object will be called interface_after
 
 ```python
-interface_after = uut.learn(‘interface’)
+interface_after = uut.learn('interface')
 ```
 
 Both the interface_after object and the interface_before object have a **diff** method.  We can use the diff method to determine the differences between the two snapshots
